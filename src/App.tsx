@@ -1,25 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import SignIn from "./pages/SignIn";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
+import WelcomePage from "./pages/WelcomePage";
+import SignUp from "./pages/SignUp";
+import RootPage from "./pages/RootPage";
+import { createTheme, ThemeOptions, ThemeProvider } from "@mui/material/styles";
+import { lightBlue } from "@mui/material/colors";
+import { CssBaseline } from "@mui/material";
+import Players from "./pages/Players";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootPage />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <WelcomePage />,
+      },
+      {
+        path: "/login",
+        element: <SignIn />,
+      },
+      {
+        path: "/register",
+        element: <SignUp />,
+      },
+      {
+        path: "/players",
+        element: <Players />,
+      },
+    ],
+  },
+]);
+
+const themeOptions: ThemeOptions = {
+  palette: {
+    primary: {
+      // main: "#2c84cb",
+      main: "#161662",
+    },
+    secondary: {
+      main: "#45458a",
+    },
+  },
+  typography: {
+    allVariants: {
+      // fontFamily: 'roboto',
+      textTransform: "none",
+      // fontSize: 16,
+    },
+  },
+};
+
+const theme = createTheme(themeOptions);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
 }
 
