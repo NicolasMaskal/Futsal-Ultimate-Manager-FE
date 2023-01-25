@@ -92,7 +92,7 @@ const Players = () => {
         about each player is available in their detail.
       </Typography>
       {players && averageSkill ? (
-          <article className={"text-center pb-1"}>
+          <article className={"text-center pb-4"}>
           <div>
           <Typography
             className="font-bold"

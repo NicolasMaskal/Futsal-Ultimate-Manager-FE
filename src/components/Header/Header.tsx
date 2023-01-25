@@ -14,9 +14,10 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import useMobileView from "../../hooks/useMobileView";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-
+import MonetizationOnRoundedIcon from '@mui/icons-material/MonetizationOnRounded';
 const DesktopHeader = () => {
   return (
+      <>
     <Grid container justifyContent="space-around" alignItems="center">
       <Grid item xs={0} md={1}>
         <Button component={Link} to="/" color="inherit">
@@ -86,6 +87,12 @@ const DesktopHeader = () => {
         />
       </Grid>
     </Grid>
+    {/*<Grid container justifyContent="space-around" alignItems="center">*/}
+    {/*    <Grid item xs={0} md>*/}
+    {/*        <AppName />*/}
+    {/*    </Grid>*/}
+    {/*</Grid>*/}
+    </>
   );
 };
 

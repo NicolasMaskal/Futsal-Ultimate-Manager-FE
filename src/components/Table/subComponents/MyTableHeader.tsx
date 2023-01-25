@@ -36,7 +36,7 @@ const MyTableHeader: React.FC<{
     };
 
   return (
-    <TableHead>
+    <TableHead className="bg-gray-100">
       <TableRow sx={{ height: "4rem" }} className={"font-bold"}>
         {headCells.map((headCell, index) => {
           if (headCell.alignment === null) {
