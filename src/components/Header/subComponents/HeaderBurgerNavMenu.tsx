@@ -1,13 +1,19 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import {Divider, ListItemIcon, ListItemText, Menu, MenuItem} from "@mui/material";
+import {
+  Divider,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import ScoreboardRoundedIcon from "@mui/icons-material/ScoreboardRounded";
 import footballFieldIconGray from "../football-field-gray.png";
 import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
-import {ProfileMenuItems} from "./HeaderBurgerProfileMenu";
+import { ProfileMenuItems } from "./HeaderBurgerProfileMenu";
 
 const HeaderBurgerNavMenu: React.FC<{
   anchorElNav: null | HTMLElement;
@@ -79,7 +85,7 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Shop</ListItemText>
           </MenuItem>
         </Link>
-        <ProfileMenuItems handleCloseNavMenu={handleCloseNavMenu}/>
+        <ProfileMenuItems handleCloseNavMenu={handleCloseNavMenu} />
       </Menu>
     </div>
   );

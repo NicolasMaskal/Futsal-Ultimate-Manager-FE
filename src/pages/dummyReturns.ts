@@ -1,4 +1,4 @@
-import { Player } from "../models";
+import {MatchResult, Player} from "../models";
 
 export const dummyPlayers: Player[] = [
   {
@@ -182,3 +182,485 @@ export const dummyPlayers: Player[] = [
     },
   },
 ];
+
+export const dummyMatchResults: MatchResult[] = [{
+  "id": 94,
+  "date": "2023-01-19 23:49:08",
+  "player_goals": 4,
+  "cpu_goals": 4,
+  "player_team": {
+    "id": 10,
+    "name": "new team",
+    "owner": 4
+  },
+  "cpu_team": {
+    "id": 67,
+    "name": "FC Rosschester",
+    "owner": null
+  }
+},
+  {
+    "id": 95,
+    "date": "2023-01-19 23:49:13",
+    "player_goals": 3,
+    "cpu_goals": 4,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 68,
+      "name": "FC West Angiemouth",
+      "owner": null
+    }
+  },
+  {
+    "id": 96,
+    "date": "2023-01-19 23:49:19",
+    "player_goals": 1,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 69,
+      "name": "FC Elliottland",
+      "owner": null
+    }
+  },
+  {
+    "id": 97,
+    "date": "2023-01-19 23:49:28",
+    "player_goals": 2,
+    "cpu_goals": 4,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 70,
+      "name": "FC Juliefort",
+      "owner": null
+    }
+  },
+  {
+    "id": 98,
+    "date": "2023-01-19 23:49:30",
+    "player_goals": 0,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 71,
+      "name": "FC South Taylor",
+      "owner": null
+    }
+  },
+  {
+    "id": 99,
+    "date": "2023-01-19 23:49:32",
+    "player_goals": 5,
+    "cpu_goals": 3,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 72,
+      "name": "FC New Vicki",
+      "owner": null
+    }
+  },
+  {
+    "id": 100,
+    "date": "2023-01-19 23:51:17",
+    "player_goals": 0,
+    "cpu_goals": 1,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 73,
+      "name": "FC South Josephbury",
+      "owner": null
+    }
+  },
+  {
+    "id": 101,
+    "date": "2023-01-19 23:51:18",
+    "player_goals": 1,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 74,
+      "name": "FC Amandaburgh",
+      "owner": null
+    }
+  },
+  {
+    "id": 102,
+    "date": "2023-01-19 23:51:20",
+    "player_goals": 3,
+    "cpu_goals": 2,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 75,
+      "name": "FC Lake Sherry",
+      "owner": null
+    }
+  },
+  {
+    "id": 103,
+    "date": "2023-01-19 23:51:21",
+    "player_goals": 1,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 76,
+      "name": "FC North Carlos",
+      "owner": null
+    }
+  },
+  {
+    "id": 104,
+    "date": "2023-01-19 23:51:29",
+    "player_goals": 2,
+    "cpu_goals": 6,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 77,
+      "name": "FC New Elizabethtown",
+      "owner": null
+    }
+  },
+  {
+    "id": 105,
+    "date": "2023-01-19 23:51:31",
+    "player_goals": 6,
+    "cpu_goals": 2,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 78,
+      "name": "FC South Johnfort",
+      "owner": null
+    }
+  },
+  {
+    "id": 106,
+    "date": "2023-01-19 23:51:48",
+    "player_goals": 1,
+    "cpu_goals": 5,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 79,
+      "name": "FC Tonyville",
+      "owner": null
+    }
+  },
+  {
+    "id": 107,
+    "date": "2023-01-19 23:52:12",
+    "player_goals": 0,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 80,
+      "name": "FC Kennethland",
+      "owner": null
+    }
+  },
+  {
+    "id": 108,
+    "date": "2023-01-19 23:52:14",
+    "player_goals": 4,
+    "cpu_goals": 3,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 81,
+      "name": "FC Daltonshire",
+      "owner": null
+    }
+  },
+  {
+    "id": 110,
+    "date": "2023-01-20 00:02:18",
+    "player_goals": 1,
+    "cpu_goals": 4,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 84,
+      "name": "FC Woodsshire",
+      "owner": null
+    }
+  },
+  {
+    "id": 112,
+    "date": "2023-01-20 00:12:27",
+    "player_goals": 2,
+    "cpu_goals": 5,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 86,
+      "name": "FC Port Karen",
+      "owner": null
+    }
+  },
+  {
+    "id": 113,
+    "date": "2023-01-20 00:19:35",
+    "player_goals": 1,
+    "cpu_goals": 1,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 87,
+      "name": "FC New Donna",
+      "owner": null
+    }
+  },
+  {
+    "id": 114,
+    "date": "2023-01-20 00:19:49",
+    "player_goals": 7,
+    "cpu_goals": 4,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 88,
+      "name": "FC West Stephanie",
+      "owner": null
+    }
+  },
+  {
+    "id": 116,
+    "date": "2023-01-20 00:37:07",
+    "player_goals": 0,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 90,
+      "name": "FC Port Peterborough",
+      "owner": null
+    }
+  },
+  {
+    "id": 117,
+    "date": "2023-01-20 00:37:22",
+    "player_goals": 0,
+    "cpu_goals": 9,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 91,
+      "name": "FC Monicaville",
+      "owner": null
+    }
+  },
+  {
+    "id": 118,
+    "date": "2023-01-20 11:38:01",
+    "player_goals": 1,
+    "cpu_goals": 6,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 92,
+      "name": "FC East Stephenview",
+      "owner": null
+    }
+  },
+  {
+    "id": 119,
+    "date": "2023-01-20 11:47:56",
+    "player_goals": 0,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 93,
+      "name": "FC Bartlettberg",
+      "owner": null
+    }
+  },
+  {
+    "id": 120,
+    "date": "2023-01-20 11:48:09",
+    "player_goals": 4,
+    "cpu_goals": 6,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 94,
+      "name": "FC North Erin",
+      "owner": null
+    }
+  },
+  {
+    "id": 121,
+    "date": "2023-01-20 21:41:09",
+    "player_goals": 2,
+    "cpu_goals": 6,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 95,
+      "name": "FC Harmonfort",
+      "owner": null
+    }
+  },
+  {
+    "id": 122,
+    "date": "2023-01-20 21:42:44",
+    "player_goals": 2,
+    "cpu_goals": 3,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 95,
+      "name": "FC Harmonfort",
+      "owner": null
+    }
+  },
+  {
+    "id": 123,
+    "date": "2023-01-20 21:42:47",
+    "player_goals": 0,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 95,
+      "name": "FC Harmonfort",
+      "owner": null
+    }
+  },
+  {
+    "id": 124,
+    "date": "2023-01-20 21:42:55",
+    "player_goals": 3,
+    "cpu_goals": 6,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 95,
+      "name": "FC Harmonfort",
+      "owner": null
+    }
+  },
+  {
+    "id": 125,
+    "date": "2023-01-20 21:49:26",
+    "player_goals": 1,
+    "cpu_goals": 8,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 95,
+      "name": "FC Harmonfort",
+      "owner": null
+    }
+  },
+  {
+    "id": 126,
+    "date": "2023-01-20 21:54:16",
+    "player_goals": 0,
+    "cpu_goals": 0,
+    "player_team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    },
+    "cpu_team": {
+      "id": 95,
+      "name": "FC Harmonfort",
+      "owner": null
+    }
+  }
+]

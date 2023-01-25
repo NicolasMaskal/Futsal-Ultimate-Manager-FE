@@ -1,6 +1,5 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import {
   Divider,
   ListItemIcon,
@@ -9,11 +8,11 @@ import {
   MenuItem,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import ShieldIcon from "@mui/icons-material/Shield";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
+import ChangeCircleRoundedIcon from "@mui/icons-material/ChangeCircleRounded";
+
 export const ProfileMenuItems: React.FC<{
   handleCloseNavMenu: () => void;
 }> = ({ handleCloseNavMenu }) => {

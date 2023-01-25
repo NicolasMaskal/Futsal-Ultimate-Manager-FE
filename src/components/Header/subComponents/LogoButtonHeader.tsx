@@ -23,4 +23,4 @@ const LogoButtonHeader = () => {
   );
 };
 
-export default LogoButtonHeader
+export default LogoButtonHeader;

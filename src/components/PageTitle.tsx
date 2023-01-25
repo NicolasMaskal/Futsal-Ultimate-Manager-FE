@@ -5,7 +5,7 @@ const PageTitle: React.FC<{ title: string }> = ({ title }) => (
   <Typography
     sx={{
       textAlign: "center",
-        color: "secondary.main",
+      color: "secondary.main",
       fontFamily: "Segoe UI",
       letterSpacing: { md: ".1rem", lg: ".2rem", xl: ".2rem" },
       fontWeight: 700,

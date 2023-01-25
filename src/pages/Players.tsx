@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
-import { Container, Skeleton } from "@mui/material";
-import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
-import { dummyPlayers } from "./dummyReturns";
-import { Player } from "../models";
+import {Container, Skeleton} from "@mui/material";
+import {HeadCellType} from "../components/Table/subComponents/MyTableHeader";
+import {dummyPlayers} from "./dummyReturns";
+import {Player} from "../models";
 import PageTitle from "../components/PageTitle";
 import PlayerRow from "../components/Table/rowComponents/PlayerRow";
 import CustomTable from "../components/Table/CustomTable";
-import SportsSoccerRoundedIcon from "@mui/icons-material/SportsSoccerRounded";
-import Footer from "../components/Footer";
 
 const headCells: HeadCellType[] = [
   {
@@ -64,15 +62,6 @@ const headCells: HeadCellType[] = [
   },
 ];
 
-const getIconForHeader: (headerText: string | null) => JSX.Element = (
-  headerText
-) => {
-  if (headerText === "goals_scored") {
-    return <SportsSoccerRoundedIcon />;
-  }
-  return <></>;
-};
-
 const Players = () => {
   const [players, setPlayers] = useState<Player[] | null>(null);
   const [averageSkill, setAverageSkill] = useState(0);
@@ -92,26 +81,26 @@ const Players = () => {
         about each player is available in their detail.
       </Typography>
       {players && averageSkill ? (
-          <article className={"text-center pb-4"}>
+        <article className={"text-center pb-4"}>
           <div>
-          <Typography
-            className="font-bold"
-            variant="body1"
-            display={"inline"}
-          >
-            {"Squad size: "}
-          </Typography>
-            <Typography display="inline">{players ? players.length : ""}</Typography>
+            <Typography
+              className="font-bold"
+              variant="body1"
+              display={"inline"}
+            >
+              {"Squad size: "}
+            </Typography>
+            <Typography display="inline">
+              {players ? players.length : ""}
+            </Typography>
           </div>
-
-          <Typography
-              display="inline"
-            className="font-bold pb-4"
-          >
+          <div>
+          <Typography display="inline" className="font-bold pb-4">
             {"Average skill: "}
           </Typography>
           <Typography display="inline">{averageSkill}</Typography>
-          </article>
+          </div>
+        </article>
       ) : (
         <Container
           sx={{
@@ -134,7 +123,6 @@ const Players = () => {
         pagination={true}
         size={10}
         additionalInfo={averageSkill}
-        iconHeaderMapper={getIconForHeader}
       />
     </>
   );

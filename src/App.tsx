@@ -9,6 +9,7 @@ import RootPage from "./pages/RootPage";
 import { createTheme, ThemeOptions, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import Players from "./pages/Players";
+import MatchResults from "./pages/MatchResults";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/players",
         element: <Players />,
+      },
+      {
+        path: "/match-results",
+        element: <MatchResults />,
       },
     ],
   },

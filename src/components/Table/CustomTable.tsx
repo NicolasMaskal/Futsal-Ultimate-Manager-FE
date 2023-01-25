@@ -61,7 +61,6 @@ interface TableProp<DataType extends { id: number }, AdditionalInfoType> {
   pagination: boolean;
   size: number;
   additionalInfo: AdditionalInfoType;
-  iconHeaderMapper: (headerText: string | null) => JSX.Element;
 }
 
 const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
@@ -110,11 +109,6 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  // TODO Fix with empty rows with no borders
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - objects.length) : 0;
-
   const iconSx = {
     // TODO Change to rem
     fontSize: {
@@ -134,10 +128,6 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
       xs: 6,
     },
   };
-
-  if (objects === null) {
-    objects = [];
-  }
 
   return (
     <Grid container spacing={0} alignItems="center" justifyContent="center">
@@ -177,15 +167,6 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
                     </React.Fragment>
                   );
                 })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: 53 * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>
@@ -196,7 +177,7 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
               { "& .MuiTablePagination-selectLabel": textSx },
               { "& .MuiTablePagination-displayedRows": textSx },
             ]}
-            rowsPerPageOptions={[10, 15, 25]}
+            rowsPerPageOptions={[10, 15, 25, 50, 100]}
             component="div"
             count={objects.length}
             rowsPerPage={rowsPerPage}
