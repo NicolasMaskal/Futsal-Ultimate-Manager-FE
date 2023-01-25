@@ -8,9 +8,10 @@ import { SxProps } from "@mui/system";
 import useMobileView from "../../../hooks/useMobileView";
 
 export type HeadCellType = {
-  id: string;
+  id: string | null;
   alignment: "left" | "right" | "center" | "justify" | "inherit" | undefined;
   label: string;
+  icon?: JSX.Element;
 };
 
 export type Order = "asc" | "desc";
@@ -23,7 +24,7 @@ export type onRequestSortType = (
 const MyTableHeader: React.FC<{
   headCells: HeadCellType[];
   order: Order;
-  orderBy: string | undefined;
+  orderBy: string | null;
   textSx: SxProps;
   iconSx: SxProps;
   onRequestSort: onRequestSortType;
@@ -36,12 +37,16 @@ const MyTableHeader: React.FC<{
 
   return (
     <TableHead>
-      <TableRow>
+      <TableRow sx={{ height: "4rem" }} className={"font-bold"}>
         {headCells.map((headCell, index) => {
           if (headCell.alignment === null) {
             return <TableCell key={index} />;
           }
-          let text = <Typography sx={textSx}>{headCell.label}</Typography>;
+          let text = (
+            <Typography className={"font-bold"} sx={textSx}>
+              {headCell.label}
+            </Typography>
+          );
           let content = text;
           if (headCell.id !== null) {
             content = (

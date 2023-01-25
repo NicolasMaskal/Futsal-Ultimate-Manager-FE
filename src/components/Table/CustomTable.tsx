@@ -54,11 +54,12 @@ export type RowComponentType<
 
 interface TableProp<DataType extends { id: number }, AdditionalInfoType> {
   RowComponent: RowComponentType<DataType, AdditionalInfoType>;
-  objects: DataType[];
+  objects: DataType[] | null;
   headCells: HeadCellType[];
   pagination: boolean;
   size: number;
   additionalInfo: AdditionalInfoType;
+  iconHeaderMapper: (headerText: string | null) => JSX.Element;
 }
 
 const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
@@ -157,7 +158,7 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
               iconSx={iconSx}
             />
             <TableBody>
-              {stableSort(objects, getComparator(order, orderBy))
+              {stableSort(objects, getComparator(order, orderBy as string))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((obj) => {
                   return (

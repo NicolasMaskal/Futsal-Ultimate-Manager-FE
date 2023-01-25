@@ -8,6 +8,7 @@ const Footer = (props: any) => {
       variant="body2"
       color="text.secondary"
       align="center"
+      className="pt-4"
       {...props}
     >
       {"Copyright © "}

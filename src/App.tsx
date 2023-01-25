@@ -7,7 +7,6 @@ import WelcomePage from "./pages/WelcomePage";
 import SignUp from "./pages/SignUp";
 import RootPage from "./pages/RootPage";
 import { createTheme, ThemeOptions, ThemeProvider } from "@mui/material/styles";
-import { lightBlue } from "@mui/material/colors";
 import { CssBaseline } from "@mui/material";
 import Players from "./pages/Players";
 
@@ -61,6 +60,10 @@ const theme = createTheme(themeOptions);
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      />
       <CssBaseline />
       <RouterProvider router={router} />
     </ThemeProvider>
