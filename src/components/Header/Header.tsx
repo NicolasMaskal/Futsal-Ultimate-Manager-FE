@@ -1,39 +1,34 @@
 import React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import logo from "../../futsal_logo.png";
-import footballFieldIcon from "./football-field.png";
+import footballFieldIconWhite from "./football-field-white.png";
 import ScoreboardRoundedIcon from "@mui/icons-material/ScoreboardRounded";
 import HeaderButton from "./subComponents/HeaderButton";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import Grid from "@mui/material/Grid";
 import AppName from "./subComponents/AppName";
 import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import useMobileView from "../../hooks/useMobileView";
-import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
-import MonetizationOnRoundedIcon from '@mui/icons-material/MonetizationOnRounded';
+import LogoButtonHeader from "./subComponents/LogoButtonHeader";
+import SubHeader from "./subComponents/SubHeader";
+import HeaderBurgerNavMenu from "./subComponents/HeaderBurgerNavMenu";
+import HeaderBurgerProfileMenu from "./subComponents/HeaderBurgerProfileMenu";
+
 const DesktopHeader = () => {
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   return (
-      <>
-    <Grid container justifyContent="space-around" alignItems="center">
+    <>
       <Grid item xs={0} md={1}>
-        <Button component={Link} to="/" color="inherit">
-          <Box
-            component="img"
-            sx={{
-              maxHeight: 50,
-              maxWidth: "100%",
-              // display: { xs: "none", md: "flex" },
-              mr: 2,
-              ml: 2,
-            }}
-            alt="Logo"
-            src={logo}
-          />
-        </Button>
+        <LogoButtonHeader />
       </Grid>
       <Grid item xs={0} md>
         <AppName />
@@ -60,7 +55,7 @@ const DesktopHeader = () => {
           buttonText="Team Sheets"
           startIcon={
             <img
-              src={footballFieldIcon}
+              src={footballFieldIconWhite}
               alt={"Football field icon"}
               style={{ height: 24 }}
             />
@@ -71,33 +66,53 @@ const DesktopHeader = () => {
       </Grid>
       <Grid item xs>
         <HeaderButton
-          tooltipText="Visit the shop to buy packs and improve your team!"
+          tooltipText="Visit the shop to buy packs and improve your team."
           buttonText="Shop"
           startIcon={<StoreRoundedIcon />}
           href="/shop"
         />
       </Grid>
       <Grid item xs>
-        <HeaderButton
-          tooltipText="Click to logout"
-          buttonText="Logout"
-          startIcon={<LogoutRoundedIcon />}
-          href={"/login"}
-          onClick={console.log} // TODO
+        <HeaderBurgerProfileMenu
+          anchorElNav={anchorElUser}
+          handleOpenNavMenu={handleOpenUserMenu}
+          handleCloseNavMenu={handleCloseUserMenu}
         />
       </Grid>
-    </Grid>
-    {/*<Grid container justifyContent="space-around" alignItems="center">*/}
-    {/*    <Grid item xs={0} md>*/}
-    {/*        <AppName />*/}
-    {/*    </Grid>*/}
-    {/*</Grid>*/}
     </>
   );
 };
 
 const MobileHeader = () => {
-  return <></>;
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  return (
+    <>
+      <Grid item xs>
+        <LogoButtonHeader />
+      </Grid>
+      <Grid item xs>
+        <AppName />
+      </Grid>
+      <Grid item xs>
+        <HeaderBurgerNavMenu
+          anchorElNav={anchorElNav}
+          handleOpenNavMenu={handleOpenNavMenu}
+          handleCloseNavMenu={handleCloseNavMenu}
+        />
+      </Grid>
+    </>
+  );
 };
 
 const Header = () => {
@@ -106,7 +121,12 @@ const Header = () => {
   return (
     <AppBar>
       <Toolbar disableGutters>
-        {mobileView ? <MobileHeader /> : <DesktopHeader />}
+        <div className="flex-row flex-grow">
+          <Grid container justifyContent="space-around" alignItems="center">
+            {mobileView ? <MobileHeader /> : <DesktopHeader />}
+          </Grid>
+          <SubHeader />
+        </div>
       </Toolbar>
     </AppBar>
   );

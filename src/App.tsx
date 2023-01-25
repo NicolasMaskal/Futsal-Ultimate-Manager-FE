@@ -43,7 +43,7 @@ const themeOptions: ThemeOptions = {
       main: "#161662",
     },
     secondary: {
-      main: "#45458a",
+      main: "#48488c",
     },
   },
   typography: {

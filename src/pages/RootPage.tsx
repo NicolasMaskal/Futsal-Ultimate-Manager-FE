@@ -17,7 +17,7 @@ const RootPage = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col h-screen pt-24">
+      <div className="flex flex-col h-screen pt-28">
         <div className="w-full h-full">
           <Outlet />
           <Footer />

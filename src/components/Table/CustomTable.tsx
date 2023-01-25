@@ -56,6 +56,8 @@ interface TableProp<DataType extends { id: number }, AdditionalInfoType> {
   RowComponent: RowComponentType<DataType, AdditionalInfoType>;
   objects: DataType[] | null;
   headCells: HeadCellType[];
+  defaultOrderBy: string;
+  defaultOrder: Order;
   pagination: boolean;
   size: number;
   additionalInfo: AdditionalInfoType;
@@ -68,12 +70,14 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
   RowComponent,
   objects,
   headCells,
+  defaultOrderBy,
+  defaultOrder,
   pagination,
   size,
   additionalInfo,
 }) => {
-  const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState(headCells[1].id);
+  const [order, setOrder] = React.useState<Order>(defaultOrder);
+  const [orderBy, setOrderBy] = React.useState(defaultOrderBy);
   const [page, setPage] = React.useState(0);
 
   const [rowsPerPage, setRowsPerPage] = React.useState(15);

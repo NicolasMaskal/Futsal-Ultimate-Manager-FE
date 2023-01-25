@@ -80,7 +80,7 @@ const Players = () => {
   useEffect(() => {
     setTimeout(() => {
       setPlayers(dummyPlayers);
-      setAverageSkill(65);
+      setAverageSkill(15);
     }, 1000);
   }, []);
 
@@ -129,6 +129,8 @@ const Players = () => {
         RowComponent={PlayerRow}
         objects={players}
         headCells={headCells}
+        defaultOrderBy={"preferred_position"}
+        defaultOrder={"desc"}
         pagination={true}
         size={10}
         additionalInfo={averageSkill}
