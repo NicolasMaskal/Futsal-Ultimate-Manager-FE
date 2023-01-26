@@ -1,45 +1,9 @@
 import React from "react";
-import SignIn from "./pages/SignIn";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./pages/ErrorPage";
-import WelcomePage from "./pages/WelcomePage";
-import SignUp from "./pages/SignUp";
-import RootPage from "./pages/RootPage";
+import { RouterProvider } from "react-router-dom";
 import { createTheme, ThemeOptions, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import Players from "./pages/Players";
-import MatchResults from "./pages/MatchResults";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootPage />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/",
-        element: <WelcomePage />,
-      },
-      {
-        path: "/login",
-        element: <SignIn />,
-      },
-      {
-        path: "/register",
-        element: <SignUp />,
-      },
-      {
-        path: "/players",
-        element: <Players />,
-      },
-      {
-        path: "/match-results",
-        element: <MatchResults />,
-      },
-    ],
-  },
-]);
+import router from "./router";
 
 const themeOptions: ThemeOptions = {
   palette: {

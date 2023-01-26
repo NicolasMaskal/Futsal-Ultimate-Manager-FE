@@ -70,15 +70,14 @@ const Players = () => {
     setTimeout(() => {
       setPlayers(dummyPlayers);
       setAverageSkill(15);
-    }, 1000);
+    }, 500);
   }, []);
 
   return (
     <>
       <PageTitle title="PLAYERS" />
-      <Typography sx={{ textAlign: "center", pb: 2 }}>
-        Here you can see a list of players playing for your team. More info
-        about each player is available in their detail.
+      <Typography sx={{ textAlign: "center", pb: 2, px: 30 }}>
+        Here you can see a comprehensive table of all players currently on the user's team. The table includes important information providing a clear and easy way to track the performance of the team.
       </Typography>
       {players && averageSkill ? (
         <article className={"text-center pb-4"}>

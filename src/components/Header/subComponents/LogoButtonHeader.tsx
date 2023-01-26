@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-import logo from "../../../futsal_logo.png";
+import logo from "../../../images/futsal_logo.png";
 import Button from "@mui/material/Button";
 import React from "react";
 

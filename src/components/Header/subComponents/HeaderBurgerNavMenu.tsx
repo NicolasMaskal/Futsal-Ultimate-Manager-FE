@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import ScoreboardRoundedIcon from "@mui/icons-material/ScoreboardRounded";
-import footballFieldIconGray from "../football-field-gray.png";
+import footballFieldIconGray from "../../../images/football-field-gray.png";
 import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
 import { ProfileMenuItems } from "./HeaderBurgerProfileMenu";
 

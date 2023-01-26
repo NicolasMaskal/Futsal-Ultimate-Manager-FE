@@ -44,7 +44,7 @@ const MatchResults = () => {
   useEffect(() => {
     setTimeout(() => {
       setMatchResults(dummyMatchResults);
-    }, 1000);
+    }, 500);
   }, []);
 
   return (
