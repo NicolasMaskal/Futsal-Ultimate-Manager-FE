@@ -18,8 +18,11 @@ import { RowComponentType } from "../CustomTable";
 import useMobileView from "../../../hooks/useMobileView";
 import { capitalizeFirstLetter } from "../../../utils/stringHelpers";
 import { SxProps } from "@mui/system";
-import { Theme } from "@mui/material";
+import { Fade, Popper, Theme } from "@mui/material";
 import { Player } from "../../../models";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import CustomPopper from "../../CustomPopper";
 
 const getColorByPos = (player: Player) => {
   if (player.preferred_position === "attacker") {
@@ -51,8 +54,27 @@ const PlayerRow: RowComponentType<Player, number> = ({
   obj,
   textSx,
   iconSx,
+  rowDeleteHandler,
   additionalInfo,
 }) => {
+  const [sellOpen, setSellOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    setSellOpen((previousOpen) => !previousOpen);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setSellOpen(false);
+  };
+
+  const handleSell = () => {
+    //TODO call api
+    rowDeleteHandler(player);
+  };
+
   const averageSkill = additionalInfo;
 
   const player = obj;
@@ -123,9 +145,21 @@ const PlayerRow: RowComponentType<Player, number> = ({
         {player.sell_price}
       </TableCell>
       <TableCell align="right" padding={mobileView ? "none" : "normal"}>
-        <IconButton>
+        <IconButton onClick={handleClick}>
           <MonetizationOnRoundedIcon sx={iconSx} />
         </IconButton>
+        <CustomPopper
+          isOpen={sellOpen}
+          anchorEl={anchorEl}
+          buttonSuccessText="Sell"
+          handleClose={handleClose}
+          handleSuccess={handleSell}
+        >
+          <Typography sx={{ fontSize: 12, p: 2 }}>
+            Are you sure you want to sell your player '{player.name}' for{" "}
+            {player.sell_price} coins?
+          </Typography>
+        </CustomPopper>
       </TableCell>
     </TableRow>
   );

@@ -77,7 +77,7 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Team sheets</ListItemText>
           </MenuItem>
         </Link>
-        <Link to={"/team-sheets"} style={{ textDecoration: "none" }}>
+        <Link to={"/shop"} style={{ textDecoration: "none" }}>
           <MenuItem key={"shop"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <StoreRoundedIcon fontSize="small" />

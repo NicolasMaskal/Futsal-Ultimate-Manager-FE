@@ -7,6 +7,7 @@ import {Player} from "../models";
 import PageTitle from "../components/PageTitle";
 import PlayerRow from "../components/Table/rowComponents/PlayerRow";
 import CustomTable from "../components/Table/CustomTable";
+import PageDescription from "../components/PageDescription";
 
 const headCells: HeadCellType[] = [
   {
@@ -76,9 +77,9 @@ const Players = () => {
   return (
     <>
       <PageTitle title="PLAYERS" />
-      <Typography sx={{ textAlign: "center", pb: 2, px: 30 }}>
+      <PageDescription>
         Here you can see a comprehensive table of all players currently on the user's team. The table includes important information providing a clear and easy way to track the performance of the team.
-      </Typography>
+      </PageDescription>
       {players && averageSkill ? (
         <article className={"text-center pb-4"}>
           <div>

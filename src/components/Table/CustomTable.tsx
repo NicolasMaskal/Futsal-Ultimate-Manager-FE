@@ -2,10 +2,8 @@ import * as React from "react";
 import { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import MyTableHeader, {
@@ -42,6 +40,7 @@ export interface RowComponentProp<
   obj: DataType;
   textSx: SxProps;
   iconSx: SxProps;
+  rowDeleteHandler: RowDeletionFunction;
   additionalInfo: AdditionalInfoType;
 }
 
@@ -51,6 +50,10 @@ export type RowComponentType<
 > = (
   p: RowComponentProp<DataType, AdditionalInfoType>
 ) => React.ReactElement<TableProp<DataType, AdditionalInfoType>>;
+
+export type RowDeletionFunction = <DataType extends { id: number }>(
+  object: DataType
+) => void;
 
 interface TableProp<DataType extends { id: number }, AdditionalInfoType> {
   RowComponent: RowComponentType<DataType, AdditionalInfoType>;
@@ -75,6 +78,7 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
   size,
   additionalInfo,
 }) => {
+  const [objectsToDisplay, setObjects] = React.useState(objects);
   const [order, setOrder] = React.useState<Order>(defaultOrder);
   const [orderBy, setOrderBy] = React.useState(defaultOrderBy);
   const [page, setPage] = React.useState(0);
@@ -85,9 +89,10 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
     if (!pagination && objects !== null) {
       setRowsPerPage(objects.length);
     }
+    setObjects(objects)
   }, [pagination, objects]);
 
-  if (objects === null) {
+  if (objectsToDisplay === null) {
     return <SkeletonTable size={size} />;
   }
   const sideSize = (12 - size) / 2;
@@ -109,8 +114,13 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const rowDeletionHandler: RowDeletionFunction = (deletedObject) => {
+    const newObjects = objectsToDisplay!.filter((obj) => obj.id !== deletedObject.id);
+    setObjects(newObjects);
+  };
+
   const iconSx = {
-    // TODO Change to rem
     fontSize: {
       lg: 24,
       md: 15,
@@ -120,7 +130,6 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
   };
 
   const textSx = {
-    // TODO Change to rem
     fontSize: {
       lg: 15,
       md: 10,
@@ -152,7 +161,10 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
               iconSx={iconSx}
             />
             <TableBody>
-              {stableSort(objects, getComparator(order, orderBy as string))
+              {stableSort(
+                objectsToDisplay,
+                getComparator(order, orderBy as string)
+              )
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((obj) => {
                   return (
@@ -162,6 +174,7 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
                         textSx={textSx}
                         // fontSizeStyle={fontSizeStyle}
                         iconSx={iconSx}
+                        rowDeleteHandler={rowDeletionHandler}
                         additionalInfo={additionalInfo}
                       />
                     </React.Fragment>
@@ -179,7 +192,7 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
             ]}
             rowsPerPageOptions={[10, 15, 25, 50, 100]}
             component="div"
-            count={objects.length}
+            count={objectsToDisplay.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

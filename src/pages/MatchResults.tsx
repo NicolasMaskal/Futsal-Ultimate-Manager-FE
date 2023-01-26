@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
-import React from "react";
 import PageTitle from "../components/PageTitle";
 
 import { dummyMatchResults } from "./dummyReturns";
@@ -9,6 +8,7 @@ import { MatchResult } from "../models";
 import { Container, Skeleton } from "@mui/material";
 import CustomTable from "../components/Table/CustomTable";
 import MatchRow from "../components/Table/rowComponents/MatchRow";
+import PageDescription from "../components/PageDescription";
 
 const headCells: HeadCellType[] = [
   {
@@ -50,10 +50,10 @@ const MatchResults = () => {
   return (
     <>
       <PageTitle title="MATCH RESULTS" />
-      <Typography sx={{ textAlign: "center", pb: 2 }}>
+      <PageDescription>
         Here you can see a list of match results of your team. More info about
         each match is available in their detail.
-      </Typography>
+      </PageDescription>
       {matchResults ? (
         <div className={"text-center pb-4"}>
           <div>

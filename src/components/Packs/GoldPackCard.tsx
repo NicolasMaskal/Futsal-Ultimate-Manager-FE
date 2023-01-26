@@ -31,7 +31,7 @@ const GoldPackDescription = () => {
       </Typography>
       <Typography variant="body2" color="text.secondary">
         {
-          "They are a must-have for any serious team looking to dominate the competition"
+          "They are a must-have for any serious team looking to dominate the competition."
         }
       </Typography>
     </>

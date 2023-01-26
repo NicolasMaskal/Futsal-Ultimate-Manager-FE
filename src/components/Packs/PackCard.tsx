@@ -14,7 +14,7 @@ const PackCard: React.FC<{
 }> = ({ packName, color, description, price, imgSrc, animationDuration }) => {
   return (
     <Grow in={true} timeout={animationDuration} >
-      <Card elevation={5}  sx={{ maxWidth: "22rem"}}>
+      <Card elevation={5}  sx={{ maxWidth: "22rem", transition: "transform 0.15s ease-in-out"}}>
         <CardActionArea disableRipple>
         <img
           src={imgSrc}
@@ -37,7 +37,7 @@ const PackCard: React.FC<{
           </Typography>
         </CardContent>
         <CardActions className="flex justify-between pr-5">
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" variant="contained">
             Buy
           </Button>
           <Typography>
