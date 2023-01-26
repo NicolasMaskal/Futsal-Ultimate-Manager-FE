@@ -154,10 +154,18 @@ const PlayerRow: RowComponentType<Player, number> = ({
           buttonSuccessText="Sell"
           handleClose={handleClose}
           handleSuccess={handleSell}
+          placement={"bottom-start"}
         >
           <Typography sx={{ fontSize: 12, p: 2 }}>
-            Are you sure you want to sell your player '{player.name}' for{" "}
-            {player.sell_price} coins?
+            Are you sure you want to sell your player{" "}
+            <Typography display="inline" sx={{ fontSize: 12, fontWeight: 700 }}>
+              {player.name}
+            </Typography>{" "}
+            for{" "}
+            <Typography display="inline" sx={{ fontSize: 12, fontWeight: 700 }}>
+              {player.sell_price}{" "}coins
+            </Typography>{" "}
+            ?
           </Typography>
         </CustomPopper>
       </TableCell>

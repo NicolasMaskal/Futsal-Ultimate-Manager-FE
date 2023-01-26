@@ -1,4 +1,4 @@
-import {Fade, Popper} from "@mui/material";
+import { Fade, Popper, PopperPlacementType } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import * as React from "react";
@@ -10,13 +10,22 @@ const CustomPopper: React.FC<{
   buttonSuccessText: string;
   handleSuccess: (event: React.MouseEvent<HTMLElement>) => void;
   handleClose: () => void;
-}> = ({ children, isOpen, anchorEl, buttonSuccessText, handleSuccess, handleClose }) => {
+  placement: PopperPlacementType;
+}> = ({
+  children,
+  isOpen,
+  anchorEl,
+  buttonSuccessText,
+  handleSuccess,
+  handleClose,
+  placement,
+}) => {
   return (
-    <Popper open={isOpen} anchorEl={anchorEl} transition placement={"left-end"}>
+    <Popper open={isOpen} anchorEl={anchorEl} transition placement={placement}>
       {({ TransitionProps }) => (
         <Fade {...TransitionProps}>
           <Paper>
-              {children}
+            {children}
             <div className="flex justify-center">
               <Button
                 sx={{ fontSize: 12 }}

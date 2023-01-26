@@ -32,12 +32,14 @@ const BronzePackDescription = () => {
     </>
   );
 };
-const BronzePackCard: React.FC<{animationDuration: number}> = ({animationDuration}) => {
+const BronzePackCard: React.FC<{ animationDuration: number }> = ({
+  animationDuration,
+}) => {
   return (
     <PackCard
-      packName="BRONZE"
+      packName="Bronze"
       color={"#CD7F32"}
-      description={<BronzePackDescription />}
+      PackDescription={BronzePackDescription}
       price={250}
       imgSrc={bronzePlayer}
       animationDuration={animationDuration}

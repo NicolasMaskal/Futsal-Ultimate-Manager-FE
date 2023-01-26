@@ -44,11 +44,9 @@ const SilverPackDescription = () => {
 const SilverPackCard: React.FC<{animationDuration: number}> = ({animationDuration}) => {
     return (
         <PackCard
-            packName="SILVER"
+            packName="Silver"
             color={"#71706E"}
-            description={
-                <SilverPackDescription/>
-            }
+            PackDescription={SilverPackDescription}
             price={500}
             imgSrc={silverPlayer}
             animationDuration={animationDuration}

@@ -40,9 +40,9 @@ const GoldPackDescription = () => {
 const GoldPackCard: React.FC<{animationDuration: number}> = ({animationDuration}) => {
   return (
     <PackCard
-      packName="GOLD"
+      packName="Gold"
       color={"#d4af37"}
-      description={<GoldPackDescription />}
+      PackDescription={GoldPackDescription}
       price={750}
       imgSrc={goldPlayer}
       animationDuration={animationDuration}
