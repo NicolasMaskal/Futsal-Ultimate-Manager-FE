@@ -43,25 +43,10 @@ const DesktopHeader = () => {
       </Grid>
       <Grid item xs>
         <HeaderButton
-          tooltipText="View match results of your team"
+          tooltipText="View match results of your team."
           buttonText="Match Results"
           startIcon={<ScoreboardRoundedIcon />}
           href="/match-results"
-        />
-      </Grid>
-      <Grid item xs>
-        <HeaderButton
-          tooltipText="View all your team sheets"
-          buttonText="Team Sheets"
-          startIcon={
-            <img
-              src={footballFieldIconWhite}
-              alt={"Football field icon"}
-              style={{ height: 24 }}
-            />
-          }
-          onClick={undefined}
-          href="/my-team-sheets"
         />
       </Grid>
       <Grid item xs>
@@ -70,6 +55,21 @@ const DesktopHeader = () => {
           buttonText="Shop"
           startIcon={<StoreRoundedIcon />}
           href="/shop"
+        />
+      </Grid>
+      <Grid item xs>
+        <HeaderButton
+          tooltipText="Adjust your lineup and start a match."
+          buttonText="Match Center"
+          startIcon={
+            <img
+              src={footballFieldIconWhite}
+              alt={"Football field icon"}
+              style={{ height: 24 }}
+            />
+          }
+          onClick={undefined}
+          href="/pre-match"
         />
       </Grid>
       <Grid item xs>

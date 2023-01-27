@@ -14,10 +14,9 @@ const SubHeader = () => {
     >
       <Grid item xs>
         <SubHeaderButton
-          tooltipText={"View info about your active team"}
           startIcon={<ShieldIcon sx={{ color: "primary.main" }} />}
           buttonText={"Real Madrid"}
-          href={"/active-team"}
+          href={"/match-results"}
         />
       </Grid>
       <Grid item xs>

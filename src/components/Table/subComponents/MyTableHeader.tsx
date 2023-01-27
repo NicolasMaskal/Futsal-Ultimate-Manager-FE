@@ -37,7 +37,7 @@ const MyTableHeader: React.FC<{
 
   return (
     <TableHead className="bg-gray-100">
-      <TableRow sx={{ height: "4rem" }} className={"font-bold"}>
+      <TableRow sx={{ height: mobileView ? "1rem" : "4rem" }} className={"font-bold"}>
         {headCells.map((headCell, index) => {
           if (headCell.alignment === null) {
             return <TableCell key={index} />;

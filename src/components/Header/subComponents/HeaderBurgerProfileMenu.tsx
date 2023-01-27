@@ -26,16 +26,6 @@ export const ProfileMenuItems: React.FC<{
           <ListItemText sx={{ color: "black" }}>User settings</ListItemText>
         </MenuItem>
       </Link>
-      <Link to={"/teams"} style={{ textDecoration: "none" }}>
-        <MenuItem key={"teams"} onClick={handleCloseNavMenu}>
-          <ListItemIcon>
-            <ChangeCircleRoundedIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText sx={{ color: "black" }}>
-            Change active team
-          </ListItemText>
-        </MenuItem>
-      </Link>
       <Divider />
       <Link to={"/login"} style={{ textDecoration: "none" }}>
         <MenuItem key={"logout"} onClick={handleCloseNavMenu}>

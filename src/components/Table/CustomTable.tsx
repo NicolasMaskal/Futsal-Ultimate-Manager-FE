@@ -63,6 +63,7 @@ interface TableProp<DataType extends { id: number }, AdditionalInfoType> {
   defaultOrder: Order;
   pagination: boolean;
   size: number;
+  dontAdjustFont?: boolean;
   additionalInfo: AdditionalInfoType;
 }
 
@@ -76,6 +77,7 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
   defaultOrder,
   pagination,
   size,
+  dontAdjustFont = false,
   additionalInfo,
 }) => {
   const [objectsToDisplay, setObjects] = React.useState(objects);
@@ -89,7 +91,7 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
     if (!pagination && objects !== null) {
       setRowsPerPage(objects.length);
     }
-    setObjects(objects)
+    setObjects(objects);
   }, [pagination, objects]);
 
   if (objectsToDisplay === null) {
@@ -116,11 +118,13 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
   };
 
   const rowDeletionHandler: RowDeletionFunction = (deletedObject) => {
-    const newObjects = objectsToDisplay!.filter((obj) => obj.id !== deletedObject.id);
+    const newObjects = objectsToDisplay!.filter(
+      (obj) => obj.id !== deletedObject.id
+    );
     setObjects(newObjects);
   };
 
-  const iconSx = {
+  let iconSx: SxProps = {
     fontSize: {
       lg: 24,
       md: 15,
@@ -129,7 +133,7 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
     },
   };
 
-  const textSx = {
+  let textSx: SxProps = {
     fontSize: {
       lg: 15,
       md: 10,
@@ -137,6 +141,11 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
       xs: 6,
     },
   };
+
+  if(dontAdjustFont){
+    iconSx = {}
+    textSx = {}
+  }
 
   return (
     <Grid container spacing={0} alignItems="center" justifyContent="center">

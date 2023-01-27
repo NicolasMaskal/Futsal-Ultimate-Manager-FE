@@ -8,6 +8,7 @@ import Players from "./pages/Players";
 import MatchResults from "./pages/MatchResults";
 import React from "react";
 import Shop from "./pages/Shop";
+import LineupPage from "./pages/MatchCenter";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/pre-match",
+        element: <LineupPage />,
       },
     ],
   },

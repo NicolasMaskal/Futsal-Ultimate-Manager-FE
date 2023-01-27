@@ -65,24 +65,24 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Match results</ListItemText>
           </MenuItem>
         </Link>
-        <Link to={"/team-sheets"} style={{ textDecoration: "none" }}>
-          <MenuItem key={"team-sheets"} onClick={handleCloseNavMenu}>
-            <ListItemIcon>
-              <img
-                src={footballFieldIconGray}
-                alt={"Football field icon"}
-                style={{ height: 20 }}
-              />
-            </ListItemIcon>
-            <ListItemText sx={{ color: "black" }}>Team sheets</ListItemText>
-          </MenuItem>
-        </Link>
         <Link to={"/shop"} style={{ textDecoration: "none" }}>
           <MenuItem key={"shop"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <StoreRoundedIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText sx={{ color: "black" }}>Shop</ListItemText>
+          </MenuItem>
+        </Link>
+        <Link to={"/pre-match"} style={{ textDecoration: "none" }}>
+          <MenuItem key={"pre-match"} onClick={handleCloseNavMenu}>
+            <ListItemIcon>
+              <img
+                  src={footballFieldIconGray}
+                  alt={"Football field icon"}
+                  style={{ height: 20 }}
+              />
+            </ListItemIcon>
+            <ListItemText sx={{ color: "black" }}>Match Center</ListItemText>
           </MenuItem>
         </Link>
         <ProfileMenuItems handleCloseNavMenu={handleCloseNavMenu} />

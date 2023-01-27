@@ -1,49 +1,39 @@
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import * as React from "react";
-import {
-  blue,
-  brown,
-  deepOrange,
-  green,
-  lightGreen,
-  orange,
-  red,
-} from "@mui/material/colors";
+import {blue, brown, deepOrange, green, lightGreen, orange, red,} from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Typography from "@mui/material/Typography";
-import { RowComponentType } from "../CustomTable";
+import {RowComponentType} from "../CustomTable";
 import useMobileView from "../../../hooks/useMobileView";
-import { capitalizeFirstLetter } from "../../../utils/stringHelpers";
-import { SxProps } from "@mui/system";
-import { Fade, Popper, Theme } from "@mui/material";
-import { Player } from "../../../models";
-import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
+import {capitalizeFirstLetter} from "../../../utils/stringHelpers";
+import {SxProps} from "@mui/system";
+import {Theme} from "@mui/material";
+import {Player, Position} from "../../../models";
 import CustomPopper from "../../CustomPopper";
 
-const getColorByPos = (player: Player) => {
-  if (player.preferred_position === "attacker") {
+export const getColorByPos = (preferred_position: Position) => {
+  if (preferred_position === "attacker") {
     return orange[500];
   }
-  if (player.preferred_position === "defender") {
+  if (preferred_position === "defender") {
     return blue[500];
   }
-  if (player.preferred_position === "goalkeeper") {
+  if (preferred_position === "goalkeeper") {
     return brown[400];
   }
 };
 
-const getColorBySkill = (player: Player, averageSkill: number) => {
-  if (player.skill < averageSkill - 5) {
+export const getColorBySkill = (playerSkill: number, averageSkill: number) => {
+  if (playerSkill < averageSkill - 5) {
     return red[500];
   }
-  if (player.skill < averageSkill) {
+  if (playerSkill < averageSkill) {
     return deepOrange[500];
   }
-  if (averageSkill <= player.skill && player.skill < averageSkill + 5) {
+  if (averageSkill <= playerSkill && playerSkill < averageSkill + 5) {
     return lightGreen[500];
   } else {
     return green[500];
@@ -78,8 +68,8 @@ const PlayerRow: RowComponentType<Player, number> = ({
   const averageSkill = additionalInfo;
 
   const player = obj;
-  const colorByPos = getColorByPos(player);
-  const colorBySkill = getColorBySkill(player, averageSkill);
+  const colorByPos = getColorByPos(player.preferred_position);
+  const colorBySkill = getColorBySkill(player.skill, averageSkill);
   const mobileView = useMobileView();
 
   return (

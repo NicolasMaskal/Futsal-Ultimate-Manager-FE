@@ -39,7 +39,7 @@ const PackCard: React.FC<{
     <Grow in={true} timeout={animationDuration}>
       <Card
         elevation={5}
-        sx={{ maxWidth: "22rem", transition: "transform 0.15s ease-in-out" }}
+        sx={{ maxWidth: "22rem" }}
       >
         <CardActionArea disableRipple>
           <img

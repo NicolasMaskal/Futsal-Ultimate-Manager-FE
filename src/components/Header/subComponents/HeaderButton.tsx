@@ -21,12 +21,11 @@ const HeaderButton: React.FC<{
 }) => {
   const mobileView = useMobileView();
 
-  tooltipText = tooltipText === undefined ? "" : tooltipText;
   return (
     <Box sx={{ display: "flex", justifyContent: "space-around" }}>
       <Tooltip title={tooltipText}>
         <Button
-          component={href ? Link : Button}
+          component={Link}
           to={href}
           sx={{ p: { xs: 0, md: 2 }, display: "flex" }}
           startIcon={startIcon}
