@@ -26,8 +26,16 @@ export interface Player {
   team: TeamShortDetail;
 }
 
-export interface PlayerInLineup extends Player {
-  playingPos: PlayingPosition;
+export class PlayerInLineup {
+  id: number | string;
+  player: Player | null;
+  playingPosition: PlayingPosition;
+
+  constructor(player: Player | null, playingPosition: PlayingPosition) {
+    this.player = player;
+    this.id = playingPosition + (player ? player.id : "Empty");
+    this.playingPosition = playingPosition;
+  }
 }
 
 export interface MatchResult {

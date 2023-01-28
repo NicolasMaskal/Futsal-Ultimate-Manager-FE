@@ -28,39 +28,55 @@ const getColorByPlayingPos = (playingPos: PlayingPosition) => {
   if (playingPos.includes("Attacker")) {
     return getColorByPos("attacker");
   }
-  return getColorByPos("defender");
+  if (playingPos.includes("Defender")) {
+    return getColorByPos("defender");
+  }
+  return "#000000";
 };
 
-const getPlayerEffectivenessInPose = (player: PlayerInLineup) => {
-  if (player.playingPos.toLowerCase().includes(player.preferred_position)) {
+const getPlayerEffectivenessInPose = (playerInLineup: PlayerInLineup) => {
+  if (!playerInLineup.player) {
+    return 0;
+  }
+  const playingPosition = playerInLineup.playingPosition;
+  const prefPos = playerInLineup.player.preferred_position;
+  if (playingPosition.toLowerCase().includes(prefPos)) {
     return 5;
   }
-  if (player.playingPos === "Goalkeeper") {
+  if (playingPosition === "Goalkeeper") {
     return 1;
   }
-  if (player.preferred_position === "goalkeeper") {
+  if (prefPos === "goalkeeper") {
     return 2;
   }
   return 3;
 };
-const PlayerInSheetRow: RowComponentType<PlayerInLineup, number> = ({
-  obj,
-  textSx,
-    iconSx,
-  additionalInfo,
-}) => {
-  const averageSkill = additionalInfo;
-  const player = obj;
-  const colorByPos = getColorByPos(player.preferred_position);
-  const colorByPlayingPos = getColorByPlayingPos(player.playingPos);
-  const colorBySkill = getColorBySkill(player.skill, averageSkill);
+
+type AdditionalInfoType = {
+  averageSkill: number;
+  handleRowClicked: (clickedRow: PlayerInLineup) => void;
+  selectedRow: PlayerInLineup | null;
+};
+
+const PlayerInSheetRow: RowComponentType<
+  PlayerInLineup,
+  AdditionalInfoType
+> = ({ obj, textSx, additionalInfo }) => {
+  const { averageSkill, handleRowClicked, selectedRow } = additionalInfo;
+  const playerInLineup = obj;
+  const colorByPos = getColorByPos(playerInLineup.player?.preferred_position);
+  const colorByPlayingPos = getColorByPlayingPos(
+    playerInLineup.playingPosition
+  );
+  const colorBySkill = getColorBySkill(playerInLineup.player, averageSkill);
   const mobileView = useMobileView();
-  const playerEffectiveness = getPlayerEffectivenessInPose(player);
-  const isMobile = useMobileView()
+  const playerEffectiveness = getPlayerEffectivenessInPose(playerInLineup);
 
   return (
     <TableRow
+      selected={selectedRow?.id === playerInLineup.id}
       hover
+      onClick={() => handleRowClicked(playerInLineup)}
       sx={{
         borderColor: "red",
         "&:last-child td, &:last-child th": {
@@ -68,33 +84,35 @@ const PlayerInSheetRow: RowComponentType<PlayerInLineup, number> = ({
         },
       }}
     >
-      {player.playingPos !== "Not Playing" ? (
+      {playerInLineup.playingPosition !== "Not Playing" ? (
         <>
           <TableCell align="center" padding={mobileView ? "none" : "normal"}>
             <Typography sx={textSx} color={colorByPlayingPos}>
-              {player.playingPos}
+              {playerInLineup.playingPosition}
             </Typography>
           </TableCell>
-          <TableCell  padding={mobileView ? "none" : "normal"}>
-              <Box
-                sx={{
-                  display: "flex",
-                }}
-              >
-                <Rating
-                  name="size-small"
-                  defaultValue={playerEffectiveness}
-                  readOnly
-                  sx={iconSx}
-                  getLabelText={getLabelText}
-                  // size="small"
-                />
-                {<Box sx={{ ml: 2 }}>
+          <TableCell padding={mobileView ? "none" : "normal"}>
+            <Box
+              sx={{
+                display: "flex",
+              }}
+            >
+              <Rating
+                name="size-small"
+                defaultValue={playerEffectiveness}
+                readOnly
+                sx={textSx}
+                getLabelText={getLabelText}
+                size={"small"}
+              />
+              {
+                <Box sx={{ ml: 2, display: mobileView ? "none" : "flex" }}>
                   <Typography sx={textSx}>
-                  {labels[playerEffectiveness]}
-                </Typography>
-                </Box>}
-              </Box>
+                    {labels[playerEffectiveness]}
+                  </Typography>
+                </Box>
+              }
+            </Box>
           </TableCell>
         </>
       ) : null}
@@ -103,16 +121,16 @@ const PlayerInSheetRow: RowComponentType<PlayerInLineup, number> = ({
         sx={textSx}
         padding={mobileView ? "none" : "normal"}
       >
-        {player.name}
+        {playerInLineup.player!.name}
       </TableCell>
       <TableCell align="center" padding={mobileView ? "none" : "normal"}>
         <Typography sx={textSx} color={colorByPos}>
-          {capitalizeFirstLetter(player.preferred_position)}
+          {capitalizeFirstLetter(playerInLineup.player!.preferred_position)}
         </Typography>
       </TableCell>
       <TableCell align="left" padding={mobileView ? "none" : "normal"}>
         <Typography sx={textSx} color={colorBySkill}>
-          {player.skill}
+          {playerInLineup.player!.skill}
         </Typography>
       </TableCell>
     </TableRow>

@@ -34,7 +34,7 @@ function getComparator<DataType>(
 }
 
 export interface RowComponentProp<
-  DataType extends { id: number },
+  DataType extends { id: number | string },
   AdditionalInfoType
 > {
   obj: DataType;
@@ -45,19 +45,19 @@ export interface RowComponentProp<
 }
 
 export type RowComponentType<
-  DataType extends { id: number },
+  DataType extends { id: number | string },
   AdditionalInfoType
 > = (
   p: RowComponentProp<DataType, AdditionalInfoType>
 ) => React.ReactElement<TableProp<DataType, AdditionalInfoType>>;
 
-export type RowDeletionFunction = <DataType extends { id: number }>(
+export type RowDeletionFunction = <DataType extends { id: number | string }>(
   object: DataType
 ) => void;
 
-interface TableProp<DataType extends { id: number }, AdditionalInfoType> {
+interface TableProp<DataType extends { id: number | string }, AdditionalInfoType> {
   RowComponent: RowComponentType<DataType, AdditionalInfoType>;
-  objects: DataType[] | null;
+  objects: DataType[] | null | undefined;
   headCells: HeadCellType[];
   defaultOrderBy: string;
   defaultOrder: Order;
@@ -67,7 +67,7 @@ interface TableProp<DataType extends { id: number }, AdditionalInfoType> {
   additionalInfo: AdditionalInfoType;
 }
 
-const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
+const CustomTable: <DataType extends { id: number | string }, AdditionalInfoType>(
   p: TableProp<DataType, AdditionalInfoType>
 ) => React.ReactElement<TableProp<DataType, AdditionalInfoType>> = ({
   RowComponent,
@@ -88,13 +88,13 @@ const CustomTable: <DataType extends { id: number }, AdditionalInfoType>(
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
 
   useEffect(() => {
-    if (!pagination && objects !== null) {
+    if (!pagination && objects) {
       setRowsPerPage(objects.length);
     }
     setObjects(objects);
   }, [pagination, objects]);
 
-  if (objectsToDisplay === null) {
+  if (!objectsToDisplay) {
     return <SkeletonTable size={size} />;
   }
   const sideSize = (12 - size) / 2;

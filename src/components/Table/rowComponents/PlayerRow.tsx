@@ -1,32 +1,50 @@
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import * as React from "react";
-import {blue, brown, deepOrange, green, lightGreen, orange, red,} from "@mui/material/colors";
+import {
+  blue,
+  brown,
+  deepOrange,
+  green,
+  lightGreen,
+  orange,
+  red,
+} from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Typography from "@mui/material/Typography";
-import {RowComponentType} from "../CustomTable";
+import { RowComponentType } from "../CustomTable";
 import useMobileView from "../../../hooks/useMobileView";
-import {capitalizeFirstLetter} from "../../../utils/stringHelpers";
-import {SxProps} from "@mui/system";
-import {Theme} from "@mui/material";
-import {Player, Position} from "../../../models";
+import { capitalizeFirstLetter } from "../../../utils/stringHelpers";
+import { SxProps } from "@mui/system";
+import { Theme } from "@mui/material";
+import { Player, Position } from "../../../models";
 import CustomPopper from "../../CustomPopper";
 
-export const getColorByPos = (preferred_position: Position) => {
-  if (preferred_position === "attacker") {
+export const getColorByPos = (prefPos: Position | undefined) => {
+  if (!prefPos) {
+    return "#000000";
+  }
+  if (prefPos === "attacker") {
     return orange[500];
   }
-  if (preferred_position === "defender") {
+  if (prefPos === "defender") {
     return blue[500];
   }
-  if (preferred_position === "goalkeeper") {
+  if (prefPos === "goalkeeper") {
     return brown[400];
   }
 };
 
-export const getColorBySkill = (playerSkill: number, averageSkill: number) => {
+export const getColorBySkill = (
+  player: Player | null,
+  averageSkill: number
+) => {
+  if (player === null) {
+    return "#000000";
+  }
+  const playerSkill = player.skill;
   if (playerSkill < averageSkill - 5) {
     return red[500];
   }
@@ -35,9 +53,8 @@ export const getColorBySkill = (playerSkill: number, averageSkill: number) => {
   }
   if (averageSkill <= playerSkill && playerSkill < averageSkill + 5) {
     return lightGreen[500];
-  } else {
-    return green[500];
   }
+  return green[500];
 };
 
 const PlayerRow: RowComponentType<Player, number> = ({
@@ -69,7 +86,7 @@ const PlayerRow: RowComponentType<Player, number> = ({
 
   const player = obj;
   const colorByPos = getColorByPos(player.preferred_position);
-  const colorBySkill = getColorBySkill(player.skill, averageSkill);
+  const colorBySkill = getColorBySkill(player, averageSkill);
   const mobileView = useMobileView();
 
   return (
@@ -145,15 +162,16 @@ const PlayerRow: RowComponentType<Player, number> = ({
           handleClose={handleClose}
           handleSuccess={handleSell}
           placement={"bottom-start"}
+          textSx={textSx}
         >
-          <Typography sx={{ fontSize: 12, p: 2 }}>
+          <Typography sx={{...textSx, ...{p: 2}} as SxProps<Theme> }>
             Are you sure you want to sell your player{" "}
-            <Typography display="inline" sx={{ fontSize: 12, fontWeight: 700 }}>
+            <Typography display="inline" sx={{...textSx, ...{fontWeight: 700}} as SxProps<Theme>}>
               {player.name}
             </Typography>{" "}
             for{" "}
-            <Typography display="inline" sx={{ fontSize: 12, fontWeight: 700 }}>
-              {player.sell_price}{" "}coins
+            <Typography display="inline" sx={{...textSx, ...{fontWeight: 700}} as SxProps<Theme>}>
+              {player.sell_price} coins
             </Typography>{" "}
             ?
           </Typography>

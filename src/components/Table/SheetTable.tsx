@@ -33,13 +33,22 @@ const headCells: HeadCellType[] = [
 ];
 
 const headCellsWithoutPlayingPos: HeadCellType[] = headCells.filter(
-  (headCell) => headCell.id !== "playingPos" && headCell.label !== "Player ability in position"
+  (headCell) =>
+    headCell.id !== "playingPos" &&
+    headCell.label !== "Player ability in position"
 );
 
 const SheetTable: React.FC<{
-  playersInLineup: PlayerInLineup[];
+  playersInLineup: PlayerInLineup[] | undefined;
   displayPlayingPosition: boolean;
-}> = ({ playersInLineup, displayPlayingPosition }) => {
+  handleRowClicked: (clickedRow: PlayerInLineup) => void;
+  selectedRow: PlayerInLineup | null;
+}> = ({
+  playersInLineup,
+  displayPlayingPosition,
+  handleRowClicked,
+  selectedRow,
+}) => {
   return (
     <CustomTable
       RowComponent={PlayerInSheetRow}
@@ -51,9 +60,9 @@ const SheetTable: React.FC<{
       defaultOrder={"asc"}
       pagination={false}
       size={10}
-      // dontAdjustFont
-      additionalInfo={15}
-    /> //TODO size ?
+      dontAdjustFont
+      additionalInfo={{ averageSkill: 13, handleRowClicked, selectedRow }}
+    />
   );
 };
 
