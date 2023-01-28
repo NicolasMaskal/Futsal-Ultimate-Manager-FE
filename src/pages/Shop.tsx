@@ -9,7 +9,7 @@ import PageDescription from "../components/PageDescription";
 const Shop = () => {
   return (
     <>
-      <PageTitle title="PACKS" />
+      <PageTitle title="SHOP" />
       <PageDescription>
         Our shop offers a wide range of player packs for all types of teams.
         Choose from our budget-friendly bronze packs, solid silver packs, or

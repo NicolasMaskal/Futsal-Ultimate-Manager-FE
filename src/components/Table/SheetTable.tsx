@@ -57,9 +57,9 @@ const SheetTable: React.FC<{
         displayPlayingPosition ? headCells : headCellsWithoutPlayingPos
       }
       defaultOrderBy={"playingPosition"}
-      defaultOrder={"asc"}
+      defaultOrder={"desc"}
       pagination={false}
-      size={10}
+      size={12}
       dontAdjustFont
       additionalInfo={{ averageSkill: 13, handleRowClicked, selectedRow }}
     />

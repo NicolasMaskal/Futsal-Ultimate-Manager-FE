@@ -46,3 +46,8 @@ export interface MatchResult {
   player_team: TeamShortDetail;
   cpu_team: TeamShortDetail;
 }
+
+
+export interface MatchData{
+
+}

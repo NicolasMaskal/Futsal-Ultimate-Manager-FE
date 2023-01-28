@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 
 import { Link as RouterLink } from "react-router-dom";
 import { loginUrl } from "../constants/urls";
+import { Divider } from "@mui/material";
 
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -44,11 +45,24 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                name="team-name"
+                label="Team name"
+                type="input"
+                id="team-name"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
               />
+            </Grid>
+            <Grid item xs={12}>
+              <Divider />
             </Grid>
             <Grid item xs={12}>
               <TextField

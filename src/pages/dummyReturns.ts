@@ -1,4 +1,4 @@
-import { MatchResult, Player } from "../models";
+import {MatchResult, Player, PlayerInLineup} from "../models";
 
 export const dummyPlayers: Player[] = [
   {
@@ -665,3 +665,220 @@ export const dummyMatchResults: MatchResult[] = [
     },
   },
 ];
+
+export const dummyPlayersInLineup: PlayerInLineup[] = [
+  {
+    id: 26,
+    player: {
+      id: 26,
+      name: "John 1",
+      preferred_position: "attacker",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Goalkeeper",
+  },
+  {
+    id: 27,
+    player: {
+      id: 27,
+      name: "John 2",
+      preferred_position: "goalkeeper",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Defender Left",
+  },
+  {
+    id: 28,
+    player: {
+      id: 28,
+      name: "John 3",
+      preferred_position: "goalkeeper",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Defender Right",
+  },
+  {
+    id: 29,
+    player: {
+      id: 29,
+      name: "John 4",
+      preferred_position: "attacker",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Attacker Left",
+  },
+  {
+    id: 30,
+    player: {
+      id: 30,
+      name: "John 5",
+      preferred_position: "defender",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Attacker Right",
+  },
+];
+
+export const dummyPlayersNotPlaying: PlayerInLineup[] = [
+  {
+    id: 31,
+    player: {
+      id: 31,
+      name: "John 6",
+      preferred_position: "goalkeeper",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Not Playing",
+  },
+  {
+    id: 32,
+    player: {
+      id: 32,
+      name: "John 7",
+      preferred_position: "goalkeeper",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Not Playing",
+  },
+  {
+    id: 33,
+    player: {
+      id: 33,
+      name: "John 8",
+      preferred_position: "defender",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Not Playing",
+  },
+  {
+    id: 34,
+    player: {
+      id: 34,
+      name: "John Micks 9",
+      preferred_position: "goalkeeper",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Not Playing",
+  },
+  {
+    id: 35,
+    player: {
+      id: 35,
+      name: "John Micks 10",
+      preferred_position: "attacker",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Not Playing",
+  },
+  {
+    id: 36,
+    player: {
+      id: 36,
+      name: "John Micks 11",
+      preferred_position: "goalkeeper",
+      skill: 13,
+      matches_played: 0,
+      goals_scored: 0,
+      assists_made: 0,
+      sell_price: 15,
+      team: {
+        id: 10,
+        name: "new team",
+        owner: 4,
+      },
+    },
+    playingPosition: "Not Playing",
+  },
+];
+
+// export const dummyMatchData :

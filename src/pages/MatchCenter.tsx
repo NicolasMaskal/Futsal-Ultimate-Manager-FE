@@ -10,222 +10,8 @@ import SaveIcon from "@mui/icons-material/Save";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useSnackbar } from "notistack";
 import SubPageTitle from "../components/SubPageTitle";
-import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
-
-const dummyPlayersInLineup: PlayerInLineup[] = [
-  {
-    id: 26,
-    player: {
-      id: 26,
-      name: "John 1",
-      preferred_position: "attacker",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Goalkeeper",
-  },
-  {
-    id: 27,
-    player: {
-      id: 27,
-      name: "John 2",
-      preferred_position: "goalkeeper",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Defender Left",
-  },
-  {
-    id: 28,
-    player: {
-      id: 28,
-      name: "John 3",
-      preferred_position: "goalkeeper",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Defender Right",
-  },
-  {
-    id: 29,
-    player: {
-      id: 29,
-      name: "John 4",
-      preferred_position: "attacker",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Attacker Left",
-  },
-  {
-    id: 30,
-    player: {
-      id: 30,
-      name: "John 5",
-      preferred_position: "defender",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Attacker Right",
-  },
-];
-
-const dummyPlayersNotPlaying: PlayerInLineup[] = [
-  {
-    id: 31,
-    player: {
-      id: 31,
-      name: "John 6",
-      preferred_position: "goalkeeper",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Not Playing",
-  },
-  {
-    id: 32,
-    player: {
-      id: 32,
-      name: "John 7",
-      preferred_position: "goalkeeper",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Not Playing",
-  },
-  {
-    id: 33,
-    player: {
-      id: 33,
-      name: "John 8",
-      preferred_position: "defender",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Not Playing",
-  },
-  {
-    id: 34,
-    player: {
-      id: 34,
-      name: "John Micks 9",
-      preferred_position: "goalkeeper",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Not Playing",
-  },
-  {
-    id: 35,
-    player: {
-      id: 35,
-      name: "John Micks 10",
-      preferred_position: "attacker",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Not Playing",
-  },
-  {
-    id: 36,
-    player: {
-      id: 36,
-      name: "John Micks 11",
-      preferred_position: "goalkeeper",
-      skill: 13,
-      matches_played: 0,
-      goals_scored: 0,
-      assists_made: 0,
-      sell_price: 15,
-      team: {
-        id: 10,
-        name: "new team",
-        owner: 4,
-      },
-    },
-    playingPosition: "Not Playing",
-  },
-];
+import SimulateMatchOptions from "../components/SimulateMatchOptions";
+import { dummyPlayersInLineup, dummyPlayersNotPlaying } from "./dummyReturns";
 
 const MatchCenter = () => {
   const isMobile = useMobileView();
@@ -296,7 +82,15 @@ const MatchCenter = () => {
         according to player's preferred position. Once you're ready, you can
         start a match!
       </PageDescription>
-      <Grid container columns={isMobile ? 8 : 12} spacing={4} className="pt-8">
+      <PageDescription>
+        To switch players between the lists, click on the two specific players you want to switch
+      </PageDescription>
+      <Grid
+        container
+        columns={isMobile ? 8 : 12}
+        spacing={8}
+        className="pt-8 px-10"
+      >
         <Grid item xs={8}>
           <SubPageTitle content="Lineup for next match" />
           <SheetTable
@@ -305,28 +99,28 @@ const MatchCenter = () => {
             playersInLineup={playersInLineup}
             selectedRow={selectedRow}
           />
-          <div className="flex justify-around my-10">
-            <LoadingButton
-              color="primary"
-              onClick={handleOnSaveClick}
-              loading={isLoading}
-              loadingPosition="start"
-              startIcon={<SaveIcon />}
-              variant="outlined"
-            >
-              <Typography>Save</Typography>
-            </LoadingButton>
-            <LoadingButton
-              color="primary"
-              onClick={handleOnSaveClick}
-              loading={isLoading}
-              loadingPosition="start"
-              startIcon={<SportsEsportsIcon />}
-              variant="contained"
-            >
-              <Typography>Simulate Match</Typography>
-            </LoadingButton>
-          </div>
+          {playersOnScreen && (
+            <div className={"flex mt-8 items-center justify-around"}>
+              <div>
+                <LoadingButton
+                  color="primary"
+                  onClick={handleOnSaveClick}
+                  loading={isLoading}
+                  loadingPosition="start"
+                  startIcon={<SaveIcon />}
+                  variant="outlined"
+                >
+                  <Typography>Save</Typography>
+                </LoadingButton>
+              </div>
+              <div>
+                <SimulateMatchOptions
+                  handleClick={handleOnSaveClick}
+                  isLoading={isLoading}
+                />
+              </div>
+            </div>
+          )}
         </Grid>
         <Grid item xs={isMobile ? 8 : 4}>
           <SubPageTitle content="Not playing in next match" />
