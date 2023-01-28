@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import ChangeCircleRoundedIcon from "@mui/icons-material/ChangeCircleRounded";
+import { loginUrl } from "../../../constants/urls";
 
 export const ProfileMenuItems: React.FC<{
   handleCloseNavMenu: () => void;
@@ -27,7 +27,7 @@ export const ProfileMenuItems: React.FC<{
         </MenuItem>
       </Link>
       <Divider />
-      <Link to={"/login"} style={{ textDecoration: "none" }}>
+      <Link to={loginUrl} style={{ textDecoration: "none" }}>
         <MenuItem key={"logout"} onClick={handleCloseNavMenu}>
           <ListItemIcon>
             <LogoutRoundedIcon fontSize="small" />

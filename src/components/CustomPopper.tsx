@@ -2,7 +2,7 @@ import { Fade, Popper, PopperPlacementType } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import * as React from "react";
-import {SxProps} from "@mui/system";
+import { SxProps } from "@mui/system";
 
 const CustomPopper: React.FC<{
   children: React.ReactNode;
@@ -12,7 +12,7 @@ const CustomPopper: React.FC<{
   handleSuccess: (event: React.MouseEvent<HTMLElement>) => void;
   handleClose: () => void;
   placement: PopperPlacementType;
-  textSx? : SxProps
+  textSx?: SxProps;
 }> = ({
   children,
   isOpen,
@@ -21,7 +21,7 @@ const CustomPopper: React.FC<{
   handleSuccess,
   handleClose,
   placement,
-    textSx = {}
+  textSx = {},
 }) => {
   return (
     <Popper open={isOpen} anchorEl={anchorEl} transition placement={placement}>
@@ -30,11 +30,7 @@ const CustomPopper: React.FC<{
           <Paper>
             {children}
             <div className="flex justify-center">
-              <Button
-                sx={textSx}
-                color="success"
-                onClick={handleSuccess}
-              >
+              <Button sx={textSx} color="success" onClick={handleSuccess}>
                 {buttonSuccessText}
               </Button>
               <Button sx={textSx} color="error" onClick={handleClose}>

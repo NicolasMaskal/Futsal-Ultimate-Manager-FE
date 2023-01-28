@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
-import {Container, Skeleton} from "@mui/material";
-import {HeadCellType} from "../components/Table/subComponents/MyTableHeader";
-import {dummyPlayers} from "./dummyReturns";
-import {Player} from "../models";
+import { Container, Skeleton } from "@mui/material";
+import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
+import { dummyPlayers } from "./dummyReturns";
+import { Player } from "../models";
 import PageTitle from "../components/PageTitle";
 import PlayerRow from "../components/Table/rowComponents/PlayerRow";
 import CustomTable from "../components/Table/CustomTable";
@@ -78,7 +78,9 @@ const Players = () => {
     <>
       <PageTitle title="PLAYERS" />
       <PageDescription>
-        Here you can see a comprehensive table of all players currently on the user's team. The table includes important information providing a clear and easy way to track the performance of the team.
+        Here you can see a comprehensive table of all players currently on the
+        user's team. The table includes important information providing a clear
+        and easy way to track the performance of the team.
       </PageDescription>
       {players && averageSkill ? (
         <article className={"text-center pb-4"}>
@@ -95,10 +97,10 @@ const Players = () => {
             </Typography>
           </div>
           <div>
-          <Typography display="inline" className="font-bold pb-4">
-            {"Average skill: "}
-          </Typography>
-          <Typography display="inline">{averageSkill}</Typography>
+            <Typography display="inline" className="font-bold pb-4">
+              {"Average skill: "}
+            </Typography>
+            <Typography display="inline">{averageSkill}</Typography>
           </div>
         </article>
       ) : (

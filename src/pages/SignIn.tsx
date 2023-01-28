@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import { Copyright } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
 import Footer from "../components/Footer";
+import { registerUrl } from "../constants/urls";
 
 export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -82,7 +83,7 @@ export default function SignIn() {
             <Grid item>
               <Link
                 component={RouterLink}
-                to="/register"
+                to={registerUrl}
                 href="#"
                 variant="body2"
               >

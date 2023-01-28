@@ -37,7 +37,9 @@ const GoldPackDescription = () => {
     </>
   );
 };
-const GoldPackCard: React.FC<{animationDuration: number}> = ({animationDuration}) => {
+const GoldPackCard: React.FC<{ animationDuration: number }> = ({
+  animationDuration,
+}) => {
   return (
     <PackCard
       packName="Gold"

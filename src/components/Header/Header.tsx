@@ -13,6 +13,12 @@ import LogoButtonHeader from "./subComponents/LogoButtonHeader";
 import SubHeader from "./subComponents/SubHeader";
 import HeaderBurgerNavMenu from "./subComponents/HeaderBurgerNavMenu";
 import HeaderBurgerProfileMenu from "./subComponents/HeaderBurgerProfileMenu";
+import {
+  matchCenterUrl,
+  shopUrl,
+  playersUrl,
+  matchResultsUrl,
+} from "../../constants/urls";
 
 const DesktopHeader = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
@@ -38,7 +44,7 @@ const DesktopHeader = () => {
           tooltipText="View players playing for your team"
           buttonText="Players"
           startIcon={<PersonRoundedIcon />}
-          href="/players"
+          href={playersUrl}
         />
       </Grid>
       <Grid item xs>
@@ -46,7 +52,7 @@ const DesktopHeader = () => {
           tooltipText="View match results of your team."
           buttonText="Match Results"
           startIcon={<ScoreboardRoundedIcon />}
-          href="/match-results"
+          href={matchResultsUrl}
         />
       </Grid>
       <Grid item xs>
@@ -54,7 +60,7 @@ const DesktopHeader = () => {
           tooltipText="Visit the shop to buy packs and improve your team."
           buttonText="Shop"
           startIcon={<StoreRoundedIcon />}
-          href="/shop"
+          href={shopUrl}
         />
       </Grid>
       <Grid item xs>
@@ -69,7 +75,7 @@ const DesktopHeader = () => {
             />
           }
           onClick={undefined}
-          href="/pre-match"
+          href={matchCenterUrl}
         />
       </Grid>
       <Grid item xs>

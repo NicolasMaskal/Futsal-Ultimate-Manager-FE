@@ -4,6 +4,7 @@ import { RouterProvider } from "react-router-dom";
 import { createTheme, ThemeOptions, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import router from "./router";
+import { SnackbarProvider } from "notistack";
 
 const themeOptions: ThemeOptions = {
   palette: {
@@ -29,12 +30,14 @@ const theme = createTheme(themeOptions);
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-      />
       <CssBaseline />
-      <RouterProvider router={router} />
+      <SnackbarProvider maxSnack={2}>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+        <RouterProvider router={router} />
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

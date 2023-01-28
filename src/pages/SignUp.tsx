@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import { Link as RouterLink } from "react-router-dom";
+import { loginUrl } from "../constants/urls";
 
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -82,7 +83,12 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link component={RouterLink} to="/login" href="#" variant="body2">
+              <Link
+                component={RouterLink}
+                to={loginUrl}
+                href="#"
+                variant="body2"
+              >
                 Already have an account? Sign in
               </Link>
             </Grid>

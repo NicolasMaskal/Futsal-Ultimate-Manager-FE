@@ -1,19 +1,19 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  Divider,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import ScoreboardRoundedIcon from "@mui/icons-material/ScoreboardRounded";
 import footballFieldIconGray from "../../../images/football-field-gray.png";
 import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
 import { ProfileMenuItems } from "./HeaderBurgerProfileMenu";
+import {
+  matchCenterUrl,
+  matchResultsUrl,
+  playersUrl,
+  shopUrl,
+} from "../../../constants/urls";
 
 const HeaderBurgerNavMenu: React.FC<{
   anchorElNav: null | HTMLElement;
@@ -49,7 +49,7 @@ const HeaderBurgerNavMenu: React.FC<{
         color="inherit"
         disableScrollLock={true}
       >
-        <Link to={"/players"} style={{ textDecoration: "none" }}>
+        <Link to={playersUrl} style={{ textDecoration: "none" }}>
           <MenuItem key={"players"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <PersonRoundedIcon fontSize="small" />
@@ -57,7 +57,7 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Players</ListItemText>
           </MenuItem>
         </Link>
-        <Link to={"/match-results"} style={{ textDecoration: "none" }}>
+        <Link to={matchResultsUrl} style={{ textDecoration: "none" }}>
           <MenuItem key={"match-results"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <ScoreboardRoundedIcon fontSize="small" />
@@ -65,7 +65,7 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Match results</ListItemText>
           </MenuItem>
         </Link>
-        <Link to={"/shop"} style={{ textDecoration: "none" }}>
+        <Link to={shopUrl} style={{ textDecoration: "none" }}>
           <MenuItem key={"shop"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <StoreRoundedIcon fontSize="small" />
@@ -73,13 +73,13 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Shop</ListItemText>
           </MenuItem>
         </Link>
-        <Link to={"/pre-match"} style={{ textDecoration: "none" }}>
-          <MenuItem key={"pre-match"} onClick={handleCloseNavMenu}>
+        <Link to={matchCenterUrl} style={{ textDecoration: "none" }}>
+          <MenuItem key={"match-center"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <img
-                  src={footballFieldIconGray}
-                  alt={"Football field icon"}
-                  style={{ height: 20 }}
+                src={footballFieldIconGray}
+                alt={"Football field icon"}
+                style={{ height: 20 }}
               />
             </ListItemIcon>
             <ListItemText sx={{ color: "black" }}>Match Center</ListItemText>

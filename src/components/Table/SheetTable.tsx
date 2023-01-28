@@ -6,7 +6,7 @@ import PlayerInSheetRow from "./rowComponents/PlayerInSheetRow";
 
 const headCells: HeadCellType[] = [
   {
-    id: "playingPos",
+    id: "playingPosition",
     alignment: "center",
     label: "Playing position",
   },
@@ -16,17 +16,17 @@ const headCells: HeadCellType[] = [
     label: "Player ability in position",
   },
   {
-    id: "name",
+    id: null,
     alignment: "center",
     label: "Name",
   },
   {
-    id: "preferred_position",
+    id: null,
     alignment: "center",
     label: "Preferred Position",
   },
   {
-    id: "skill",
+    id: null,
     alignment: "left",
     label: "Skill",
   },
@@ -34,7 +34,7 @@ const headCells: HeadCellType[] = [
 
 const headCellsWithoutPlayingPos: HeadCellType[] = headCells.filter(
   (headCell) =>
-    headCell.id !== "playingPos" &&
+    headCell.id !== "playingPosition" &&
     headCell.label !== "Player ability in position"
 );
 
@@ -56,7 +56,7 @@ const SheetTable: React.FC<{
       headCells={
         displayPlayingPosition ? headCells : headCellsWithoutPlayingPos
       }
-      defaultOrderBy={"id"}
+      defaultOrderBy={"playingPosition"}
       defaultOrder={"asc"}
       pagination={false}
       size={10}

@@ -9,6 +9,14 @@ import MatchResults from "./pages/MatchResults";
 import React from "react";
 import Shop from "./pages/Shop";
 import LineupPage from "./pages/MatchCenter";
+import {
+  matchCenterUrl,
+  shopUrl,
+  playersUrl,
+  matchResultsUrl,
+  loginUrl,
+  registerUrl,
+} from "./constants/urls";
 
 const router = createBrowserRouter([
   {
@@ -21,27 +29,27 @@ const router = createBrowserRouter([
         element: <WelcomePage />,
       },
       {
-        path: "/login",
+        path: loginUrl,
         element: <SignIn />,
       },
       {
-        path: "/register",
+        path: registerUrl,
         element: <SignUp />,
       },
       {
-        path: "/players",
+        path: playersUrl,
         element: <Players />,
       },
       {
-        path: "/match-results",
+        path: matchResultsUrl,
         element: <MatchResults />,
       },
       {
-        path: "/shop",
+        path: shopUrl,
         element: <Shop />,
       },
       {
-        path: "/pre-match",
+        path: matchCenterUrl,
         element: <LineupPage />,
       },
     ],

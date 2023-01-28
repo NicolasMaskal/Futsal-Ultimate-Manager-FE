@@ -55,7 +55,10 @@ export type RowDeletionFunction = <DataType extends { id: number | string }>(
   object: DataType
 ) => void;
 
-interface TableProp<DataType extends { id: number | string }, AdditionalInfoType> {
+interface TableProp<
+  DataType extends { id: number | string },
+  AdditionalInfoType
+> {
   RowComponent: RowComponentType<DataType, AdditionalInfoType>;
   objects: DataType[] | null | undefined;
   headCells: HeadCellType[];
@@ -67,7 +70,10 @@ interface TableProp<DataType extends { id: number | string }, AdditionalInfoType
   additionalInfo: AdditionalInfoType;
 }
 
-const CustomTable: <DataType extends { id: number | string }, AdditionalInfoType>(
+const CustomTable: <
+  DataType extends { id: number | string },
+  AdditionalInfoType
+>(
   p: TableProp<DataType, AdditionalInfoType>
 ) => React.ReactElement<TableProp<DataType, AdditionalInfoType>> = ({
   RowComponent,
@@ -142,9 +148,9 @@ const CustomTable: <DataType extends { id: number | string }, AdditionalInfoType
     },
   };
 
-  if(dontAdjustFont){
-    iconSx = {}
-    textSx = {}
+  if (dontAdjustFont) {
+    iconSx = {};
+    textSx = {};
   }
 
   return (

@@ -10,7 +10,7 @@ const PageTitle: React.FC<{ title: string }> = ({ title }) => (
       letterSpacing: { md: ".1rem", lg: ".2rem", xl: ".2rem" },
       fontWeight: 700,
       fontSize: "2rem",
-        pb: 2,
+      pb: 2,
     }}
   >
     {title}

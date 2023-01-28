@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { registerUrl } from "../constants/urls";
 
 const WelcomePage: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const WelcomePage: React.FC = () => {
       </p>
       <p>
         Feel free to sign up, if you don't have an account yet.{" "}
-        <Link className="text-sky-500 hover:text-sky-700" to="/register">
+        <Link className="text-sky-500 hover:text-sky-700" to={registerUrl}>
           Sign up
         </Link>
       </p>

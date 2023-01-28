@@ -37,10 +37,7 @@ const PackCard: React.FC<{
 
   return (
     <Grow in={true} timeout={animationDuration}>
-      <Card
-        elevation={5}
-        sx={{ maxWidth: "22rem" }}
-      >
+      <Card elevation={5} sx={{ maxWidth: "22rem" }}>
         <CardActionArea disableRipple>
           <img
             src={imgSrc}
@@ -86,7 +83,7 @@ const PackCard: React.FC<{
                 </Typography>{" "}
                 pack for{" "}
                 <Typography sx={{ fontWeight: 700 }} display={"inline"}>
-                  {price}{" "}coins
+                  {price} coins
                 </Typography>{" "}
                 ?
               </Typography>

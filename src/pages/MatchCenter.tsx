@@ -6,6 +6,11 @@ import { PlayerInLineup } from "../models";
 import PageDescription from "../components/PageDescription";
 import useMobileView from "../hooks/useMobileView";
 import Typography from "@mui/material/Typography";
+import SaveIcon from "@mui/icons-material/Save";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { useSnackbar } from "notistack";
+import SubPageTitle from "../components/SubPageTitle";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
 const dummyPlayersInLineup: PlayerInLineup[] = [
   {
@@ -262,6 +267,17 @@ const MatchCenter = () => {
     }, 500);
   }, []);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleOnSaveClick = () => {
+    // TODO Add api functionality
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      enqueueSnackbar("Successfully saved!", { variant: "success" });
+    }, 500);
+  };
   const playersInLineup = playersOnScreen?.filter(
     (playerInLineup) => playerInLineup.playingPosition !== "Not Playing"
   );
@@ -269,10 +285,6 @@ const MatchCenter = () => {
     (playerInLineup) =>
       playerInLineup.playingPosition === "Not Playing" && playerInLineup.player
   );
-
-  console.log("playerIn: ", playersInLineup)
-  console.log("playerNotIn: ", playersNotInLineup)
-  console.log("playerScreen: ", playersOnScreen)
 
   return (
     <>
@@ -286,34 +298,44 @@ const MatchCenter = () => {
       </PageDescription>
       <Grid container columns={isMobile ? 8 : 12} spacing={4} className="pt-8">
         <Grid item xs={8}>
-          <Typography
-            fontSize={"1.5rem"}
-            className={"font-bold pb-1"}
-            textAlign={"center"}
-          >
-            Lineup for next match
-          </Typography>
+          <SubPageTitle content="Lineup for next match" />
           <SheetTable
             handleRowClicked={handleRowClicked}
             displayPlayingPosition
             playersInLineup={playersInLineup}
             selectedRow={selectedRow}
-          ></SheetTable>
+          />
+          <div className="flex justify-around my-10">
+            <LoadingButton
+              color="primary"
+              onClick={handleOnSaveClick}
+              loading={isLoading}
+              loadingPosition="start"
+              startIcon={<SaveIcon />}
+              variant="outlined"
+            >
+              <Typography>Save</Typography>
+            </LoadingButton>
+            <LoadingButton
+              color="primary"
+              onClick={handleOnSaveClick}
+              loading={isLoading}
+              loadingPosition="start"
+              startIcon={<SportsEsportsIcon />}
+              variant="contained"
+            >
+              <Typography>Simulate Match</Typography>
+            </LoadingButton>
+          </div>
         </Grid>
         <Grid item xs={isMobile ? 8 : 4}>
-          <Typography
-            fontSize={"1.5rem"}
-            className={"font-bold pb-1"}
-            textAlign={"center"}
-          >
-            Not playing in next match
-          </Typography>
+          <SubPageTitle content="Not playing in next match" />
           <SheetTable
             handleRowClicked={handleRowClicked}
             displayPlayingPosition={false}
             playersInLineup={playersNotInLineup}
             selectedRow={selectedRow}
-          ></SheetTable>
+          />
         </Grid>
       </Grid>
     </>

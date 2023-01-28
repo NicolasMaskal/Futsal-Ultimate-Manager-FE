@@ -164,13 +164,19 @@ const PlayerRow: RowComponentType<Player, number> = ({
           placement={"bottom-start"}
           textSx={textSx}
         >
-          <Typography sx={{...textSx, ...{p: 2}} as SxProps<Theme> }>
+          <Typography sx={{ ...textSx, ...{ p: 2 } } as SxProps<Theme>}>
             Are you sure you want to sell your player{" "}
-            <Typography display="inline" sx={{...textSx, ...{fontWeight: 700}} as SxProps<Theme>}>
+            <Typography
+              display="inline"
+              sx={{ ...textSx, ...{ fontWeight: 700 } } as SxProps<Theme>}
+            >
               {player.name}
             </Typography>{" "}
             for{" "}
-            <Typography display="inline" sx={{...textSx, ...{fontWeight: 700}} as SxProps<Theme>}>
+            <Typography
+              display="inline"
+              sx={{ ...textSx, ...{ fontWeight: 700 } } as SxProps<Theme>}
+            >
               {player.sell_price} coins
             </Typography>{" "}
             ?

@@ -1,7 +1,7 @@
 import * as React from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import {green, lightGreen, orange, red, yellow} from "@mui/material/colors";
+import { green, lightGreen, orange, red, yellow } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import LocationCityRoundedIcon from "@mui/icons-material/LocationCityRounded";
 import { RowComponentType } from "../CustomTable";
@@ -13,10 +13,9 @@ const getColorByScore = (matchResult: MatchResult) => {
   if (matchResult.player_goals > matchResult.cpu_goals) {
     return green[500];
   }
-  if (matchResult.player_goals < matchResult.cpu_goals){
+  if (matchResult.player_goals < matchResult.cpu_goals) {
     return red[500];
-  }
-  else{
+  } else {
     return orange[500];
   }
 };
@@ -26,7 +25,6 @@ const MatchResultRow: RowComponentType<MatchResult, undefined> = ({
   textSx,
   iconSx,
 }) => {
-
   const mobileView = useMobileView();
   const matchResult = obj;
   const colorByScore = getColorByScore(matchResult);
