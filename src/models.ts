@@ -1,3 +1,5 @@
+import internal from "stream";
+
 export interface TeamShortDetail {
   id: number;
   name: string;
@@ -47,7 +49,22 @@ export interface MatchResult {
   cpu_team: TeamShortDetail;
 }
 
+export interface GoalMoment{
+  minute: number
+  goal_scorer: Player;
+  assister: Player| null;
+}
+
 
 export interface MatchData{
-
+  id: number;
+  date: string;
+  player_goals: number;
+  cpu_goals: number;
+  player_team: TeamShortDetail;
+  cpu_team: TeamShortDetail;
+  coins_reward: number;
+  goal_moments: GoalMoment[]
 }
+
+export type PackType = "Bronze" | "Silver" | "Gold"

@@ -37,9 +37,10 @@ const GoldPackDescription = () => {
     </>
   );
 };
-const GoldPackCard: React.FC<{ animationDuration: number }> = ({
-  animationDuration,
-}) => {
+const GoldPackCard: React.FC<{
+  animationDuration: number;
+  onBuy: React.MouseEventHandler;
+}> = ({ animationDuration, onBuy }) => {
   return (
     <PackCard
       packName="Gold"
@@ -48,6 +49,7 @@ const GoldPackCard: React.FC<{ animationDuration: number }> = ({
       price={750}
       imgSrc={goldPlayer}
       animationDuration={animationDuration}
+      onBuy={onBuy}
     />
   );
 };

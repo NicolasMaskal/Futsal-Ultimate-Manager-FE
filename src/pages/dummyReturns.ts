@@ -1,4 +1,4 @@
-import {MatchResult, Player, PlayerInLineup} from "../models";
+import {MatchResult, Player, PlayerInLineup, MatchData} from "../models";
 
 export const dummyPlayers: Player[] = [
   {
@@ -881,4 +881,273 @@ export const dummyPlayersNotPlaying: PlayerInLineup[] = [
   },
 ];
 
-// export const dummyMatchData :
+export const dummyMatchData : MatchData = {
+  "id": 127,
+  "date": "2023-01-28 19:32:54",
+  "player_goals": 4,
+  "cpu_goals": 3,
+  "player_team": {
+    "id": 10,
+    "name": "Real Madrid",
+    "owner": 5
+  },
+  "cpu_team": {
+    "id": 95,
+    "name": "FC Harmonfort",
+    "owner": null
+  },
+  "coins_reward": 126,
+  "goal_moments": [
+    {
+      "minute": 2,
+      "goal_scorer": {
+        "id": 15,
+        "name": "Joan Lewis",
+        "preferred_position": "defender",
+        "skill": 15,
+        "matches_played": 103,
+        "goals_scored": 19,
+        "assists_made": 2,
+        "sell_price": 17,
+        "team": {
+          "id": 10,
+          "name": "new team",
+          "owner": 4
+        }
+      },
+      "assister": null
+    },
+    {
+      "minute": 7,
+      "goal_scorer": {
+        "id": 15,
+        "name": "Joan Lewis",
+        "preferred_position": "defender",
+        "skill": 15,
+        "matches_played": 103,
+        "goals_scored": 19,
+        "assists_made": 2,
+        "sell_price": 17,
+        "team": {
+          "id": 10,
+          "name": "new team",
+          "owner": 4
+        }
+      },
+      "assister": null
+    },
+    {
+      "minute": 9,
+      "goal_scorer": {
+        "id": 446,
+        "name": "David Gonzales",
+        "preferred_position": "defender",
+        "skill": 25,
+        "matches_played": 17,
+        "goals_scored": 36,
+        "assists_made": 14,
+        "sell_price": 17,
+        "team": {
+          "id": 95,
+          "name": "FC Harmonfort",
+          "owner": null
+        }
+      },
+      "assister": {
+        "id": 447,
+        "name": "Joe Holliday",
+        "preferred_position": "goalkeeper",
+        "skill": 26,
+        "matches_played": 37,
+        "goals_scored": 3,
+        "assists_made": 3,
+        "sell_price": 18,
+        "team": {
+          "id": 95,
+          "name": "FC Harmonfort",
+          "owner": null
+        }
+      }
+    },
+    {
+      "minute": 11,
+      "goal_scorer": {
+        "id": 14,
+        "name": "Billy Figueroa",
+        "preferred_position": "defender",
+        "skill": 25,
+        "matches_played": 103,
+        "goals_scored": 2,
+        "assists_made": 2,
+        "sell_price": 27,
+        "team": {
+          "id": 10,
+          "name": "new team",
+          "owner": 4
+        }
+      },
+      "assister": {
+        "id": 24,
+        "name": "Patrick Clark",
+        "preferred_position": "defender",
+        "skill": 14,
+        "matches_played": 103,
+        "goals_scored": 14,
+        "assists_made": 5,
+        "sell_price": 16,
+        "team": {
+          "id": 10,
+          "name": "new team",
+          "owner": 4
+        }
+      }
+    },
+    {
+      "minute": 12,
+      "goal_scorer": {
+        "id": 443,
+        "name": "Norman Pickett",
+        "preferred_position": "attacker",
+        "skill": 28,
+        "matches_played": 37,
+        "goals_scored": 73,
+        "assists_made": 102,
+        "sell_price": 20,
+        "team": {
+          "id": 95,
+          "name": "FC Harmonfort",
+          "owner": null
+        }
+      },
+      "assister": {
+        "id": 446,
+        "name": "David Gonzales",
+        "preferred_position": "defender",
+        "skill": 25,
+        "matches_played": 17,
+        "goals_scored": 36,
+        "assists_made": 14,
+        "sell_price": 17,
+        "team": {
+          "id": 95,
+          "name": "FC Harmonfort",
+          "owner": null
+        }
+      }
+    },
+    {
+      "minute": 18,
+      "goal_scorer": {
+        "id": 443,
+        "name": "Norman Pickett",
+        "preferred_position": "attacker",
+        "skill": 28,
+        "matches_played": 37,
+        "goals_scored": 73,
+        "assists_made": 102,
+        "sell_price": 20,
+        "team": {
+          "id": 95,
+          "name": "FC Harmonfort",
+          "owner": null
+        }
+      },
+      "assister": {
+        "id": 445,
+        "name": "John Farmer",
+        "preferred_position": "defender",
+        "skill": 32,
+        "matches_played": 20,
+        "goals_scored": 13,
+        "assists_made": 26,
+        "sell_price": 24,
+        "team": {
+          "id": 95,
+          "name": "FC Harmonfort",
+          "owner": null
+        }
+      }
+    },
+    {
+      "minute": 23,
+      "goal_scorer": {
+        "id": 25,
+        "name": "Steven Zafar",
+        "preferred_position": "attacker",
+        "skill": 16,
+        "matches_played": 103,
+        "goals_scored": 8,
+        "assists_made": 12,
+        "sell_price": 18,
+        "team": {
+          "id": 10,
+          "name": "new team",
+          "owner": 4
+        }
+      },
+      "assister": {
+        "id": 16,
+        "name": "William Lattimer",
+        "preferred_position": "attacker",
+        "skill": 23,
+        "matches_played": 103,
+        "goals_scored": 8,
+        "assists_made": 11,
+        "sell_price": 25,
+        "team": {
+          "id": 10,
+          "name": "new team",
+          "owner": 4
+        }
+      }
+    }
+  ]
+}
+
+export const dummyPackContent: Player[] = [
+  {
+    "id": 448,
+    "name": "Warren Gambrel",
+    "preferred_position": "attacker",
+    "skill": 9,
+    "matches_played": 0,
+    "goals_scored": 0,
+    "assists_made": 0,
+    "sell_price": 11,
+    "team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    }
+  },
+  {
+    "id": 449,
+    "name": "Brady Davis",
+    "preferred_position": "defender",
+    "skill": 11,
+    "matches_played": 0,
+    "goals_scored": 0,
+    "assists_made": 0,
+    "sell_price": 13,
+    "team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    }
+  },
+  {
+    "id": 450,
+    "name": "Jaime Sierra",
+    "preferred_position": "attacker",
+    "skill": 11,
+    "matches_played": 0,
+    "goals_scored": 0,
+    "assists_made": 0,
+    "sell_price": 13,
+    "team": {
+      "id": 10,
+      "name": "new team",
+      "owner": 4
+    }
+  }
+]

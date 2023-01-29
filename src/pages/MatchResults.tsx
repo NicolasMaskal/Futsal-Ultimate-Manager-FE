@@ -26,11 +26,6 @@ const headCells: HeadCellType[] = [
     alignment: "center",
     label: "Score",
   },
-  // {
-  //   id: "cpu_average_skill",
-  //   alignment: "right",
-  //   label: "Opponent Skill",
-  // },
   {
     id: "date",
     alignment: "center",
@@ -96,7 +91,7 @@ const MatchResults = () => {
         defaultOrderBy={"date"}
         defaultOrder={"desc"}
         pagination={true}
-        size={10}
+        tableWidthInGrid={10}
         additionalInfo={undefined} //TODO find about default props
       />
     </>

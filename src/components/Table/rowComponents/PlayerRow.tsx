@@ -57,12 +57,17 @@ export const getColorBySkill = (
   return green[500];
 };
 
-const PlayerRow: RowComponentType<Player, number> = ({
+interface AdditionalInfoType{
+  averageSkill: number
+  showHistory: boolean
+}
+
+const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
   obj,
   textSx,
   iconSx,
   rowDeleteHandler,
-  additionalInfo,
+  additionalInfo
 }) => {
   const [sellOpen, setSellOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -82,7 +87,7 @@ const PlayerRow: RowComponentType<Player, number> = ({
     rowDeleteHandler(player);
   };
 
-  const averageSkill = additionalInfo;
+  const {averageSkill, showHistory} = additionalInfo;
 
   const player = obj;
   const colorByPos = getColorByPos(player.preferred_position);
@@ -123,27 +128,30 @@ const PlayerRow: RowComponentType<Player, number> = ({
           {player.skill}
         </Typography>
       </TableCell>
-      <TableCell
-        sx={textSx}
-        align="right"
-        padding={mobileView ? "none" : "normal"}
-      >
-        {player.matches_played}
-      </TableCell>
-      <TableCell
-        sx={textSx}
-        align="right"
-        padding={mobileView ? "none" : "normal"}
-      >
-        {player.goals_scored}
-      </TableCell>
-      <TableCell
-        sx={textSx}
-        align="right"
-        padding={mobileView ? "none" : "normal"}
-      >
-        {player.assists_made}
-      </TableCell>
+      {showHistory && <>
+        <TableCell
+          sx={textSx}
+          align="right"
+          padding={mobileView ? "none" : "normal"}
+        >
+          {player.matches_played}
+        </TableCell>
+        <TableCell
+          sx={textSx}
+          align="right"
+          padding={mobileView ? "none" : "normal"}
+        >
+          {player.goals_scored}
+        </TableCell>
+        <TableCell
+          sx={textSx}
+          align="right"
+          padding={mobileView ? "none" : "normal"}
+        >
+          {player.assists_made}
+        </TableCell>
+      </>
+      }
       <TableCell
         sx={textSx}
         align="right"

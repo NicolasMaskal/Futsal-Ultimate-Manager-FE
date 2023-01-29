@@ -3,6 +3,7 @@ import { Outlet, useNavigation } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import Footer from "../components/Footer";
 import Header from "../components/Header/Header";
+import Grid from "@mui/material/Grid";
 
 const RootPage = () => {
   const navigation = useNavigation();
@@ -13,7 +14,6 @@ const RootPage = () => {
         <CircularProgress />
       </div>
     );
-
   return (
     <>
       <Header />

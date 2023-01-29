@@ -21,7 +21,7 @@ const labels: { [index: string]: string } = {
 const getLabelText = (value: number) => {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 };
-const getColorByPlayingPos = (playingPos: PlayingPosition) => {
+export const getColorByPlayingPos = (playingPos: PlayingPosition) => {
   if (playingPos === "Goalkeeper") {
     return getColorByPos("goalkeeper");
   }
@@ -78,7 +78,6 @@ const PlayerInSheetRow: RowComponentType<
       hover
       onClick={() => handleRowClicked(playerInLineup)}
       sx={{
-        borderColor: "red",
         "&:last-child td, &:last-child th": {
           border: 0,
         },

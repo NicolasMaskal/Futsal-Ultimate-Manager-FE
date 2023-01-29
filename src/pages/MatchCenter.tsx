@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SheetTable from "../components/Table/SheetTable";
 import Grid from "@mui/material/Grid";
 import PageTitle from "../components/PageTitle";
-import { PlayerInLineup } from "../models";
+import { MatchData, PlayerInLineup } from "../models";
 import PageDescription from "../components/PageDescription";
 import useMobileView from "../hooks/useMobileView";
 import Typography from "@mui/material/Typography";
@@ -11,7 +11,12 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { useSnackbar } from "notistack";
 import SubPageTitle from "../components/SubPageTitle";
 import SimulateMatchOptions from "../components/SimulateMatchOptions";
-import { dummyPlayersInLineup, dummyPlayersNotPlaying } from "./dummyReturns";
+import {
+  dummyMatchData,
+  dummyPlayersInLineup,
+  dummyPlayersNotPlaying,
+} from "./dummyReturns";
+import { Match } from "../components/Match/Match";
 
 const MatchCenter = () => {
   const isMobile = useMobileView();
@@ -55,6 +60,7 @@ const MatchCenter = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const [matchData, setMatchData] = useState<MatchData | null>(null);
 
   const handleOnSaveClick = () => {
     // TODO Add api functionality
@@ -64,6 +70,19 @@ const MatchCenter = () => {
       enqueueSnackbar("Successfully saved!", { variant: "success" });
     }, 500);
   };
+
+  const handleMatchStartClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setMatchData(dummyMatchData);
+    }, 500);
+  };
+
+  const handleMatchFinishClick = () => {
+    setMatchData(null)
+  }
+
   const playersInLineup = playersOnScreen?.filter(
     (playerInLineup) => playerInLineup.playingPosition !== "Not Playing"
   );
@@ -71,6 +90,10 @@ const MatchCenter = () => {
     (playerInLineup) =>
       playerInLineup.playingPosition === "Not Playing" && playerInLineup.player
   );
+
+  if (matchData) {
+    return <Match handleMatchFinishClick={handleMatchFinishClick} matchData={matchData} />;
+  }
 
   return (
     <>
@@ -83,7 +106,8 @@ const MatchCenter = () => {
         start a match!
       </PageDescription>
       <PageDescription>
-        To switch players between the lists, click on the two specific players you want to switch
+        To switch players between the lists, click on the two specific players
+        you want to switch
       </PageDescription>
       <Grid
         container
@@ -115,7 +139,7 @@ const MatchCenter = () => {
               </div>
               <div>
                 <SimulateMatchOptions
-                  handleClick={handleOnSaveClick}
+                  handleClick={handleMatchStartClick}
                   isLoading={isLoading}
                 />
               </div>

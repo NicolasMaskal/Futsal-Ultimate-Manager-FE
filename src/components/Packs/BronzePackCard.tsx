@@ -32,9 +32,10 @@ const BronzePackDescription = () => {
     </>
   );
 };
-const BronzePackCard: React.FC<{ animationDuration: number }> = ({
-  animationDuration,
-}) => {
+const BronzePackCard: React.FC<{
+  animationDuration: number;
+  onBuy: React.MouseEventHandler;
+}> = ({ animationDuration, onBuy }) => {
   return (
     <PackCard
       packName="Bronze"
@@ -43,6 +44,7 @@ const BronzePackCard: React.FC<{ animationDuration: number }> = ({
       price={250}
       imgSrc={bronzePlayer}
       animationDuration={animationDuration}
+      onBuy={onBuy}
     />
   );
 };

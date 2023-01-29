@@ -4,14 +4,16 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Grow } from "@mui/material";
 import CustomPopper from "../CustomPopper";
+import { PackType } from "../../models";
 
 const PackCard: React.FC<{
-  packName: "Bronze" | "Silver" | "Gold";
+  packName: PackType;
   color: string;
   PackDescription: React.FC;
   price: number;
   imgSrc: string;
   animationDuration: number;
+  onBuy: React.MouseEventHandler;
 }> = ({
   packName,
   color,
@@ -19,6 +21,7 @@ const PackCard: React.FC<{
   price,
   imgSrc,
   animationDuration,
+  onBuy,
 }) => {
   const [buyOpen, setBuyOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -30,9 +33,6 @@ const PackCard: React.FC<{
   const handleClose = () => {
     setAnchorEl(null);
     setBuyOpen(false);
-  };
-  const handleBuy = () => {
-    //TODO call api
   };
 
   return (
@@ -73,7 +73,7 @@ const PackCard: React.FC<{
               anchorEl={anchorEl}
               buttonSuccessText="Buy"
               handleClose={handleClose}
-              handleSuccess={handleBuy}
+              handleSuccess={onBuy}
               placement={"right"}
             >
               <Typography sx={{ p: 2 }}>

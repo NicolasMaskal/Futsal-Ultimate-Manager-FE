@@ -65,7 +65,7 @@ interface TableProp<
   defaultOrderBy: string;
   defaultOrder: Order;
   pagination: boolean;
-  size: number;
+  tableWidthInGrid: number;
   dontAdjustFont?: boolean;
   additionalInfo: AdditionalInfoType;
 }
@@ -82,7 +82,7 @@ const CustomTable: <
   defaultOrderBy,
   defaultOrder,
   pagination,
-  size,
+  tableWidthInGrid,
   dontAdjustFont = false,
   additionalInfo,
 }) => {
@@ -101,9 +101,9 @@ const CustomTable: <
   }, [pagination, objects]);
 
   if (!objectsToDisplay) {
-    return <SkeletonTable size={size} />;
+    return <SkeletonTable size={tableWidthInGrid} />;
   }
-  const sideSize = (12 - size) / 2;
+  const sideSize = (12 - tableWidthInGrid) / 2;
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: string
@@ -156,7 +156,7 @@ const CustomTable: <
   return (
     <Grid container spacing={0} alignItems="center" justifyContent="center">
       <Grid item xs={0} sm={sideSize - 1} md={sideSize} />
-      <Grid item xs={12} sm={size + 1} md={size}>
+      <Grid item xs={12} sm={tableWidthInGrid + 1} md={tableWidthInGrid}>
         <TableContainer
           component={Paper}
           sx={{

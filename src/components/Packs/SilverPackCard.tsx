@@ -32,9 +32,10 @@ const SilverPackDescription = () => {
     </>
   );
 };
-const SilverPackCard: React.FC<{ animationDuration: number }> = ({
-  animationDuration,
-}) => {
+const SilverPackCard: React.FC<{
+  animationDuration: number;
+  onBuy: React.MouseEventHandler;
+}> = ({ animationDuration, onBuy }) => {
   return (
     <PackCard
       packName="Silver"
@@ -43,6 +44,7 @@ const SilverPackCard: React.FC<{ animationDuration: number }> = ({
       price={500}
       imgSrc={silverPlayer}
       animationDuration={animationDuration}
+      onBuy={onBuy}
     />
   );
 };

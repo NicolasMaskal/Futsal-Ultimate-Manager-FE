@@ -123,8 +123,8 @@ const Players = () => {
         defaultOrderBy={"preferred_position"}
         defaultOrder={"desc"}
         pagination={true}
-        size={10}
-        additionalInfo={averageSkill}
+        tableWidthInGrid={10}
+        additionalInfo={{ averageSkill, showHistory: true }}
       />
     </>
   );
