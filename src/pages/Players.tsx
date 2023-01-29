@@ -4,10 +4,10 @@ import { Container, Skeleton } from "@mui/material";
 import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
 import { dummyPlayers } from "./dummyReturns";
 import { Player } from "../models";
-import PageTitle from "../components/PageTitle";
+import PageTitle from "../components/Generic/PageTitle";
 import PlayerRow from "../components/Table/rowComponents/PlayerRow";
 import CustomTable from "../components/Table/CustomTable";
-import PageDescription from "../components/PageDescription";
+import PageDescription from "../components/Packs/PageDescription";
 
 const headCells: HeadCellType[] = [
   {

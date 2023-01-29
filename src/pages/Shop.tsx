@@ -1,12 +1,12 @@
-import PageTitle from "../components/PageTitle";
+import PageTitle from "../components/Generic/PageTitle";
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import GoldPackCard from "../components/Packs/GoldPackCard";
 import SilverPackCard from "../components/Packs/SilverPackCard";
 import BronzePackCard from "../components/Packs/BronzePackCard";
-import PageDescription from "../components/PageDescription";
+import PageDescription from "../components/Packs/PageDescription";
 import { PackType, Player } from "../models";
-import PackContent from "../components/PackContent";
+import PackContent from "../components/Packs/PackContent";
 import {CircularProgress, Stack} from "@mui/material";
 import { dummyPackContent } from "./dummyReturns";
 

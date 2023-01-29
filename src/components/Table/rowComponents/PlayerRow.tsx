@@ -20,7 +20,7 @@ import { capitalizeFirstLetter } from "../../../utils/stringHelpers";
 import { SxProps } from "@mui/system";
 import { Theme } from "@mui/material";
 import { Player, Position } from "../../../models";
-import CustomPopper from "../../CustomPopper";
+import CustomPopper from "../../Generic/CustomPopper";
 
 export const getColorByPos = (prefPos: Position | undefined) => {
   if (!prefPos) {
@@ -57,9 +57,9 @@ export const getColorBySkill = (
   return green[500];
 };
 
-interface AdditionalInfoType{
-  averageSkill: number
-  showHistory: boolean
+interface AdditionalInfoType {
+  averageSkill: number;
+  showHistory: boolean;
 }
 
 const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
@@ -67,7 +67,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
   textSx,
   iconSx,
   rowDeleteHandler,
-  additionalInfo
+  additionalInfo,
 }) => {
   const [sellOpen, setSellOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -87,7 +87,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
     rowDeleteHandler(player);
   };
 
-  const {averageSkill, showHistory} = additionalInfo;
+  const { averageSkill, showHistory } = additionalInfo;
 
   const player = obj;
   const colorByPos = getColorByPos(player.preferred_position);
@@ -128,30 +128,31 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
           {player.skill}
         </Typography>
       </TableCell>
-      {showHistory && <>
-        <TableCell
-          sx={textSx}
-          align="right"
-          padding={mobileView ? "none" : "normal"}
-        >
-          {player.matches_played}
-        </TableCell>
-        <TableCell
-          sx={textSx}
-          align="right"
-          padding={mobileView ? "none" : "normal"}
-        >
-          {player.goals_scored}
-        </TableCell>
-        <TableCell
-          sx={textSx}
-          align="right"
-          padding={mobileView ? "none" : "normal"}
-        >
-          {player.assists_made}
-        </TableCell>
-      </>
-      }
+      {showHistory && (
+        <>
+          <TableCell
+            sx={textSx}
+            align="right"
+            padding={mobileView ? "none" : "normal"}
+          >
+            {player.matches_played}
+          </TableCell>
+          <TableCell
+            sx={textSx}
+            align="right"
+            padding={mobileView ? "none" : "normal"}
+          >
+            {player.goals_scored}
+          </TableCell>
+          <TableCell
+            sx={textSx}
+            align="right"
+            padding={mobileView ? "none" : "normal"}
+          >
+            {player.assists_made}
+          </TableCell>
+        </>
+      )}
       <TableCell
         sx={textSx}
         align="right"

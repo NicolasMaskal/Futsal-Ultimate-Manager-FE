@@ -1,6 +1,6 @@
 import React from "react";
-import PageDescription from "../../PageDescription";
-import SubPageTitle from "../../SubPageTitle";
+import PageDescription from "../../Packs/PageDescription";
+import SubPageTitle from "../../Generic/SubPageTitle";
 import ProceedButton from "../../Buttons/ProceedButton";
 
 const MatchRewards: React.FC<{

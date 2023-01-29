@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet, useNavigation } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-import Footer from "../components/Footer";
+import Footer from "../components/Generic/Footer";
 import Header from "../components/Header/Header";
 import Grid from "@mui/material/Grid";
 

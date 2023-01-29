@@ -1,5 +1,5 @@
 import { MatchData } from "../../../models";
-import SubPageTitle from "../../SubPageTitle";
+import SubPageTitle from "../../Generic/SubPageTitle";
 import React from "react";
 
 const MatchStatus: React.FC<{

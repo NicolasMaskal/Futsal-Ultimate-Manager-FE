@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import SheetTable from "../components/Table/SheetTable";
 import Grid from "@mui/material/Grid";
-import PageTitle from "../components/PageTitle";
+import PageTitle from "../components/Generic/PageTitle";
 import { MatchData, PlayerInLineup } from "../models";
-import PageDescription from "../components/PageDescription";
+import PageDescription from "../components/Packs/PageDescription";
 import useMobileView from "../hooks/useMobileView";
 import Typography from "@mui/material/Typography";
 import SaveIcon from "@mui/icons-material/Save";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useSnackbar } from "notistack";
-import SubPageTitle from "../components/SubPageTitle";
-import SimulateMatchOptions from "../components/SimulateMatchOptions";
+import SubPageTitle from "../components/Generic/SubPageTitle";
+import SimulateMatchOptions from "../components/PreMatch/SimulateMatchOptions";
 import {
   dummyMatchData,
   dummyPlayersInLineup,

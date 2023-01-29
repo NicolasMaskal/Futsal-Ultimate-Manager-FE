@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Grow } from "@mui/material";
-import CustomPopper from "../CustomPopper";
+import CustomPopper from "../Generic/CustomPopper";
 import { PackType } from "../../models";
 
 const PackCard: React.FC<{

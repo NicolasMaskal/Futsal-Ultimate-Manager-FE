@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
-import PageTitle from "../components/PageTitle";
+import PageTitle from "../components/Generic/PageTitle";
 
 import { dummyMatchResults } from "./dummyReturns";
 import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
@@ -8,7 +8,7 @@ import { MatchResult } from "../models";
 import { Container, Skeleton } from "@mui/material";
 import CustomTable from "../components/Table/CustomTable";
 import MatchRow from "../components/Table/rowComponents/MatchRow";
-import PageDescription from "../components/PageDescription";
+import PageDescription from "../components/Packs/PageDescription";
 
 const headCells: HeadCellType[] = [
   {

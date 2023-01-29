@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MatchData } from "../../models";
-import PageTitle from "../PageTitle";
+import PageTitle from "../Generic/PageTitle";
 import Grid from "@mui/material/Grid";
 import { Divider } from "@mui/material";
 import GoalMomentAsLine from "./subComponents/GoalMomentAsLine";
@@ -10,7 +10,7 @@ import MatchRewards from "./subComponents/MatchRewards";
 import MatchStatus from "./subComponents/MatchStatus";
 import Box from "@mui/material/Box";
 
-const SCORER_HEIGHT = 200;
+const SCORER_HEIGHT = 225;
 export const Match: React.FC<{ matchData: MatchData, handleMatchFinishClick: React.MouseEventHandler }> = ({ matchData, handleMatchFinishClick }) => {
   const [currentMinute, setCurrentMinute] = useState(0);
   const [timeoutTime, setTimeoutTime] = useState(1000);

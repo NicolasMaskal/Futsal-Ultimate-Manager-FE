@@ -1,10 +1,10 @@
 import React from "react";
-import { Player } from "../models";
-import { HeadCellType } from "./Table/subComponents/MyTableHeader";
-import CustomTable from "./Table/CustomTable";
-import PlayerRow from "./Table/rowComponents/PlayerRow";
-import ProceedButton from "./Buttons/ProceedButton";
-import PageTitle from "./PageTitle";
+import { Player } from "../../models";
+import { HeadCellType } from "../Table/subComponents/MyTableHeader";
+import CustomTable from "../Table/CustomTable";
+import PlayerRow from "../Table/rowComponents/PlayerRow";
+import ProceedButton from "../Buttons/ProceedButton";
+import PageTitle from "../Generic/PageTitle";
 import PageDescription from "./PageDescription";
 
 const headCells: HeadCellType[] = [
@@ -59,7 +59,7 @@ const PackContent: React.FC<{
         headCells={headCells}
         additionalInfo={{ averageSkill: 50, showHistory: false }}
         pagination={false}
-        tableWidthInGrid={10}
+        tableWidthInGrid={8}
       />
       <div className="flex items-center justify-center pt-10">
         <ProceedButton
