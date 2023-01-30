@@ -10,6 +10,9 @@ import PackContent from "../components/Packs/PackContent";
 import {CircularProgress, Stack} from "@mui/material";
 import { dummyPackContent } from "./dummyReturns";
 
+export const shopPageDescription = "Our shop offers a wide range of player packs for all types of teams.\n" +
+    "        Choose from our budget-friendly bronze packs, solid silver packs, or\n" +
+    "        elite gold packs."
 const Shop = () => {
   const [packData, setPackData] = useState<Player[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,9 +50,7 @@ const Shop = () => {
     <>
       <PageTitle title="SHOP" />
       <PageDescription>
-        Our shop offers a wide range of player packs for all types of teams.
-        Choose from our budget-friendly bronze packs, solid silver packs, or
-        elite gold packs.
+        {shopPageDescription}
       </PageDescription>
       <Grid container justifyContent="center" className="pt-8" spacing={5}>
         <Grid key={"bronze"} item>

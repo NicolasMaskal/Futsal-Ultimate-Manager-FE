@@ -8,7 +8,7 @@ const GoalMomentAsLine: React.FC<{ goalMoment: GoalMoment, currentMinute: number
   return (
     <Typography className="pl-5" color={currentMinute === goalMoment.minute ? "red" : "black"}>
         <Typography component={"span"} display={"inline"} className={"font-bold"}>
-      {`${goalMoment.minute}' `.padStart(4, "0")}
+      {`${goalMoment.minute}'  `.padStart(5, "0")}
         </Typography>
       <SportsSoccerIcon sx={{verticalAlign: "text-bottom"}} />
       {goalMoment.goal_scorer.name}

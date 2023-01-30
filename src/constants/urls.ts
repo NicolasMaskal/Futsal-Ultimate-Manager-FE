@@ -6,3 +6,4 @@ export const matchCenterUrl = "/match-center";
 
 export const loginUrl = "/login";
 export const registerUrl = "/register";
+export const editUserUrl = "/edit-user"

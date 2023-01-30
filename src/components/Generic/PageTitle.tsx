@@ -3,6 +3,7 @@ import React from "react";
 
 const PageTitle: React.FC<{ title: string }> = ({ title }) => (
   <Typography
+    component="h1"
     sx={{
       textAlign: "center",
       color: "secondary.main",

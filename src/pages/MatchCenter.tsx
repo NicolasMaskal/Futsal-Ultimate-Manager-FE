@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import SheetTable from "../components/Table/SheetTable";
 import Grid from "@mui/material/Grid";
 import PageTitle from "../components/Generic/PageTitle";
-import { MatchData, PlayerInLineup } from "../models";
+import {MatchData, PlayerInLineup} from "../models";
 import PageDescription from "../components/Packs/PageDescription";
 import useMobileView from "../hooks/useMobileView";
-import Typography from "@mui/material/Typography";
-import SaveIcon from "@mui/icons-material/Save";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { useSnackbar } from "notistack";
+import {useSnackbar} from "notistack";
 import SubPageTitle from "../components/Generic/SubPageTitle";
 import SimulateMatchOptions from "../components/PreMatch/SimulateMatchOptions";
-import {
-  dummyMatchData,
-  dummyPlayersInLineup,
-  dummyPlayersNotPlaying,
-} from "./dummyReturns";
-import { Match } from "../components/Match/Match";
+import {dummyMatchData, dummyPlayersInLineup, dummyPlayersNotPlaying,} from "./dummyReturns";
+import {Match} from "../components/Match/Match";
+import SaveButton from "../components/Buttons/SaveButton";
 
+export const matchCenterPageDescription = "This page allows you to manage your team's lineup for your upcoming\n" +
+    "        match, including the ability to switch players between the team lineup\n" +
+    "        and non-playing list, and change their positions on the team lineup\n" +
+    "        according to player's preferred position. Once you're ready, you can\n" +
+    "        start a match!"
 const MatchCenter = () => {
   const isMobile = useMobileView();
   const [playersOnScreen, setPlayersOnScreen] = useState<
@@ -67,7 +66,7 @@ const MatchCenter = () => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      enqueueSnackbar("Successfully saved!", { variant: "success" });
+      enqueueSnackbar("Lineup successfully saved!", { variant: "success" });
     }, 500);
   };
 
@@ -80,8 +79,8 @@ const MatchCenter = () => {
   };
 
   const handleMatchFinishClick = () => {
-    setMatchData(null)
-  }
+    setMatchData(null);
+  };
 
   const playersInLineup = playersOnScreen?.filter(
     (playerInLineup) => playerInLineup.playingPosition !== "Not Playing"
@@ -92,18 +91,19 @@ const MatchCenter = () => {
   );
 
   if (matchData) {
-    return <Match handleMatchFinishClick={handleMatchFinishClick} matchData={matchData} />;
+    return (
+      <Match
+        handleMatchFinishClick={handleMatchFinishClick}
+        matchData={matchData}
+      />
+    );
   }
 
   return (
     <>
       <PageTitle title={"MATCH CENTER"} />
       <PageDescription>
-        This page allows you to manage your team's lineup for your upcoming
-        match, including the ability to switch players between the team lineup
-        and non-playing list, and change their positions on the team lineup
-        according to player's preferred position. Once you're ready, you can
-        start a match!
+        {matchCenterPageDescription}
       </PageDescription>
       <PageDescription>
         To switch players between the lists, click on the two specific players
@@ -126,16 +126,10 @@ const MatchCenter = () => {
           {playersOnScreen && (
             <div className={"flex mt-8 items-center justify-around"}>
               <div>
-                <LoadingButton
-                  color="primary"
-                  onClick={handleOnSaveClick}
-                  loading={isLoading}
-                  loadingPosition="start"
-                  startIcon={<SaveIcon />}
-                  variant="outlined"
-                >
-                  <Typography>Save</Typography>
-                </LoadingButton>
+                <SaveButton
+                  handleOnSaveClick={handleOnSaveClick}
+                  isLoading={isLoading}
+                />
               </div>
               <div>
                 <SimulateMatchOptions

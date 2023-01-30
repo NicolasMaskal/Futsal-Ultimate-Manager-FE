@@ -46,11 +46,6 @@ const headCells: HeadCellType[] = [
     alignment: "right",
     label: "Assists Made",
   },
-  // {
-  //   id: "stamina_left",
-  //   alignment: "right",
-  //   label: "Stamina left",
-  // },
   {
     id: "sell_price",
     alignment: "right",
@@ -62,6 +57,10 @@ const headCells: HeadCellType[] = [
     label: "",
   },
 ];
+
+export const playersPageDescription = "Here you can see a comprehensive table of all players currently on the\n" +
+    "        user's team. The table includes important information providing a clear\n" +
+    "        and easy way to track the performance of the team."
 
 const Players = () => {
   const [players, setPlayers] = useState<Player[] | null>(null);
@@ -78,9 +77,7 @@ const Players = () => {
     <>
       <PageTitle title="PLAYERS" />
       <PageDescription>
-        Here you can see a comprehensive table of all players currently on the
-        user's team. The table includes important information providing a clear
-        and easy way to track the performance of the team.
+        {playersPageDescription}
       </PageDescription>
       {players && averageSkill ? (
         <article className={"text-center pb-4"}>

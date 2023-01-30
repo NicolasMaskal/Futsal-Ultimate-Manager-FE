@@ -33,6 +33,10 @@ const headCells: HeadCellType[] = [
   },
 ];
 
+export const resultsPageDescription =
+  "Here you can see a list of match results of your team. More info about\n" +
+  "        each match is available in their detail.";
+
 const MatchResults = () => {
   const [matchResults, setMatchResults] = useState<MatchResult[] | null>(null);
 
@@ -45,10 +49,7 @@ const MatchResults = () => {
   return (
     <>
       <PageTitle title="MATCH RESULTS" />
-      <PageDescription>
-        Here you can see a list of match results of your team. More info about
-        each match is available in their detail.
-      </PageDescription>
+      <PageDescription>{resultsPageDescription}</PageDescription>
       {matchResults ? (
         <div className={"text-center pb-4"}>
           <div>

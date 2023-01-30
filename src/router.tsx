@@ -15,8 +15,9 @@ import {
   playersUrl,
   matchResultsUrl,
   loginUrl,
-  registerUrl,
+  registerUrl, editUserUrl,
 } from "./constants/urls";
+import UserSettings from "./pages/UserSettings";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
         path: matchCenterUrl,
         element: <LineupPage />,
       },
+      {
+        path: editUserUrl,
+        element: <UserSettings />
+      }
     ],
   },
 ]);
