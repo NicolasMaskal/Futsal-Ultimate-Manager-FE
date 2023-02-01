@@ -1,29 +1,74 @@
 import * as React from "react";
+import {useEffect} from "react";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Copyright } from "@mui/icons-material";
-import { Link as RouterLink } from "react-router-dom";
-import Footer from "../components/Generic/Footer";
-import { registerUrl } from "../constants/urls";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
+import {INDEX_URL, REGISTER_URL} from "../constants/urls";
+import {Field, Form, Formik} from "formik";
+import {TextField} from "formik-mui";
+import LoadingButton from "@mui/lab/LoadingButton";
+import {FormikHelpers} from "formik/dist/types";
+import {isEmail} from "../utils/stringHelpers";
+import useSendData from "../hooks/useSendData";
+import {BE_LOGIN_URL} from "../constants/be-urls";
+import {setUser} from "../store/user-slice";
+import {User} from "../models";
+import {useDispatch} from "react-redux";
+
+interface Values {
+  email: string;
+  password: string;
+}
+
+const initialValues = {
+  email: "",
+  password: "",
+};
+const validateForm = (values: Values) => {
+  const errors: Partial<Values> = {};
+  if (!isEmail(values.email)) {
+    errors.email = "Invalid email address";
+  }
+  return errors;
+};
 
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const { loading, error, response, sendData } = useSendData<{
+    session: string;
+    user: User;
+  }>(BE_LOGIN_URL, "post");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const submitForm = (
+    values: Values,
+    { setSubmitting }: FormikHelpers<Values>
+  ) => {
+    setSubmitting(true);
+    sendData({ email: values.email, password: values.password });
+    console.log(response);
+    setSubmitting(false);
   };
+
+  if (error) {
+    console.log("Error!", error);
+  }
+
+  useEffect(() => {
+    if (response) {
+      dispatch(setUser({ user: response.user }));
+      navigate(INDEX_URL);
+    }
+  }, [response]);
+
+  // if (response) {
+  //   dispatch(setUser({ user: response.user }));
+  //   return <Navigate to={INDEX_URL} />;
+  // }
 
   return (
     <Container component="main" maxWidth="xs" className="pt-4">
@@ -41,53 +86,62 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link
-                component={RouterLink}
-                to={registerUrl}
-                href="#"
-                variant="body2"
-              >
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
+        <Formik
+          initialValues={initialValues}
+          validate={validateForm}
+          onSubmit={submitForm}
+        >
+          {({ submitForm, isSubmitting }) => (
+            <Form>
+              <Box sx={{ mt: 1 }}>
+                <Field
+                  component={TextField}
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <Field
+                  component={TextField}
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+                <LoadingButton
+                  loading={isSubmitting}
+                  fullWidth
+                  variant="contained"
+                  onClick={submitForm}
+                  sx={{ mt: 3, mb: 2 }}
+                  disabled={isSubmitting}
+                >
+                  <Typography>Sign In</Typography>
+                </LoadingButton>
+                <Grid container spacing={5}>
+                  <Grid item>
+                    <Link
+                      component={RouterLink}
+                      to={REGISTER_URL}
+                      href="#"
+                      variant="body2"
+                    >
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Form>
+          )}
+        </Formik>
       </Box>
     </Container>
   );

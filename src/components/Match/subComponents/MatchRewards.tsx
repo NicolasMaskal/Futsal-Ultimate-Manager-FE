@@ -14,7 +14,10 @@ const MatchRewards: React.FC<{
         <span className="font-bold">{"Coins: "}</span> {coinReward}
       </PageDescription>
       <div className="flex items-center justify-center">
-        <ProceedButton onProceedClick={onProceedClick} buttonSx={{ display: "block", alignSelf: "center" }} />
+        <ProceedButton
+          onProceedClick={onProceedClick}
+          buttonSx={{ display: "block", alignSelf: "center" }}
+        />
       </div>
     </>
   );

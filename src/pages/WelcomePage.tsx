@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { registerUrl } from "../constants/urls";
+import { REGISTER_URL } from "../constants/urls";
 import Grid from "@mui/material/Grid";
 import footballPlayer from "../images/football-player-black.png";
 
 const WelcomePage: React.FC = () => {
-  // return <HomePage/>
   return (
     <Grid container className="px-16">
       <Grid item xs={8}>
@@ -20,7 +19,7 @@ const WelcomePage: React.FC = () => {
           <p>
             And that's not all - there's even more to discover. Don't have an
             account yet?{" "}
-            <Link className="text-sky-500 hover:text-sky-700" to={registerUrl}>
+            <Link className="text-sky-500 hover:text-sky-700" to={REGISTER_URL}>
               Sign up
             </Link>{" "}
             now and join the fun!

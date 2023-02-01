@@ -6,7 +6,7 @@ import Slider from "@mui/material/Slider";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SmartToyTwoToneIcon from "@mui/icons-material/SmartToyTwoTone";
-import InfoIcon from '@mui/icons-material/Info';
+import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
 
 const SimulateMatchOptions: React.FC<{
@@ -22,17 +22,25 @@ const SimulateMatchOptions: React.FC<{
   };
 
   return (
-      <>
+    <>
       <Box sx={{ width: 200 }}>
-        <Typography id="input-slider" className="font-bold" align="center" gutterBottom>
+        <Typography
+          id="input-slider"
+          className="font-bold"
+          align="center"
+          gutterBottom
+        >
           CPU Difficulty Rating
         </Typography>
         <Grid container spacing={2} alignItems="center">
-            <Grid item>
-                <Tooltip title={"Higher difficulty ratings yield better rewards"} placement={"left"}>
-                    <InfoIcon fontSize={"small"}/>
-                </Tooltip>
-            </Grid>
+          <Grid item>
+            <Tooltip
+              title={"Higher difficulty ratings yield better rewards"}
+              placement={"left"}
+            >
+              <InfoIcon fontSize={"small"} />
+            </Tooltip>
+          </Grid>
           <Grid item>
             <SmartToyTwoToneIcon />
           </Grid>
@@ -48,26 +56,24 @@ const SimulateMatchOptions: React.FC<{
             />
           </Grid>
           <Grid item>
-              <Typography>
-                  {value as number}
-              </Typography>
+            <Typography>{value as number}</Typography>
           </Grid>
         </Grid>
       </Box>
-        <div className="flex justify-center">
-      <LoadingButton
-        color="primary"
-        onClick={handleClick}
-        loading={isLoading}
-        loadingPosition="start"
-        startIcon={<SportsEsportsIcon />}
-        variant="contained"
-      >
-        <Typography>Simulate Match</Typography>
-      </LoadingButton>
-        </div>
-    {/*</div>*/}
-      </>
+      <div className="flex justify-center">
+        <LoadingButton
+          color="primary"
+          onClick={handleClick}
+          loading={isLoading}
+          loadingPosition="start"
+          startIcon={<SportsEsportsIcon />}
+          variant="contained"
+        >
+          <Typography>Simulate Match</Typography>
+        </LoadingButton>
+      </div>
+      {/*</div>*/}
+    </>
   );
 };
 

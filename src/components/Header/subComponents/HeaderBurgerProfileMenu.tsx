@@ -1,18 +1,24 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
-import {Divider, ListItemIcon, ListItemText, Menu, MenuItem,} from "@mui/material";
-import {Link} from "react-router-dom";
+import {
+  Divider,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import {editUserUrl, loginUrl} from "../../../constants/urls";
+import { EDIT_USER_URL, LOGIN_URL } from "../../../constants/urls";
 
 export const ProfileMenuItems: React.FC<{
   handleCloseNavMenu: () => void;
 }> = ({ handleCloseNavMenu }) => {
   return (
     <>
-      <Link to={editUserUrl} style={{ textDecoration: "none" }}>
+      <Link to={EDIT_USER_URL} style={{ textDecoration: "none" }}>
         <MenuItem key={"profile"} onClick={handleCloseNavMenu}>
           <ListItemIcon>
             <ManageAccountsRoundedIcon fontSize="small" />
@@ -21,7 +27,7 @@ export const ProfileMenuItems: React.FC<{
         </MenuItem>
       </Link>
       <Divider />
-      <Link to={loginUrl} style={{ textDecoration: "none" }}>
+      <Link to={LOGIN_URL} style={{ textDecoration: "none" }}>
         <MenuItem key={"logout"} onClick={handleCloseNavMenu}>
           <ListItemIcon>
             <LogoutRoundedIcon fontSize="small" />

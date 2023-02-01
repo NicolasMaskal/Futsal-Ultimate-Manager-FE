@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootPage from "./pages/RootPage";
 import ErrorPage from "./pages/ErrorPage";
-import WelcomePage from "./pages/WelcomePage";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Players from "./pages/Players";
@@ -10,14 +9,19 @@ import React from "react";
 import Shop from "./pages/Shop";
 import LineupPage from "./pages/MatchCenter";
 import {
-  matchCenterUrl,
-  shopUrl,
-  playersUrl,
-  matchResultsUrl,
-  loginUrl,
-  registerUrl, editUserUrl,
+  EDIT_USER_URL,
+  INDEX_URL,
+  LOGIN_URL,
+  MATCH_CENTER_URL,
+  MATCH_RESULTS_URL,
+  PLAYERS_URL,
+  REGISTER_URL,
+  SHOP_URL,
 } from "./constants/urls";
 import UserSettings from "./pages/UserSettings";
+import IndexPage from "./pages/IndexPage";
+import PrivateRoute from "./components/Routing/PrivateRoute";
+import AnonymousOnlyRoute from "./components/Routing/AnonymousOnlyRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,37 +30,65 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <WelcomePage />,
+        path: INDEX_URL,
+        element: <IndexPage />,
       },
       {
-        path: loginUrl,
-        element: <SignIn />,
+        path: LOGIN_URL,
+        element: (
+          <AnonymousOnlyRoute>
+            <SignIn />
+          </AnonymousOnlyRoute>
+        ),
       },
       {
-        path: registerUrl,
-        element: <SignUp />,
+        path: REGISTER_URL,
+        element: (
+          <AnonymousOnlyRoute>
+            <SignUp />
+          </AnonymousOnlyRoute>
+        ),
       },
       {
-        path: playersUrl,
-        element: <Players />,
+        path: PLAYERS_URL,
+        element: (
+          <PrivateRoute>
+            <Players />
+          </PrivateRoute>
+        ),
       },
       {
-        path: matchResultsUrl,
-        element: <MatchResults />,
+        path: MATCH_RESULTS_URL,
+        element: (
+          <PrivateRoute>
+            <MatchResults />
+          </PrivateRoute>
+        ),
       },
       {
-        path: shopUrl,
-        element: <Shop />,
+        path: SHOP_URL,
+        element: (
+          <PrivateRoute>
+            <Shop />
+          </PrivateRoute>
+        ),
       },
       {
-        path: matchCenterUrl,
-        element: <LineupPage />,
+        path: MATCH_CENTER_URL,
+        element: (
+          <PrivateRoute>
+            <LineupPage />
+          </PrivateRoute>
+        ),
       },
       {
-        path: editUserUrl,
-        element: <UserSettings />
-      }
+        path: EDIT_USER_URL,
+        element: (
+          <PrivateRoute>
+            <UserSettings />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

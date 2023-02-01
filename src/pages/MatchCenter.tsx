@@ -1,22 +1,27 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import SheetTable from "../components/Table/SheetTable";
 import Grid from "@mui/material/Grid";
 import PageTitle from "../components/Generic/PageTitle";
-import {MatchData, PlayerInLineup} from "../models";
+import { MatchData, PlayerInLineup } from "../models";
 import PageDescription from "../components/Packs/PageDescription";
 import useMobileView from "../hooks/useMobileView";
-import {useSnackbar} from "notistack";
+import { useSnackbar } from "notistack";
 import SubPageTitle from "../components/Generic/SubPageTitle";
 import SimulateMatchOptions from "../components/PreMatch/SimulateMatchOptions";
-import {dummyMatchData, dummyPlayersInLineup, dummyPlayersNotPlaying,} from "./dummyReturns";
-import {Match} from "../components/Match/Match";
+import {
+  dummyMatchData,
+  dummyPlayersInLineup,
+  dummyPlayersNotPlaying,
+} from "./dummyReturns";
+import { Match } from "../components/Match/Match";
 import SaveButton from "../components/Buttons/SaveButton";
 
-export const matchCenterPageDescription = "This page allows you to manage your team's lineup for your upcoming\n" +
-    "        match, including the ability to switch players between the team lineup\n" +
-    "        and non-playing list, and change their positions on the team lineup\n" +
-    "        according to player's preferred position. Once you're ready, you can\n" +
-    "        start a match!"
+export const matchCenterPageDescription =
+  "This page allows you to manage your team's lineup for your upcoming\n" +
+  "        match, including the ability to switch players between the team lineup\n" +
+  "        and non-playing list, and change their positions on the team lineup\n" +
+  "        according to player's preferred position. Once you're ready, you can\n" +
+  "        start a match!";
 const MatchCenter = () => {
   const isMobile = useMobileView();
   const [playersOnScreen, setPlayersOnScreen] = useState<
@@ -102,9 +107,7 @@ const MatchCenter = () => {
   return (
     <>
       <PageTitle title={"MATCH CENTER"} />
-      <PageDescription>
-        {matchCenterPageDescription}
-      </PageDescription>
+      <PageDescription>{matchCenterPageDescription}</PageDescription>
       <PageDescription>
         To switch players between the lists, click on the two specific players
         you want to switch

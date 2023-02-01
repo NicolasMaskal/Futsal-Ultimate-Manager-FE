@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import useMobileView from "../hooks/useMobileView";
+import useMobileView from "../../hooks/useMobileView";
 
 const HomePageCard: React.FC<{
   cardTitle: string;
@@ -17,12 +17,15 @@ const HomePageCard: React.FC<{
   return (
     <Grow in={true} timeout={animationDuration}>
       {/*<div className="flex justify-center">*/}
-      <Card elevation={5} sx={{maxWidth: "35rem",  display: "flex", justifyContent: "center" }}>
+      <Card
+        elevation={5}
+        sx={{ maxWidth: "35rem", display: "flex", justifyContent: "center" }}
+      >
         <CardActionArea component={Link} to={href}>
           <img
             src={imgSrc}
             alt={`${cardTitle} Link`}
-            style={{ maxHeight:  "9.4rem" }}
+            style={{ maxHeight: "9.4rem" }}
             className="flex flex-grow mr-auto ml-auto pt-6"
           />
           <CardContent sx={{ height: "10rem" }}>

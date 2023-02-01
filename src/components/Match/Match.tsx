@@ -11,7 +11,10 @@ import MatchStatus from "./subComponents/MatchStatus";
 import Box from "@mui/material/Box";
 
 const SCORER_HEIGHT = 225;
-export const Match: React.FC<{ matchData: MatchData, handleMatchFinishClick: React.MouseEventHandler }> = ({ matchData, handleMatchFinishClick }) => {
+export const Match: React.FC<{
+  matchData: MatchData;
+  handleMatchFinishClick: React.MouseEventHandler;
+}> = ({ matchData, handleMatchFinishClick }) => {
   const [currentMinute, setCurrentMinute] = useState(0);
   const [timeoutTime, setTimeoutTime] = useState(1000);
 
@@ -28,24 +31,24 @@ export const Match: React.FC<{ matchData: MatchData, handleMatchFinishClick: Rea
     (moment) => moment.minute === currentMinute
   );
 
-    useEffect(() => {
-      if (currentMoment) {
-        setTimeoutTime(4000);
-      } else {
-        setTimeoutTime(1000);
-      }
-    }, [currentMoment]);
+  useEffect(() => {
+    if (currentMoment) {
+      setTimeoutTime(4000);
+    } else {
+      setTimeoutTime(1000);
+    }
+  }, [currentMoment]);
 
-    useEffect(() => {
-      if (currentMinute > 40) {
-        return;
-      }
-      const timeoutId = setTimeout(() => {
-        setCurrentMinute(currentMinute + 1);
-      }, timeoutTime);
+  useEffect(() => {
+    if (currentMinute > 40) {
+      return;
+    }
+    const timeoutId = setTimeout(() => {
+      setCurrentMinute(currentMinute + 1);
+    }, timeoutTime);
 
-      return () => clearTimeout(timeoutId);
-    }, [currentMinute, timeoutTime]);
+    return () => clearTimeout(timeoutId);
+  }, [currentMinute, timeoutTime]);
 
   return (
     <>
@@ -77,13 +80,13 @@ export const Match: React.FC<{ matchData: MatchData, handleMatchFinishClick: Rea
         </Grid>
         <Grid item xs={5}>
           <Box sx={{ minHeight: SCORER_HEIGHT }}>
-          {playerMoments.map((moment) => (
-            <GoalMomentAsLine
-              key={`Player_${moment.goal_scorer.id}_${moment.minute}`}
-              goalMoment={moment}
-              currentMinute={currentMinute}
-            />
-          ))}
+            {playerMoments.map((moment) => (
+              <GoalMomentAsLine
+                key={`Player_${moment.goal_scorer.id}_${moment.minute}`}
+                goalMoment={moment}
+                currentMinute={currentMinute}
+              />
+            ))}
           </Box>
         </Grid>
         <Divider
@@ -94,22 +97,25 @@ export const Match: React.FC<{ matchData: MatchData, handleMatchFinishClick: Rea
         />
         <Grid item xs={5}>
           <Box sx={{ minHeight: SCORER_HEIGHT }}>
-          {cpuMoments.map((moment) => (
-            <GoalMomentAsLine
-              key={`CPU_${moment.goal_scorer.id}_${moment.minute}`}
-              goalMoment={moment}
-              currentMinute={currentMinute}
-            />
-          ))}
+            {cpuMoments.map((moment) => (
+              <GoalMomentAsLine
+                key={`CPU_${moment.goal_scorer.id}_${moment.minute}`}
+                goalMoment={moment}
+                currentMinute={currentMinute}
+              />
+            ))}
           </Box>
         </Grid>
         <Grid item xs={5} className="pt-20">
           <Box sx={{ minHeight: 150 }}>
-          {currentMinute < 40 ? (
-            <GoalDescription key={currentMinute} goalMoment={currentMoment} />
-          ) : (
-            <MatchRewards coinReward={matchData.coins_reward} onProceedClick={handleMatchFinishClick} />
-          )}
+            {currentMinute < 40 ? (
+              <GoalDescription key={currentMinute} goalMoment={currentMoment} />
+            ) : (
+              <MatchRewards
+                coinReward={matchData.coins_reward}
+                onProceedClick={handleMatchFinishClick}
+              />
+            )}
           </Box>
         </Grid>
       </Grid>

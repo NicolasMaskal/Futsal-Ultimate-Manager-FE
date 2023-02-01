@@ -10,14 +10,14 @@ import AppName from "./subComponents/AppName";
 import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
 import useMobileView from "../../hooks/useMobileView";
 import LogoButtonHeader from "./subComponents/LogoButtonHeader";
-import SubHeader from "./subComponents/SubHeader";
+import SubHeader from "./SubHeader";
 import HeaderBurgerNavMenu from "./subComponents/HeaderBurgerNavMenu";
 import HeaderBurgerProfileMenu from "./subComponents/HeaderBurgerProfileMenu";
 import {
-  matchCenterUrl,
-  shopUrl,
-  playersUrl,
-  matchResultsUrl,
+  MATCH_CENTER_URL,
+  SHOP_URL,
+  PLAYERS_URL,
+  MATCH_RESULTS_URL,
 } from "../../constants/urls";
 
 const DesktopHeader = () => {
@@ -44,7 +44,7 @@ const DesktopHeader = () => {
           tooltipText="View players playing for your team"
           buttonText="Players"
           startIcon={<PersonRoundedIcon />}
-          href={playersUrl}
+          href={PLAYERS_URL}
         />
       </Grid>
       <Grid item xs>
@@ -52,7 +52,7 @@ const DesktopHeader = () => {
           tooltipText="View match results of your team."
           buttonText="Match Results"
           startIcon={<ScoreboardRoundedIcon />}
-          href={matchResultsUrl}
+          href={MATCH_RESULTS_URL}
         />
       </Grid>
       <Grid item xs>
@@ -60,7 +60,7 @@ const DesktopHeader = () => {
           tooltipText="Visit the shop to buy packs and improve your team."
           buttonText="Shop"
           startIcon={<StoreRoundedIcon />}
-          href={shopUrl}
+          href={SHOP_URL}
         />
       </Grid>
       <Grid item xs>
@@ -75,7 +75,7 @@ const DesktopHeader = () => {
             />
           }
           onClick={undefined}
-          href={matchCenterUrl}
+          href={MATCH_CENTER_URL}
         />
       </Grid>
       <Grid item xs>

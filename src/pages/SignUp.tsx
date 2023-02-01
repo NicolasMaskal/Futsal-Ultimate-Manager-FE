@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import { Link as RouterLink } from "react-router-dom";
-import { loginUrl } from "../constants/urls";
+import { LOGIN_URL } from "../constants/urls";
 import { Divider } from "@mui/material";
 
 export default function SignUp() {
@@ -27,7 +27,7 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs" className="pt-4">
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 4,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -99,7 +99,7 @@ export default function SignUp() {
             <Grid item>
               <Link
                 component={RouterLink}
-                to={loginUrl}
+                to={LOGIN_URL}
                 href="#"
                 variant="body2"
               >

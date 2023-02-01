@@ -1,9 +1,9 @@
-export const baseUrl = "http://localhost:3000";
-export const playersUrl = "/players";
-export const shopUrl = "/shop";
-export const matchResultsUrl = "/match-results";
-export const matchCenterUrl = "/match-center";
+export const INDEX_URL = "/"
+export const PLAYERS_URL = "/players";
+export const SHOP_URL = "/shop";
+export const MATCH_RESULTS_URL = "/match-results";
+export const MATCH_CENTER_URL = "/match-center";
 
-export const loginUrl = "/login";
-export const registerUrl = "/register";
-export const editUserUrl = "/edit-user"
+export const LOGIN_URL = "/login";
+export const REGISTER_URL = "/register";
+export const EDIT_USER_URL = "/edit-user";

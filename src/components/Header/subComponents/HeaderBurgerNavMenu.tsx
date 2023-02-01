@@ -9,10 +9,10 @@ import footballFieldIconGray from "../../../images/football-field-gray.png";
 import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
 import { ProfileMenuItems } from "./HeaderBurgerProfileMenu";
 import {
-  matchCenterUrl,
-  matchResultsUrl,
-  playersUrl,
-  shopUrl,
+  MATCH_CENTER_URL,
+  MATCH_RESULTS_URL,
+  PLAYERS_URL,
+  SHOP_URL,
 } from "../../../constants/urls";
 
 const HeaderBurgerNavMenu: React.FC<{
@@ -49,7 +49,7 @@ const HeaderBurgerNavMenu: React.FC<{
         color="inherit"
         disableScrollLock={true}
       >
-        <Link to={playersUrl} style={{ textDecoration: "none" }}>
+        <Link to={PLAYERS_URL} style={{ textDecoration: "none" }}>
           <MenuItem key={"players"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <PersonRoundedIcon fontSize="small" />
@@ -57,7 +57,7 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Players</ListItemText>
           </MenuItem>
         </Link>
-        <Link to={matchResultsUrl} style={{ textDecoration: "none" }}>
+        <Link to={MATCH_RESULTS_URL} style={{ textDecoration: "none" }}>
           <MenuItem key={"match-results"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <ScoreboardRoundedIcon fontSize="small" />
@@ -65,7 +65,7 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Match results</ListItemText>
           </MenuItem>
         </Link>
-        <Link to={shopUrl} style={{ textDecoration: "none" }}>
+        <Link to={SHOP_URL} style={{ textDecoration: "none" }}>
           <MenuItem key={"shop"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <StoreRoundedIcon fontSize="small" />
@@ -73,7 +73,7 @@ const HeaderBurgerNavMenu: React.FC<{
             <ListItemText sx={{ color: "black" }}>Shop</ListItemText>
           </MenuItem>
         </Link>
-        <Link to={matchCenterUrl} style={{ textDecoration: "none" }}>
+        <Link to={MATCH_CENTER_URL} style={{ textDecoration: "none" }}>
           <MenuItem key={"match-center"} onClick={handleCloseNavMenu}>
             <ListItemIcon>
               <img

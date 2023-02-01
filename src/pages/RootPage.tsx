@@ -1,18 +1,21 @@
 import React from "react";
-import { Outlet, useNavigation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import Footer from "../components/Generic/Footer";
 import Header from "../components/Header/Header";
-import Grid from "@mui/material/Grid";
+import { useSelector } from "react-redux";
+import { getAppStatus } from "../selectors/user";
+import LoadingFullPage from "../components/Generic/LoadingFullPage";
 
 const RootPage = () => {
-  const navigation = useNavigation();
+  const status = useSelector(getAppStatus);
 
-  if (navigation.state === "loading")
+  if (status === "loading")
     return (
-      <div className="flex justify-center items-center h-screen">
-        <CircularProgress />
-      </div>
+      <>
+        <Header />
+        <LoadingFullPage />
+      </>
     );
   return (
     <>

@@ -7,12 +7,13 @@ import BronzePackCard from "../components/Packs/BronzePackCard";
 import PageDescription from "../components/Packs/PageDescription";
 import { PackType, Player } from "../models";
 import PackContent from "../components/Packs/PackContent";
-import {CircularProgress, Stack} from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
 import { dummyPackContent } from "./dummyReturns";
 
-export const shopPageDescription = "Our shop offers a wide range of player packs for all types of teams.\n" +
-    "        Choose from our budget-friendly bronze packs, solid silver packs, or\n" +
-    "        elite gold packs."
+export const shopPageDescription =
+  "Our shop offers a wide range of player packs for all types of teams.\n" +
+  "        Choose from our budget-friendly bronze packs, solid silver packs, or\n" +
+  "        elite gold packs.";
 const Shop = () => {
   const [packData, setPackData] = useState<Player[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,9 +33,13 @@ const Shop = () => {
 
   if (isLoading) {
     return (
-        <Stack alignItems="center" className="min-h-screen" justifyContent="center">
-          <CircularProgress color={"primary"}/>
-        </Stack>
+      <Stack
+        alignItems="center"
+        className="min-h-screen"
+        justifyContent="center"
+      >
+        <CircularProgress color={"primary"} />
+      </Stack>
     );
   }
   if (packData) {
@@ -49,9 +54,7 @@ const Shop = () => {
   return (
     <>
       <PageTitle title="SHOP" />
-      <PageDescription>
-        {shopPageDescription}
-      </PageDescription>
+      <PageDescription>{shopPageDescription}</PageDescription>
       <Grid container justifyContent="center" className="pt-8" spacing={5}>
         <Grid key={"bronze"} item>
           <BronzePackCard

@@ -6,6 +6,16 @@ export interface TeamShortDetail {
   owner: number | null;
 }
 
+export interface Team{
+  id: number;
+  name: string;
+  "wins": number
+  "draws": number
+  "loses": number
+  "coins": number
+  "player_amount": number
+}
+
 export type Position = "attacker" | "defender" | "goalkeeper";
 
 export type PlayingPosition =
@@ -49,14 +59,13 @@ export interface MatchResult {
   cpu_team: TeamShortDetail;
 }
 
-export interface GoalMoment{
-  minute: number
+export interface GoalMoment {
+  minute: number;
   goal_scorer: Player;
-  assister: Player| null;
+  assister: Player | null;
 }
 
-
-export interface MatchData{
+export interface MatchData {
   id: number;
   date: string;
   player_goals: number;
@@ -64,7 +73,15 @@ export interface MatchData{
   player_team: TeamShortDetail;
   cpu_team: TeamShortDetail;
   coins_reward: number;
-  goal_moments: GoalMoment[]
+  goal_moments: GoalMoment[];
 }
 
-export type PackType = "Bronze" | "Silver" | "Gold"
+export type PackType = "Bronze" | "Silver" | "Gold";
+
+export interface User {
+  id: number;
+  email: string;
+  is_admin: boolean;
+  active_team: TeamShortDetail | null;
+  is_active: boolean;
+}

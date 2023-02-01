@@ -1,10 +1,16 @@
 import Grid from "@mui/material/Grid";
-import SubHeaderButton from "./SubHeaderButton";
+import SubHeaderButton from "./subComponents/SubHeaderButton";
 import ShieldIcon from "@mui/icons-material/Shield";
 import SavingsIcon from "@mui/icons-material/Savings";
 import React from "react";
+import {useSelector} from "react-redux";
+import {getTeam} from "../../selectors/user";
 
 const SubHeader = () => {
+  const team = useSelector(getTeam)
+  if(!team){
+    return <React.Fragment/>;
+  }
   return (
     <Grid
       container
@@ -15,14 +21,14 @@ const SubHeader = () => {
       <Grid item xs>
         <SubHeaderButton
           startIcon={<ShieldIcon sx={{ color: "primary.main" }} />}
-          buttonText={"Real Madrid"}
+          buttonText={team.name}
           href={"/match-results"}
         />
       </Grid>
       <Grid item xs>
         <SubHeaderButton
           startIcon={<SavingsIcon sx={{ color: "primary.main" }} />}
-          buttonText="Coins: 256"
+          buttonText={`Coins: ${team.name}`}
           tooltipText={null}
           href="/shop"
         />

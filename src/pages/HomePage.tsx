@@ -1,13 +1,13 @@
 import PageTitle from "../components/Generic/PageTitle";
 import Grid from "@mui/material/Grid";
 import React from "react";
-import HomePageCard from "../components/HomePageCard";
+import HomePageCard from "../components/HomePage/HomePageCard";
 import { playersPageDescription } from "./Players";
 import {
-  matchCenterUrl,
-  matchResultsUrl,
-  playersUrl,
-  shopUrl,
+  MATCH_CENTER_URL,
+  MATCH_RESULTS_URL,
+  PLAYERS_URL,
+  SHOP_URL,
 } from "../constants/urls";
 import playersImg from "../images/Players.png";
 import matchResultsImg from "../images/Match Results.png";
@@ -22,21 +22,21 @@ const HomePage = () => {
     <>
       <PageTitle title="HOME PAGE" />
       <Grid container className="pt-8" spacing={8} justifyContent={"center"}>
-        <Grid item >
+        <Grid item>
           <HomePageCard
             imgSrc={playersImg}
             cardTitle={"Players"}
             cardDescription={playersPageDescription}
-            href={playersUrl}
+            href={PLAYERS_URL}
             animationDuration={300}
           />
         </Grid>
-        <Grid item >
+        <Grid item>
           <HomePageCard
             imgSrc={matchResultsImg}
             cardTitle={"Match Results"}
             cardDescription={resultsPageDescription}
-            href={matchResultsUrl}
+            href={MATCH_RESULTS_URL}
             animationDuration={600}
           />
         </Grid>
@@ -45,16 +45,16 @@ const HomePage = () => {
             imgSrc={shopImg}
             cardTitle={"Shop"}
             cardDescription={shopPageDescription}
-            href={shopUrl}
+            href={SHOP_URL}
             animationDuration={900}
           />
         </Grid>
-        <Grid item >
+        <Grid item>
           <HomePageCard
             imgSrc={matchCenterImg}
             cardTitle={"Match Center"}
             cardDescription={matchCenterPageDescription}
-            href={matchCenterUrl}
+            href={MATCH_CENTER_URL}
             animationDuration={1200}
           />
         </Grid>

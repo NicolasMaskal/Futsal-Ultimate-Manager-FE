@@ -58,9 +58,10 @@ const headCells: HeadCellType[] = [
   },
 ];
 
-export const playersPageDescription = "Here you can see a comprehensive table of all players currently on the\n" +
-    "        user's team. The table includes important information providing a clear\n" +
-    "        and easy way to track the performance of the team."
+export const playersPageDescription =
+  "Here you can see a comprehensive table of all players currently on the\n" +
+  "        user's team. The table includes important information providing a clear\n" +
+  "        and easy way to track the performance of the team.";
 
 const Players = () => {
   const [players, setPlayers] = useState<Player[] | null>(null);
@@ -76,9 +77,7 @@ const Players = () => {
   return (
     <>
       <PageTitle title="PLAYERS" />
-      <PageDescription>
-        {playersPageDescription}
-      </PageDescription>
+      <PageDescription>{playersPageDescription}</PageDescription>
       {players && averageSkill ? (
         <article className={"text-center pb-4"}>
           <div>

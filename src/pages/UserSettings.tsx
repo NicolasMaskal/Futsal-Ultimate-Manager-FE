@@ -1,10 +1,10 @@
 import TextField from "@mui/material/TextField";
-import {CircularProgress, Stack} from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import * as React from "react";
-import {useState} from "react";
-import {useSnackbar} from "notistack";
+import { useState } from "react";
+import { useSnackbar } from "notistack";
 import PageTitle from "../components/Generic/PageTitle";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -59,7 +59,7 @@ const UserSettings = () => {
       </Stack>
       <Container maxWidth="xs">
         <Box
-            maxWidth="xs"
+          maxWidth="xs"
           sx={{
             marginTop: 4,
             display: "flex",
@@ -74,9 +74,9 @@ const UserSettings = () => {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <span className={"font-bold"}>Email:</span> example@google.com
-                </Grid>
+              <Grid item xs={12}>
+                <span className={"font-bold"}>Email:</span> example@google.com
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
