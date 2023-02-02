@@ -43,7 +43,7 @@ const DesktopHeader = () => {
         <AppName />
       </Grid>
       <Grid item xs>
-        {user && (
+        {user?.email_verified && (
           <HeaderButton
             tooltipText="View players playing for your team"
             buttonText="Players"
@@ -53,50 +53,50 @@ const DesktopHeader = () => {
         )}
       </Grid>
       <Grid item xs>
-          {user &&
-        <HeaderButton
-          tooltipText="View match results of your team."
-          buttonText="Match Results"
-          startIcon={<ScoreboardRoundedIcon />}
-          href={MATCH_RESULTS_URL}
-        />
-          }
+        {user?.email_verified && (
+          <HeaderButton
+            tooltipText="View match results of your team."
+            buttonText="Match Results"
+            startIcon={<ScoreboardRoundedIcon />}
+            href={MATCH_RESULTS_URL}
+          />
+        )}
       </Grid>
       <Grid item xs>
-          {user &&
-        <HeaderButton
-          tooltipText="Visit the shop to buy packs and improve your team."
-          buttonText="Shop"
-          startIcon={<StoreRoundedIcon />}
-          href={SHOP_URL}
-        />
-          }
+        {user?.email_verified && (
+          <HeaderButton
+            tooltipText="Visit the shop to buy packs and improve your team."
+            buttonText="Shop"
+            startIcon={<StoreRoundedIcon />}
+            href={SHOP_URL}
+          />
+        )}
       </Grid>
       <Grid item xs>
-          {user &&
-        <HeaderButton
-          tooltipText="Adjust your lineup and start a match."
-          buttonText="Match Center"
-          startIcon={
-            <img
-              src={footballFieldIconWhite}
-              alt={"Football field icon"}
-              style={{ height: 24 }}
-            />
-          }
-          onClick={undefined}
-          href={MATCH_CENTER_URL}
-        />
-          }
+        {user?.email_verified && (
+          <HeaderButton
+            tooltipText="Adjust your lineup and start a match."
+            buttonText="Match Center"
+            startIcon={
+              <img
+                src={footballFieldIconWhite}
+                alt={"Football field icon"}
+                style={{ height: 24 }}
+              />
+            }
+            onClick={undefined}
+            href={MATCH_CENTER_URL}
+          />
+        )}
       </Grid>
       <Grid item xs>
-          {user &&
-        <HeaderBurgerProfileMenu
-          anchorElNav={anchorElUser}
-          handleOpenNavMenu={handleOpenUserMenu}
-          handleCloseNavMenu={handleCloseUserMenu}
-        />
-          }
+        {user && (
+          <HeaderBurgerProfileMenu
+            anchorElNav={anchorElUser}
+            handleOpenNavMenu={handleOpenUserMenu}
+            handleCloseNavMenu={handleCloseUserMenu}
+          />
+        )}
       </Grid>
     </>
   );
@@ -125,12 +125,20 @@ const MobileHeader = () => {
         <AppName />
       </Grid>
       <Grid item xs>
-        {user && (
+        {user?.email_verified ? (
           <HeaderBurgerNavMenu
             anchorElNav={anchorElNav}
             handleOpenNavMenu={handleOpenNavMenu}
             handleCloseNavMenu={handleCloseNavMenu}
           />
+        ) : (
+          user && (
+            <HeaderBurgerProfileMenu
+              anchorElNav={anchorElNav}
+              handleOpenNavMenu={handleOpenNavMenu}
+              handleCloseNavMenu={handleCloseNavMenu}
+            />
+          )
         )}
       </Grid>
     </>

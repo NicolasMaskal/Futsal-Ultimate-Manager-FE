@@ -5,11 +5,11 @@ export const getUser = (state: RootState) => {
 };
 
 export const getTeam = (state: RootState) => {
-  return state.user.team;
+  return state.user.user?.active_team;
 };
 
 export const getTeamOrFail = (state: RootState) => {
-  return state.user.team!;
+  return state.user.user!.active_team!;
 };
 
 export const getAppStatus = (state: RootState) => {

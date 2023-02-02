@@ -9,7 +9,7 @@ import React from "react";
 import Shop from "./pages/Shop";
 import LineupPage from "./pages/MatchCenter";
 import {
-  EDIT_USER_URL,
+  EDIT_USER_URL, EMAIL_VERIFICATION_REQUIRED_URL,
   INDEX_URL,
   LOGIN_URL,
   MATCH_CENTER_URL,
@@ -18,10 +18,11 @@ import {
   REGISTER_URL,
   SHOP_URL,
 } from "./constants/urls";
-import UserSettings from "./pages/UserSettings";
+import UserSettingsPage from "./pages/UserSettings";
 import IndexPage from "./pages/IndexPage";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AnonymousOnlyRoute from "./components/Routing/AnonymousOnlyRoute";
+import EmailVerificationRequiredPage from "./pages/EmailVerificationRequiredPage";
 
 const router = createBrowserRouter([
   {
@@ -85,9 +86,13 @@ const router = createBrowserRouter([
         path: EDIT_USER_URL,
         element: (
           <PrivateRoute>
-            <UserSettings />
+            <UserSettingsPage />
           </PrivateRoute>
         ),
+      },
+      {
+        path: EMAIL_VERIFICATION_REQUIRED_URL,
+        element: <EmailVerificationRequiredPage />,
       },
     ],
   },

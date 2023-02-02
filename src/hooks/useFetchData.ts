@@ -13,6 +13,7 @@ const useFetchData = <T>(url: string): FetchDataResult<T> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    console.log("HERE Fetch data")
     setIsLoading(true);
     axiosInstance
       .get<T>(url)

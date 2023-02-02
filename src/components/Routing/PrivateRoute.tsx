@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../selectors/user";
 import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { LOGIN_URL } from "../../constants/urls";
+import {EMAIL_VERIFICATION_REQUIRED_URL, INDEX_URL, LOGIN_URL} from "../../constants/urls";
 import { useSnackbar } from "notistack";
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
@@ -12,6 +12,7 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
+    console.log("HERE Private route")
     if (!user) {
       // Displays twice in dev mode. Only once in production, because of React.StrictMode
       enqueueSnackbar("You need to be logged in to see this page!", {
@@ -22,6 +23,9 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
 
   if (!user) {
     return <Navigate to={LOGIN_URL} />;
+  }
+  else if(!user.email_verified) {
+    return <Navigate to={EMAIL_VERIFICATION_REQUIRED_URL} />
   }
   return <>{children}</>;
 };

@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import {LOGIN_URL, REGISTER_URL} from "../constants/urls";
 import Grid from "@mui/material/Grid";
 import footballPlayer from "../images/football-player-black.png";
+import useMobileView from "../hooks/useMobileView";
+import Box from "@mui/material/Box";
+import PageTitle from "../components/Generic/PageTitle";
 
 const WelcomePage: React.FC = () => {
+  const mobileView = useMobileView();
   return (
-    <Grid container className="px-16">
+    <Grid container sx={{px: mobileView ? 4 : 16, py: 10}} columns={mobileView ? 8 : 12}>
       <Grid item xs={8}>
-        <article className="py-40 px-8">
+        <Box component="article" sx={{px: mobileView ? 2 : 8 }}>
           <h1 className="text-2xl mb-8">Welcome to Futsal Ultimate Manager.</h1>
           <p>
             With this game, you can build your ultimate team by creating your
@@ -31,16 +35,18 @@ const WelcomePage: React.FC = () => {
             </Link>{" "}
             here to continue building your team!
           </p>
-        </article>
+        </Box>
       </Grid>
+      {!mobileView &&
       <Grid item xs={4}>
         <img
           src={footballPlayer}
           alt={`Football Player`}
           style={{ maxHeight: "25rem" }}
-          className="flex flex-grow mr-auto ml-auto pt-6 mt-20"
+          className="flex flex-grow mr-auto ml-auto"
         />
       </Grid>
+      }
     </Grid>
   );
 };

@@ -16,21 +16,22 @@ import { FormikHelpers } from "formik/dist/types";
 import { isEmail } from "../utils/stringHelpers";
 import useSendData from "../hooks/useSendData";
 import { BE_LOGIN_URL } from "../constants/be-urls";
-import { setUser } from "../store/user-slice";
 import { User } from "../models";
-import { useDispatch } from "react-redux";
+import {Alert} from "@mui/material";
+import {useAppDispatch} from "../hooks/hooks";
+import {setUser} from "../store/user-slice";
 
-interface Values {
+interface ValueType {
   email: string;
   password: string;
 }
 
-const initialValues = {
+const initialValues: ValueType = {
   email: "",
   password: "",
 };
-const validateForm = (values: Values) => {
-  const errors: Partial<Values> = {};
+const validateForm = (values: ValueType) => {
+  const errors: Partial<ValueType> = {};
   if (!isEmail(values.email)) {
     errors.email = "Invalid email address";
   }
@@ -38,37 +39,26 @@ const validateForm = (values: Values) => {
 };
 
 export default function SignIn() {
-  const { error, response, sendData } = useSendData<{
+  const { error, response, sendData } = useSendData<ValueType, {
     session: string;
     user: User;
   }>(BE_LOGIN_URL, "post");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const submitForm = (
-    values: Values,
-    { setSubmitting }: FormikHelpers<Values>
+    values: ValueType,
+    { setSubmitting }: FormikHelpers<ValueType>
   ) => {
-    setSubmitting(true);
     sendData({ email: values.email, password: values.password });
-    console.log(response);
-    setSubmitting(false);
+    setSubmitting(false)
   };
-
-  if (error) {
-    console.log("Error!", error);
-  }
 
   useEffect(() => {
     if (response) {
-      dispatch(setUser({ user: response.user }));
+      dispatch(setUser({user: response.user}));
       navigate(INDEX_URL);
     }
   }, [navigate, response, dispatch]);
-
-  // if (response) {
-  //   dispatch(setUser({ user: response.user }));
-  //   return <Navigate to={INDEX_URL} />;
-  // }
 
   return (
     <Container component="main" maxWidth="xs" className="pt-4">
@@ -103,7 +93,6 @@ export default function SignIn() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  autoFocus
                 />
                 <Field
                   component={TextField}
@@ -116,7 +105,9 @@ export default function SignIn() {
                   id="password"
                   autoComplete="current-password"
                 />
+                {error && <Alert severity="error">Invalid credentials!</Alert>}
                 <LoadingButton
+                  type="submit"
                   loading={isSubmitting}
                   fullWidth
                   variant="contained"

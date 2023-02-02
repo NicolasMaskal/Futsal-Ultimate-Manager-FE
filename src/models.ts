@@ -80,6 +80,8 @@ export interface User {
   id: number;
   email: string;
   is_admin: boolean;
-  active_team: TeamShortDetail | null;
-  is_active: boolean;
+  active_team: Team;
+  email_verified: boolean;
 }
+
+export type BeError = {message: string, extra: {fields: any[]}}

@@ -28,7 +28,7 @@ const SubHeader = () => {
       <Grid item xs>
         <SubHeaderButton
           startIcon={<SavingsIcon sx={{ color: "primary.main" }} />}
-          buttonText={`Coins: ${team.name}`}
+          buttonText={`Coins: ${team.coins}`}
           tooltipText={null}
           href="/shop"
         />

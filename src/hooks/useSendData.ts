@@ -1,24 +1,25 @@
 import { useCallback, useState } from "react";
-import { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig, AxiosError } from "axios";
 import { axiosInstance } from "../constants/be-urls";
+import {BeError} from "../models";
 
-interface SendDataResult<T> {
+interface SendDataResult<InputType, OutputType> {
   loading: boolean;
-  error: Error | null;
-  response: T | null;
-  sendData: (data: any, config?: AxiosRequestConfig) => void;
+  error: AxiosError<BeError> | null;
+  response: OutputType | null;
+  sendData: (data: InputType, config?: AxiosRequestConfig) => void;
 }
 
-const useSendData = <T>(
+const useSendData = <InputType, OutputType>(
   url: string,
   method: "post" | "put" | "patch"
-): SendDataResult<T> => {
+): SendDataResult<InputType, OutputType> => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-  const [response, setResponse] = useState<T | null>(null);
+  const [error, setError] = useState<AxiosError<BeError> | null>(null);
+  const [response, setResponse] = useState<OutputType | null>(null);
 
   const sendData = useCallback(
-    async (data: any, config?: AxiosRequestConfig) => {
+    async (data: InputType, config?: AxiosRequestConfig) => {
       setLoading(true);
       try {
         const response = await axiosInstance.request({
@@ -29,8 +30,13 @@ const useSendData = <T>(
           ...config,
         });
         setResponse(response.data);
-      } catch (e: any) {
-        setError(e);
+      } catch (e: unknown) {
+        if (e instanceof AxiosError<BeError>) {
+          setError(e);
+        }
+        else{
+          console.log(e)
+        }
       } finally {
         setLoading(false);
       }
