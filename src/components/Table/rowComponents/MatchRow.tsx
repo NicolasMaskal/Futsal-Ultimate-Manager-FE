@@ -1,7 +1,7 @@
 import * as React from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import { green, lightGreen, orange, red, yellow } from "@mui/material/colors";
+import { green, orange, red } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import LocationCityRoundedIcon from "@mui/icons-material/LocationCityRounded";
 import { RowComponentType } from "../CustomTable";

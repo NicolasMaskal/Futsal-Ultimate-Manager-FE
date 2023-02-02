@@ -6,8 +6,8 @@ import { CssBaseline } from "@mui/material";
 import router from "./router";
 import { SnackbarProvider } from "notistack";
 import { Provider } from "react-redux";
-import store, {persistor} from "./store";
-import {PersistGate} from "redux-persist/integration/react";
+import store, { persistor } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
 import LoadingFullPage from "./components/Generic/LoadingFullPage";
 
 const themeOptions: ThemeOptions = {
@@ -35,16 +35,16 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider maxSnack={1}>
-      <Provider store={store}>
-        <PersistGate loading={<LoadingFullPage/>} persistor={persistor}>
-        <CssBaseline />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-          <RouterProvider router={router} />
-        </PersistGate>
-      </Provider>
+        <Provider store={store}>
+          <PersistGate loading={<LoadingFullPage />} persistor={persistor}>
+            <CssBaseline />
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            />
+            <RouterProvider router={router} />
+          </PersistGate>
+        </Provider>
       </SnackbarProvider>
     </ThemeProvider>
   );

@@ -3,7 +3,7 @@ import { Team, User } from "../models";
 
 export interface UserState {
   user: User | undefined;
-  team: Team | undefined
+  team: Team | undefined;
   appStatus: undefined | "loading" | "loaded";
 }
 
@@ -24,7 +24,7 @@ const userSlice = createSlice({
     setTeam: (state, action) => {
       state.team = action.payload.team;
     },
-    logout: (state) => {
+    userLogout: (state) => {
       state.user = undefined;
       state.team = undefined;
       state.appStatus = undefined;
@@ -38,6 +38,11 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, setTeam, setStatusLoading, setStatusLoaded, logout } =
-  userSlice.actions;
+export const {
+  setUser,
+  setTeam,
+  setStatusLoading,
+  setStatusLoaded,
+  userLogout,
+} = userSlice.actions;
 export default userSlice;

@@ -3,13 +3,13 @@ import SubHeaderButton from "./subComponents/SubHeaderButton";
 import ShieldIcon from "@mui/icons-material/Shield";
 import SavingsIcon from "@mui/icons-material/Savings";
 import React from "react";
-import {useSelector} from "react-redux";
-import {getTeam} from "../../selectors/user";
+import { useSelector } from "react-redux";
+import { getTeam } from "../../selectors/user";
 
 const SubHeader = () => {
-  const team = useSelector(getTeam)
-  if(!team){
-    return <React.Fragment/>;
+  const team = useSelector(getTeam);
+  if (!team) {
+    return <React.Fragment />;
   }
   return (
     <Grid

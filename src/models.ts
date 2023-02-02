@@ -1,19 +1,17 @@
-import internal from "stream";
-
 export interface TeamShortDetail {
   id: number;
   name: string;
   owner: number | null;
 }
 
-export interface Team{
+export interface Team {
   id: number;
   name: string;
-  "wins": number
-  "draws": number
-  "loses": number
-  "coins": number
-  "player_amount": number
+  wins: number;
+  draws: number;
+  loses: number;
+  coins: number;
+  player_amount: number;
 }
 
 export type Position = "attacker" | "defender" | "goalkeeper";

@@ -1,4 +1,4 @@
-import {CircularProgress} from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import React from "react";
 
 const LoadingFullPage = () => {
@@ -9,5 +9,4 @@ const LoadingFullPage = () => {
   );
 };
 
-
-export default LoadingFullPage
+export default LoadingFullPage;

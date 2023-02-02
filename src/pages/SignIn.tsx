@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -7,18 +7,18 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import {Link as RouterLink, useNavigate} from "react-router-dom";
-import {INDEX_URL, REGISTER_URL} from "../constants/urls";
-import {Field, Form, Formik} from "formik";
-import {TextField} from "formik-mui";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { INDEX_URL, REGISTER_URL } from "../constants/urls";
+import { Field, Form, Formik } from "formik";
+import { TextField } from "formik-mui";
 import LoadingButton from "@mui/lab/LoadingButton";
-import {FormikHelpers} from "formik/dist/types";
-import {isEmail} from "../utils/stringHelpers";
+import { FormikHelpers } from "formik/dist/types";
+import { isEmail } from "../utils/stringHelpers";
 import useSendData from "../hooks/useSendData";
-import {BE_LOGIN_URL} from "../constants/be-urls";
-import {setUser} from "../store/user-slice";
-import {User} from "../models";
-import {useDispatch} from "react-redux";
+import { BE_LOGIN_URL } from "../constants/be-urls";
+import { setUser } from "../store/user-slice";
+import { User } from "../models";
+import { useDispatch } from "react-redux";
 
 interface Values {
   email: string;
@@ -38,7 +38,7 @@ const validateForm = (values: Values) => {
 };
 
 export default function SignIn() {
-  const { loading, error, response, sendData } = useSendData<{
+  const { error, response, sendData } = useSendData<{
     session: string;
     user: User;
   }>(BE_LOGIN_URL, "post");
@@ -63,7 +63,7 @@ export default function SignIn() {
       dispatch(setUser({ user: response.user }));
       navigate(INDEX_URL);
     }
-  }, [response]);
+  }, [navigate, response, dispatch]);
 
   // if (response) {
   //   dispatch(setUser({ user: response.user }));

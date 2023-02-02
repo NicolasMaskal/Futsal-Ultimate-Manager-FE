@@ -12,10 +12,18 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import { EDIT_USER_URL, LOGIN_URL } from "../../../constants/urls";
+import { userLogoutThunk } from "../../../store/user-actions";
+import { useAppDispatch } from "../../../hooks/hooks";
 
 export const ProfileMenuItems: React.FC<{
   handleCloseNavMenu: () => void;
 }> = ({ handleCloseNavMenu }) => {
+  const dispatch = useAppDispatch();
+  const onClickLogout = () => {
+    dispatch(userLogoutThunk());
+    handleCloseNavMenu();
+  };
+
   return (
     <>
       <Link to={EDIT_USER_URL} style={{ textDecoration: "none" }}>
@@ -28,7 +36,7 @@ export const ProfileMenuItems: React.FC<{
       </Link>
       <Divider />
       <Link to={LOGIN_URL} style={{ textDecoration: "none" }}>
-        <MenuItem key={"logout"} onClick={handleCloseNavMenu}>
+        <MenuItem key={"logout"} onClick={onClickLogout}>
           <ListItemIcon>
             <LogoutRoundedIcon fontSize="small" />
           </ListItemIcon>

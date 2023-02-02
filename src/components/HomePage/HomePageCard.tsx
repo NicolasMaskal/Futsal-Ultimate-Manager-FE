@@ -4,7 +4,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import useMobileView from "../../hooks/useMobileView";
 
 const HomePageCard: React.FC<{
   cardTitle: string;
@@ -13,7 +12,6 @@ const HomePageCard: React.FC<{
   animationDuration: number;
   href: string;
 }> = ({ cardTitle, cardDescription, imgSrc, animationDuration, href }) => {
-  const mobileView = useMobileView();
   return (
     <Grow in={true} timeout={animationDuration}>
       {/*<div className="flex justify-center">*/}

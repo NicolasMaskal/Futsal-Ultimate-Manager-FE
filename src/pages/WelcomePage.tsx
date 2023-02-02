@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { REGISTER_URL } from "../constants/urls";
+import {LOGIN_URL, REGISTER_URL} from "../constants/urls";
 import Grid from "@mui/material/Grid";
 import footballPlayer from "../images/football-player-black.png";
 
@@ -23,6 +23,13 @@ const WelcomePage: React.FC = () => {
               Sign up
             </Link>{" "}
             now and join the fun!
+          </p>
+          <p>
+            Already have an account? {" "}
+            <Link className="text-sky-500 hover:text-sky-700" to={LOGIN_URL}>
+              Sign in
+            </Link>{" "}
+            here to continue building your team!
           </p>
         </article>
       </Grid>

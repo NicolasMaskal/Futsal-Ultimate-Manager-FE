@@ -15,15 +15,18 @@ import HeaderBurgerNavMenu from "./subComponents/HeaderBurgerNavMenu";
 import HeaderBurgerProfileMenu from "./subComponents/HeaderBurgerProfileMenu";
 import {
   MATCH_CENTER_URL,
-  SHOP_URL,
-  PLAYERS_URL,
   MATCH_RESULTS_URL,
+  PLAYERS_URL,
+  SHOP_URL,
 } from "../../constants/urls";
+import { useSelector } from "react-redux";
+import { getUser } from "../../selectors/user";
 
 const DesktopHeader = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const user = useSelector(getUser);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -40,30 +43,37 @@ const DesktopHeader = () => {
         <AppName />
       </Grid>
       <Grid item xs>
-        <HeaderButton
-          tooltipText="View players playing for your team"
-          buttonText="Players"
-          startIcon={<PersonRoundedIcon />}
-          href={PLAYERS_URL}
-        />
+        {user && (
+          <HeaderButton
+            tooltipText="View players playing for your team"
+            buttonText="Players"
+            startIcon={<PersonRoundedIcon />}
+            href={PLAYERS_URL}
+          />
+        )}
       </Grid>
       <Grid item xs>
+          {user &&
         <HeaderButton
           tooltipText="View match results of your team."
           buttonText="Match Results"
           startIcon={<ScoreboardRoundedIcon />}
           href={MATCH_RESULTS_URL}
         />
+          }
       </Grid>
       <Grid item xs>
+          {user &&
         <HeaderButton
           tooltipText="Visit the shop to buy packs and improve your team."
           buttonText="Shop"
           startIcon={<StoreRoundedIcon />}
           href={SHOP_URL}
         />
+          }
       </Grid>
       <Grid item xs>
+          {user &&
         <HeaderButton
           tooltipText="Adjust your lineup and start a match."
           buttonText="Match Center"
@@ -77,13 +87,16 @@ const DesktopHeader = () => {
           onClick={undefined}
           href={MATCH_CENTER_URL}
         />
+          }
       </Grid>
       <Grid item xs>
+          {user &&
         <HeaderBurgerProfileMenu
           anchorElNav={anchorElUser}
           handleOpenNavMenu={handleOpenUserMenu}
           handleCloseNavMenu={handleCloseUserMenu}
         />
+          }
       </Grid>
     </>
   );
@@ -93,6 +106,7 @@ const MobileHeader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
+  const user = useSelector(getUser);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -111,11 +125,13 @@ const MobileHeader = () => {
         <AppName />
       </Grid>
       <Grid item xs>
-        <HeaderBurgerNavMenu
-          anchorElNav={anchorElNav}
-          handleOpenNavMenu={handleOpenNavMenu}
-          handleCloseNavMenu={handleCloseNavMenu}
-        />
+        {user && (
+          <HeaderBurgerNavMenu
+            anchorElNav={anchorElNav}
+            handleOpenNavMenu={handleOpenNavMenu}
+            handleCloseNavMenu={handleCloseNavMenu}
+          />
+        )}
       </Grid>
     </>
   );
@@ -123,7 +139,6 @@ const MobileHeader = () => {
 
 const Header = () => {
   const mobileView = useMobileView();
-
   return (
     <AppBar>
       <Toolbar disableGutters>

@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {axiosInstance} from "../constants/be-urls";
+import { useEffect, useState } from "react";
+import { axiosInstance } from "../constants/be-urls";
 
 interface FetchDataResult<T> {
   data: T | null;
@@ -14,7 +14,8 @@ const useFetchData = <T>(url: string): FetchDataResult<T> => {
 
   useEffect(() => {
     setIsLoading(true);
-    axiosInstance.get<T>(url)
+    axiosInstance
+      .get<T>(url)
       .then((response) => response.request.json())
       .then((data) => {
         setData(data);

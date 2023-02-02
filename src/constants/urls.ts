@@ -1,4 +1,4 @@
-export const INDEX_URL = "/"
+export const INDEX_URL = "/";
 export const PLAYERS_URL = "/players";
 export const SHOP_URL = "/shop";
 export const MATCH_RESULTS_URL = "/match-results";

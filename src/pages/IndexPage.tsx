@@ -9,4 +9,4 @@ const IndexPage = () => {
   return user ? <HomePage /> : <WelcomePage />;
 };
 
-export default IndexPage
+export default IndexPage;

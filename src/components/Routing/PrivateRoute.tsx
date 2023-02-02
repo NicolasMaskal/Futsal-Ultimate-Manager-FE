@@ -1,9 +1,9 @@
-import {useSelector} from "react-redux";
-import {getUser} from "../../selectors/user";
-import React, {useEffect} from "react";
-import {Navigate} from "react-router-dom";
-import {LOGIN_URL} from "../../constants/urls";
-import {useSnackbar} from "notistack";
+import { useSelector } from "react-redux";
+import { getUser } from "../../selectors/user";
+import React, { useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { LOGIN_URL } from "../../constants/urls";
+import { useSnackbar } from "notistack";
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -17,7 +17,8 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
       enqueueSnackbar("You need to be logged in to see this page!", {
         variant: "error",
       });
-  }}, [enqueueSnackbar, user])
+    }
+  }, [enqueueSnackbar, user]);
 
   if (!user) {
     return <Navigate to={LOGIN_URL} />;
