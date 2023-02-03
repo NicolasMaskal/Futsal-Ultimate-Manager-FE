@@ -7,5 +7,7 @@ export const isEmail = (value: string) => {
 };
 
 export const passwordContainsValidCharacters = (value: string) => {
-  return /^[\w.@+-]+$/.test(value)
-}
+  return /^[\w.@+-]+$/.test(value);
+};
+
+

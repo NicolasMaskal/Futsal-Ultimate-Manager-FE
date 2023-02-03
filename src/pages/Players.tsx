@@ -6,7 +6,7 @@ import PlayerRow from "../components/Table/rowComponents/PlayerRow";
 import CustomTable from "../components/Table/CustomTable";
 import PageDescription from "../components/Packs/PageDescription";
 import useFetchData from "../hooks/Generic/useFetchData";
-import {createTeamPlayersUrl} from "../utils/urlHelpers";
+import {createTeamPlayersUrl} from "../utils/url-helpers";
 import {useAppSelector} from "../hooks/Generic/hooks";
 import {getTeamOrFail} from "../selectors/user";
 import PlayersInfo from "../components/Players/PlayersInfo";

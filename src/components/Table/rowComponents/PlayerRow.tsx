@@ -8,17 +8,18 @@ import TableCell from "@mui/material/TableCell";
 import Typography from "@mui/material/Typography";
 import { RowComponentType } from "../CustomTable";
 import useMobileView from "../../../hooks/Generic/useMobileView";
-import { capitalizeFirstLetter } from "../../../utils/stringHelpers";
+import {capitalizeFirstLetter} from "../../../utils/string-helpers";
 import { SxProps } from "@mui/system";
 import { LinearProgress, Theme } from "@mui/material";
 import { Player } from "../../../models";
 import CustomPopper from "../../Generic/CustomPopper";
 import { useSnackbar } from "notistack";
 import useSendData from "../../../hooks/Generic/useSendData";
-import { createTeamSellPlayersUrl } from "../../../utils/urlHelpers";
+import { createTeamSellPlayersUrl } from "../../../utils/url-helpers";
 import { useAppSelector } from "../../../hooks/Generic/hooks";
 import { getTeamOrFail } from "../../../selectors/user";
 import { getColorByPos, getColorBySkill } from "../../../utils/player-ui";
+import {getFirstErrorMessage} from "../../../utils/be-error-helpers";
 
 interface AdditionalInfoType {
   averageSkill: number | undefined;
@@ -38,7 +39,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
   const {
     response: responseSell,
     sendData: sendSellData,
-    error: sellerror,
+    error: sellError,
     loading: sellLoading,
   } = useSendData<{ players: number[] }, {}>(
     createTeamSellPlayersUrl(team.id),
@@ -70,15 +71,16 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
     if (responseSell) {
       rowDeleteHandler(player);
     }
-    if (sellerror) {
+    if (sellError) {
+      console.log(sellError.response?.data.extra.fields)
       enqueueSnackbar(
-        "Can't sell player, would have less than 5 players left!",
+          getFirstErrorMessage(sellError, "Error selling player!"),
         {
           variant: "error",
         }
       );
     }
-  }, [responseSell, rowDeleteHandler, player, sellerror, enqueueSnackbar]);
+  }, [responseSell, rowDeleteHandler, player, sellError, enqueueSnackbar]);
 
   if (sellLoading) {
     return (

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Avatar from "@mui/material/Avatar";
 import {TextField} from "formik-mui";
 import Link from "@mui/material/Link";
@@ -14,13 +14,14 @@ import {INDEX_URL, LOGIN_URL} from "../constants/urls";
 import {Alert, Divider} from "@mui/material";
 import {Field, Form, Formik} from "formik";
 import LoadingButton from "@mui/lab/LoadingButton";
-import {isEmail, passwordContainsValidCharacters,} from "../utils/stringHelpers";
+import {isEmail, passwordContainsValidCharacters,} from "../utils/string-helpers";
 import useSendData from "../hooks/Generic/useSendData";
 import {BE_REGISTER_URL} from "../constants/be-urls";
 import {FormikHelpers} from "formik/dist/types";
 import {useAppDispatch} from "../hooks/Generic/hooks";
 import {setUser} from "../store/user-slice";
 import {User} from "../models";
+import {getFirstErrorMessage} from "../utils/be-error-helpers";
 
 interface Values {
   email: string;
@@ -75,7 +76,6 @@ export default function SignUp() {
   >(BE_REGISTER_URL, "post");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
 
   const submitForm = (
     values: Values,
@@ -95,12 +95,6 @@ export default function SignUp() {
       navigate(INDEX_URL);
     }
   }, [navigate, response, dispatch]);
-
-  useEffect(() => {
-    if(error && error.response){
-      setErrorMessage(Object.values(error.response.data.extra.fields)[0][0])
-    }
-  }, [error])
 
   return (
     <Container component="main" maxWidth="xs" className="pt-4">
@@ -188,7 +182,7 @@ export default function SignUp() {
                 >
                   Sign Up
                 </LoadingButton>
-                {errorMessage && <Alert severity="error">{`${errorMessage}`}</Alert>}
+                {error && <Alert severity="error">{getFirstErrorMessage(error)}</Alert>}
                 <Grid container justifyContent="flex-end">
                   <Grid item>
                     <Link

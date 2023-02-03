@@ -7,7 +7,7 @@ import CustomTable from "../components/Table/CustomTable";
 import MatchRow from "../components/Table/rowComponents/MatchRow";
 import PageDescription from "../components/Packs/PageDescription";
 import useFetchData from "../hooks/Generic/useFetchData";
-import { createTeamMatchResultsUrl } from "../utils/urlHelpers";
+import { createTeamMatchResultsUrl } from "../utils/url-helpers";
 import { useAppSelector } from "../hooks/Generic/hooks";
 import { getTeamOrFail } from "../selectors/user";
 

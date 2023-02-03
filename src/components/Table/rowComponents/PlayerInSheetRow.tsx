@@ -4,7 +4,7 @@ import * as React from "react";
 import useMobileView from "../../../hooks/Generic/useMobileView";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import {capitalizeFirstLetter} from "../../../utils/stringHelpers";
+import {capitalizeFirstLetter} from "../../../utils/string-helpers";
 import Typography from "@mui/material/Typography";
 import {Rating} from "@mui/material";
 import Box from "@mui/material/Box";

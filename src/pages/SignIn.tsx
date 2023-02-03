@@ -13,7 +13,7 @@ import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-mui";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { FormikHelpers } from "formik/dist/types";
-import { isEmail } from "../utils/stringHelpers";
+import { isEmail } from "../utils/string-helpers";
 import useSendData from "../hooks/Generic/useSendData";
 import { BE_LOGIN_URL } from "../constants/be-urls";
 import { User } from "../models";
