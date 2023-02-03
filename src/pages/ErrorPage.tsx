@@ -1,51 +1,52 @@
 import React from "react";
-import { useRouteError } from "react-router-dom";
+import {isRouteErrorResponse, useRouteError} from "react-router-dom";
 import ErrorContent from "../components/Generic/ErrorContent";
 import Header from "../components/Header/Header";
 
-const ErrorPage = () => {
+const ErrorPage: React.FC<{errorStatus?: number| undefined}> = ({errorStatus= undefined}) => {
   const error = useRouteError();
+  if (isRouteErrorResponse(error)){
+    errorStatus = error.status
+    console.log(error.error?.message)
+  }
+  errorStatus = errorStatus ? errorStatus : 404;
 
   let errorContent;
-  const status = error.response !== undefined ? error.response.status : 404;
-  switch (status) {
+  switch (errorStatus) {
     case 404:
-      error.response && console.log(error.response.data.message);
       errorContent = (
         <ErrorContent
-          mainText={`Sorry, we couldn't find the content you are looking for. (Status code: ${status})`}
+          mainText={`Sorry, we couldn't find the content you are looking for. (Status code: ${errorStatus})`}
           secondaryText="Try it again later..."
-          statusCode={status}
+          statusCode={errorStatus}
         />
       );
       break;
     case 401:
-      console.log(error.response.data.message);
       errorContent = (
         <ErrorContent
-          mainText={`You have to be logged in for this action. (Status code: ${error.response.status})`}
+          mainText={`You have to be logged in for this action. (Status code: ${errorStatus})`}
           secondaryText="Try to log in and repeat the action..."
-          statusCode={error.response.status}
+          statusCode={errorStatus}
         />
       );
       break;
     case 403:
-      console.log(error.response.data.message);
       errorContent = (
         <ErrorContent
-          mainText={`Sorry, you don't have permission for this. (Status code: ${error.response.status})`}
+          mainText={`Sorry, you don't have permission for this. (Status code: ${errorStatus})`}
           secondaryText="Try to achieve some..."
-          statusCode={error.response.status}
+          statusCode={errorStatus}
         />
       );
       break;
     default:
-      console.log(error.response.data.message);
+      console.log(errorStatus);
       errorContent = (
         <ErrorContent
           mainText="Sorry, something went wrong."
           secondaryText="Try it again later..."
-          statusCode={error.response.status}
+          statusCode={errorStatus}
         />
       );
       break;
