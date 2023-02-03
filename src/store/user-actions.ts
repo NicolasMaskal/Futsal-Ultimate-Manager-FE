@@ -1,7 +1,12 @@
-import {axiosInstance, BE_AUTH_ME, BE_LOGOUT_URL,} from "../constants/be-urls";
-import {Dispatch} from "react";
-import {setStatusLoaded, setStatusLoading, setUser, userLogout,} from "./user-slice";
-import {User} from "../models";
+import { axiosInstance, BE_AUTH_ME, BE_LOGOUT_URL } from "../constants/be-urls";
+import { Dispatch } from "react";
+import {
+  setStatusLoaded,
+  setStatusLoading,
+  setUser,
+  userLogout,
+} from "./user-slice";
+import { User } from "../models";
 
 export const userLogoutThunk = () => {
   return async (
@@ -28,9 +33,15 @@ export const refreshUserInfoThunk = () => {
     }>
   ) => {
     dispatch(setStatusLoading());
-    const userResponse = await axiosInstance.get<User>(BE_AUTH_ME);
-
-    dispatch(setUser({ user: userResponse.data }));
-    dispatch(setStatusLoaded());
+    try {
+      const userResponse = await axiosInstance.get<User>(BE_AUTH_ME, {
+        withCredentials: true,
+      });
+      dispatch(setUser({ user: userResponse.data }));
+    } catch (e) {
+      console.log(e);
+    } finally {
+      dispatch(setStatusLoaded());
+    }
   };
 };
