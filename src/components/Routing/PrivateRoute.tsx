@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
-import { getUser } from "../../selectors/user";
-import React, { useEffect } from "react";
-import { Navigate } from "react-router-dom";
-import {EMAIL_VERIFICATION_REQUIRED_URL, INDEX_URL, LOGIN_URL} from "../../constants/urls";
-import { useSnackbar } from "notistack";
+import {useSelector} from "react-redux";
+import {getUser} from "../../selectors/user";
+import React, {useEffect} from "react";
+import {Navigate} from "react-router-dom";
+import {EMAIL_VERIFICATION_REQUIRED_URL, LOGIN_URL} from "../../constants/urls";
+import {useSnackbar} from "notistack";
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
   children,

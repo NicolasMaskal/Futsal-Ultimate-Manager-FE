@@ -1,14 +1,14 @@
-import { RowComponentType } from "../CustomTable";
-import { PlayerInLineup, PlayingPosition } from "../../../models";
+import {RowComponentType} from "../CustomTable";
+import {PlayerInLineup} from "../../../models";
 import * as React from "react";
 import useMobileView from "../../../hooks/Generic/useMobileView";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import { capitalizeFirstLetter } from "../../../utils/stringHelpers";
+import {capitalizeFirstLetter} from "../../../utils/stringHelpers";
 import Typography from "@mui/material/Typography";
-import { getColorByPos, getColorBySkill } from "./PlayerRow";
-import { Rating } from "@mui/material";
+import {Rating} from "@mui/material";
 import Box from "@mui/material/Box";
+import {getColorByPlayingPos, getColorByPos, getColorBySkill} from "../../../utils/player-ui";
 
 const labels: { [index: string]: string } = {
   1: "Useless",
@@ -20,18 +20,6 @@ const labels: { [index: string]: string } = {
 
 const getLabelText = (value: number) => {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
-};
-export const getColorByPlayingPos = (playingPos: PlayingPosition) => {
-  if (playingPos === "Goalkeeper") {
-    return getColorByPos("goalkeeper");
-  }
-  if (playingPos.includes("Attacker")) {
-    return getColorByPos("attacker");
-  }
-  if (playingPos.includes("Defender")) {
-    return getColorByPos("defender");
-  }
-  return "#000000";
 };
 
 const getPlayerEffectivenessInPose = (playerInLineup: PlayerInLineup) => {

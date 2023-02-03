@@ -1,14 +1,6 @@
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import * as React from "react";
-import {
-  blue,
-  brown,
-  deepOrange,
-  green,
-  lightGreen,
-  orange,
-  red,
-} from "@mui/material/colors";
+import { useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import TableRow from "@mui/material/TableRow";
@@ -18,44 +10,15 @@ import { RowComponentType } from "../CustomTable";
 import useMobileView from "../../../hooks/Generic/useMobileView";
 import { capitalizeFirstLetter } from "../../../utils/stringHelpers";
 import { SxProps } from "@mui/system";
-import { Theme } from "@mui/material";
-import { Player, Position } from "../../../models";
+import { LinearProgress, Theme } from "@mui/material";
+import { Player } from "../../../models";
 import CustomPopper from "../../Generic/CustomPopper";
-
-export const getColorByPos = (prefPos: Position | undefined) => {
-  if (!prefPos) {
-    return "#000000";
-  }
-  if (prefPos === "attacker") {
-    return orange[500];
-  }
-  if (prefPos === "defender") {
-    return blue[500];
-  }
-  if (prefPos === "goalkeeper") {
-    return brown[400];
-  }
-};
-
-export const getColorBySkill = (
-  player: Player | null,
-  averageSkill: number
-) => {
-  if (player === null) {
-    return "#000000";
-  }
-  const playerSkill = player.skill;
-  if (playerSkill < averageSkill - 5) {
-    return red[500];
-  }
-  if (playerSkill < averageSkill) {
-    return deepOrange[500];
-  }
-  if (averageSkill <= playerSkill && playerSkill < averageSkill + 5) {
-    return lightGreen[500];
-  }
-  return green[500];
-};
+import { useSnackbar } from "notistack";
+import useSendData from "../../../hooks/Generic/useSendData";
+import { createTeamSellPlayersUrl } from "../../../utils/urlHelpers";
+import { useAppSelector } from "../../../hooks/Generic/hooks";
+import { getTeamOrFail } from "../../../selectors/user";
+import { getColorByPos, getColorBySkill } from "../../../utils/player-ui";
 
 interface AdditionalInfoType {
   averageSkill: number | undefined;
@@ -71,6 +34,16 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
 }) => {
   const [sellOpen, setSellOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const team = useAppSelector(getTeamOrFail);
+  const {
+    response: responseSell,
+    sendData: sendSellData,
+    error: sellerror,
+    loading: sellLoading,
+  } = useSendData<{ players: number[] }, {}>(
+    createTeamSellPlayersUrl(team.id),
+    "post"
+  );
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -82,17 +55,50 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
     setSellOpen(false);
   };
 
-  const handleSell = () => {
-    //TODO call api
-    rowDeleteHandler(player);
-  };
-
   const { averageSkill, showHistory } = additionalInfo;
-
   const player = obj;
   const colorByPos = getColorByPos(player.preferred_position);
   const colorBySkill = getColorBySkill(player, averageSkill!);
   const mobileView = useMobileView();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleSell = () => {
+    sendSellData({ players: [player.id] });
+  };
+
+  useEffect(() => {
+    if (responseSell) {
+      rowDeleteHandler(player);
+    }
+    if (sellerror) {
+      enqueueSnackbar(
+        "Can't sell player, would have less than 5 players left!",
+        {
+          variant: "error",
+        }
+      );
+    }
+  }, [responseSell, rowDeleteHandler, player, sellerror, enqueueSnackbar]);
+
+  if (sellLoading) {
+    return (
+      <TableRow
+        sx={{
+          "&:last-child td, &:last-child th": {
+            border: 0,
+          },
+        }}
+      >
+        <TableCell
+          align="center"
+          sx={{ width: "100%", height: "100%" }}
+          colSpan={10}
+        >
+          <LinearProgress sx={{ height: mobileView ? 10 : 20 }} />
+        </TableCell>
+      </TableRow>
+    );
+  }
 
   return (
     <TableRow
@@ -176,6 +182,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
           <Typography sx={{ ...textSx, ...{ p: 2 } } as SxProps<Theme>}>
             Are you sure you want to sell your player{" "}
             <Typography
+              component={"span"}
               display="inline"
               sx={{ ...textSx, ...{ fontWeight: 700 } } as SxProps<Theme>}
             >
@@ -183,6 +190,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
             </Typography>{" "}
             for{" "}
             <Typography
+              component={"span"}
               display="inline"
               sx={{ ...textSx, ...{ fontWeight: 700 } } as SxProps<Theme>}
             >

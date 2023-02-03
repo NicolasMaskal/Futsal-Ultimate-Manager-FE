@@ -23,6 +23,11 @@ const CustomPopper: React.FC<{
   placement,
   textSx = {},
 }) => {
+  const handleSuccessWrapper = (event: React.MouseEvent<HTMLElement>) => {
+    handleClose();
+    handleSuccess(event)
+  }
+
   return (
     <Popper open={isOpen} anchorEl={anchorEl} transition placement={placement}>
       {({ TransitionProps }) => (
@@ -30,7 +35,7 @@ const CustomPopper: React.FC<{
           <Paper>
             {children}
             <div className="flex justify-center">
-              <Button sx={textSx} color="success" onClick={handleSuccess}>
+              <Button sx={textSx} color="success" onClick={handleSuccessWrapper}>
                 {buttonSuccessText}
               </Button>
               <Button sx={textSx} color="error" onClick={handleClose}>

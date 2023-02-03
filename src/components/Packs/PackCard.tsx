@@ -78,11 +78,11 @@ const PackCard: React.FC<{
             >
               <Typography sx={{ p: 2 }}>
                 Are you sure you want to buy a{" "}
-                <Typography sx={{ fontWeight: 700 }} display={"inline"}>
+                <Typography component={"span"} sx={{ fontWeight: 700 }} display={"inline"}>
                   {packName}
                 </Typography>{" "}
                 pack for{" "}
-                <Typography sx={{ fontWeight: 700 }} display={"inline"}>
+                <Typography component={"span"} sx={{ fontWeight: 700 }} display={"inline"}>
                   {price} coins
                 </Typography>{" "}
                 ?
