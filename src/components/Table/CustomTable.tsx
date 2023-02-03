@@ -67,6 +67,7 @@ interface TableProp<
   pagination: boolean;
   tableWidthInGrid: number;
   dontAdjustFont?: boolean;
+  onRowDeleteCallback?: () => void;
   additionalInfo: AdditionalInfoType;
 }
 
@@ -84,6 +85,7 @@ const CustomTable: <
   pagination,
   tableWidthInGrid,
   dontAdjustFont = false,
+  onRowDeleteCallback = undefined,
   additionalInfo,
 }) => {
   const [objectsToDisplay, setObjects] = React.useState(objects);
@@ -128,6 +130,7 @@ const CustomTable: <
       (obj) => obj.id !== deletedObject.id
     );
     setObjects(newObjects);
+    onRowDeleteCallback!();
   };
 
   let iconSx: SxProps = {

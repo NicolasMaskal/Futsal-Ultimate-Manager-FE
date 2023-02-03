@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { axiosInstance } from "../../constants/be-urls";
 
 interface FetchDataResult<T> {
   data: T | null;
   isLoading: boolean;
+  fetchData: () => void
 }
 
 const useFetchData = <T>(url: string): FetchDataResult<T> => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
+  const fetchData = useCallback(() => {
     setIsLoading(true);
     axiosInstance
       .get<T>(url)
@@ -23,7 +24,11 @@ const useFetchData = <T>(url: string): FetchDataResult<T> => {
       });
   }, [url]);
 
-  return { data, isLoading };
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, isLoading, fetchData };
 };
 
 export default useFetchData;
