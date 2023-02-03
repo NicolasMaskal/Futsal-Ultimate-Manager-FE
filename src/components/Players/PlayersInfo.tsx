@@ -6,7 +6,6 @@ import SkeletonInfo from "../Table/subComponents/SkeletonInfo";
 import { Stack } from "@mui/material";
 
 const PlayersInfo: React.FC<{ data: FetchedPlayers | null }> = ({ data }) => {
-    console.log("Player info")
   if (!data) {
     return <SkeletonInfo rowAmount={3} />;
   }

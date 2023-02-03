@@ -31,7 +31,6 @@ const Shop = () => {
   const [price, setPrice] = useState<number | null>(null);
   const handleBuyPack = (packType: PackType, price: number) => {
     setPrice(price);
-    console.log(packType);
     sendData({ pack_type: packType });
   };
   useEffect(() => {

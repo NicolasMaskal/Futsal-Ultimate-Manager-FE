@@ -25,7 +25,6 @@ const useFetchData = <T>(url: string): FetchDataResult<T> => {
   }, [url]);
 
   useEffect(() => {
-    console.log("Effect fetch data!")
     fetchData();
   }, [fetchData]);
 

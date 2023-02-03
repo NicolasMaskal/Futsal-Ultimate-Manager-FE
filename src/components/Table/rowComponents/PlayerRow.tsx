@@ -64,15 +64,14 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
   const mobileView = useMobileView();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useAppDispatch();
-  const [playerSold, setPlayerSold] = useState(false);
   const handleSell = () => {
     sendSellData({ players: [player.id] });
   };
 
   useEffect(() => {
     if (responseSell) {
-      console.log("Response received")
-      setPlayerSold(true)
+      dispatch(teamCoinsIncrease({coins: player.sell_price}))
+      rowDeleteHandler(player);
     }
     if (sellError) {
       enqueueSnackbar(
@@ -82,15 +81,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
         }
       );
     }
-  }, [enqueueSnackbar, responseSell, sellError]);
-
-  useEffect(() => {
-    if(playerSold) {
-      dispatch(teamCoinsIncrease({coins: player.sell_price}))
-      console.log("Increase coins player row");
-      rowDeleteHandler(player);
-    }
-  }, [dispatch, player, playerSold, rowDeleteHandler])
+  }, [dispatch, enqueueSnackbar, player, responseSell, rowDeleteHandler, sellError]);
 
   if (sellLoading) {
     return (
