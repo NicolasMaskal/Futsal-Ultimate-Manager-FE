@@ -10,6 +10,8 @@ import useFetchData from "../hooks/Generic/useFetchData";
 import { createTeamMatchResultsUrl } from "../utils/url-helpers";
 import { useAppSelector } from "../hooks/Generic/hooks";
 import { getTeamOrFail } from "../selectors/user";
+import { Link } from "react-router-dom";
+import { MATCH_CENTER_URL } from "../constants/urls";
 
 const headCells: HeadCellType[] = [
   {
@@ -68,16 +70,30 @@ const MatchResults = () => {
           <Typography display="inline">{team.loses}</Typography>
         </div>
       </div>
-      <CustomTable
-        RowComponent={MatchRow}
-        objects={data}
-        headCells={headCells}
-        defaultOrderBy={"date"}
-        defaultOrder={"desc"}
-        pagination={true}
-        tableWidthInGrid={10}
-        additionalInfo={undefined}
-      />
+      {data && data.length === 0 && (
+        <PageDescription className="font-bold py-44">
+          No matches played yet? Head over to the{" "}
+          <Link
+            className="text-sky-500 hover:text-sky-700"
+            to={MATCH_CENTER_URL}
+          >
+            match center
+          </Link>{" "}
+          to play one!
+        </PageDescription>
+      )}
+      {data?.length === 0 || (
+        <CustomTable
+          RowComponent={MatchRow}
+          objects={data}
+          headCells={headCells}
+          defaultOrderBy={"date"}
+          defaultOrder={"desc"}
+          pagination={true}
+          tableWidthInGrid={10}
+          additionalInfo={undefined}
+        />
+      )}
     </>
   );
 };
