@@ -17,9 +17,9 @@ import { isEmail } from "../utils/string-helpers";
 import useSendData from "../hooks/Generic/useSendData";
 import { BE_LOGIN_URL } from "../constants/be-urls";
 import { User } from "../models";
-import {Alert} from "@mui/material";
-import {useAppDispatch} from "../hooks/Generic/hooks";
-import {setUser} from "../store/user-slice";
+import { Alert } from "@mui/material";
+import { useAppDispatch } from "../hooks/Generic/hooks";
+import { setUser } from "../store/user-slice";
 
 interface ValueType {
   email: string;
@@ -39,10 +39,13 @@ const validateForm = (values: ValueType) => {
 };
 
 export default function SignIn() {
-  const { error, response, sendData } = useSendData<ValueType, {
-    session: string;
-    user: User;
-  }>(BE_LOGIN_URL, "post");
+  const { error, response, sendData } = useSendData<
+    ValueType,
+    {
+      session: string;
+      user: User;
+    }
+  >(BE_LOGIN_URL, "post");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const submitForm = (
@@ -50,12 +53,12 @@ export default function SignIn() {
     { setSubmitting }: FormikHelpers<ValueType>
   ) => {
     sendData({ email: values.email, password: values.password });
-    setSubmitting(false)
+    setSubmitting(false);
   };
 
   useEffect(() => {
     if (response) {
-      dispatch(setUser({user: response.user}));
+      dispatch(setUser({ user: response.user }));
       navigate(INDEX_URL);
     }
   }, [navigate, response, dispatch]);

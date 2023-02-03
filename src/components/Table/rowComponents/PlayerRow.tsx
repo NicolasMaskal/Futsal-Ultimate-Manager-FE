@@ -1,6 +1,6 @@
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import * as React from "react";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import IconButton from "@mui/material/IconButton";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import TableRow from "@mui/material/TableRow";
@@ -8,7 +8,7 @@ import TableCell from "@mui/material/TableCell";
 import Typography from "@mui/material/Typography";
 import { RowComponentType } from "../CustomTable";
 import useMobileView from "../../../hooks/Generic/useMobileView";
-import {capitalizeFirstLetter} from "../../../utils/string-helpers";
+import { capitalizeFirstLetter } from "../../../utils/string-helpers";
 import { SxProps } from "@mui/system";
 import { LinearProgress, Theme } from "@mui/material";
 import { Player } from "../../../models";
@@ -16,10 +16,11 @@ import CustomPopper from "../../Generic/CustomPopper";
 import { useSnackbar } from "notistack";
 import useSendData from "../../../hooks/Generic/useSendData";
 import { createTeamSellPlayersUrl } from "../../../utils/url-helpers";
-import { useAppSelector } from "../../../hooks/Generic/hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/Generic/hooks";
 import { getTeamOrFail } from "../../../selectors/user";
 import { getColorByPos, getColorBySkill } from "../../../utils/player-ui";
-import {getFirstErrorMessage} from "../../../utils/be-error-helpers";
+import { getFirstErrorMessage } from "../../../utils/be-error-helpers";
+import { teamCoinsIncrease } from "../../../store/user-slice";
 
 interface AdditionalInfoType {
   averageSkill: number | undefined;
@@ -62,25 +63,34 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
   const colorBySkill = getColorBySkill(player, averageSkill!);
   const mobileView = useMobileView();
   const { enqueueSnackbar } = useSnackbar();
-
+  const dispatch = useAppDispatch();
+  const [playerSold, setPlayerSold] = useState(false);
   const handleSell = () => {
     sendSellData({ players: [player.id] });
   };
 
   useEffect(() => {
     if (responseSell) {
-      rowDeleteHandler(player);
+      console.log("Response received")
+      setPlayerSold(true)
     }
     if (sellError) {
-      console.log(sellError.response?.data.extra.fields)
       enqueueSnackbar(
-          getFirstErrorMessage(sellError, "Error selling player!"),
+        getFirstErrorMessage(sellError, "Error selling player!"),
         {
           variant: "error",
         }
       );
     }
-  }, [responseSell, rowDeleteHandler, player, sellError, enqueueSnackbar]);
+  }, [enqueueSnackbar, responseSell, sellError]);
+
+  useEffect(() => {
+    if(playerSold) {
+      dispatch(teamCoinsIncrease({coins: player.sell_price}))
+      console.log("Increase coins player row");
+      rowDeleteHandler(player);
+    }
+  }, [dispatch, player, playerSold, rowDeleteHandler])
 
   if (sellLoading) {
     return (

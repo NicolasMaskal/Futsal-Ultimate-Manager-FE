@@ -2,15 +2,22 @@ import PackCard from "./PackCard";
 import Typography from "@mui/material/Typography";
 import goldPlayer from "../../images/gold-pack-image.png";
 import React from "react";
+import { PackType } from "../../models";
 
 const GoldPackDescription = () => {
   return (
     <>
-      <Typography>
-        <Typography display="inline" variant="body2" color="text.secondary">
+      <Typography component="span">
+        <Typography
+          component="span"
+          display="inline"
+          variant="body2"
+          color="text.secondary"
+        >
           {"The "}
         </Typography>
         <Typography
+          component="span"
           display="inline"
           variant="body2"
           color="text.secondary"
@@ -18,18 +25,23 @@ const GoldPackDescription = () => {
         >
           {"Gold"}
         </Typography>
-        <Typography display="inline" variant="body2" color="text.secondary">
+        <Typography
+          component="span"
+          display="inline"
+          variant="body2"
+          color="text.secondary"
+        >
           {
             " Pack offers the most elite players, with exceptional ratings and skills."
           }
         </Typography>
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography component="span" variant="body2" color="text.secondary">
         {
           "These players are considered among the best in the game and can make a significant difference in the outcome of a match."
         }
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography component="span" variant="body2" color="text.secondary">
         {
           "They are a must-have for any serious team looking to dominate the competition."
         }
@@ -39,11 +51,11 @@ const GoldPackDescription = () => {
 };
 const GoldPackCard: React.FC<{
   animationDuration: number;
-  onBuy: React.MouseEventHandler;
+  onBuy: (packType: PackType, price: number) => void;
 }> = ({ animationDuration, onBuy }) => {
   return (
     <PackCard
-      packName="Gold"
+      packName="gold"
       color={"#d4af37"}
       PackDescription={GoldPackDescription}
       price={750}

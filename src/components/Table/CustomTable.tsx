@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import {useCallback, useEffect} from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
@@ -95,6 +95,16 @@ const CustomTable: <
 
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
 
+  const rowDeletionHandler: RowDeletionFunction = useCallback((deletedObject) => {
+    const newObjects = objectsToDisplay!.filter(
+        (obj) => obj.id !== deletedObject.id
+    );
+    setObjects(newObjects);
+    if(onRowDeleteCallback) {
+      onRowDeleteCallback();
+    }
+  }, [objectsToDisplay, onRowDeleteCallback])
+
   useEffect(() => {
     if (!pagination && objects) {
       setRowsPerPage(objects.length);
@@ -123,14 +133,6 @@ const CustomTable: <
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
-
-  const rowDeletionHandler: RowDeletionFunction = (deletedObject) => {
-    const newObjects = objectsToDisplay!.filter(
-      (obj) => obj.id !== deletedObject.id
-    );
-    setObjects(newObjects);
-    onRowDeleteCallback!();
   };
 
   let iconSx: SxProps = {

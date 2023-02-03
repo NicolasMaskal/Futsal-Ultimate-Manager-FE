@@ -11,11 +11,11 @@ const SkeletonInfo: React.FC<{ rowAmount: number }> = ({ rowAmount }) => {
         flexDirection: "column",
       }}
     >
-      {Array.from({length: rowAmount}).map((_, index) => (
+      {Array.from({ length: rowAmount }).map((_, index) => (
         <Skeleton key={index} width={200} />
       ))}
     </Container>
   );
 };
 
-export default SkeletonInfo
+export default SkeletonInfo;

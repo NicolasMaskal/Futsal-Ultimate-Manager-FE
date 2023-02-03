@@ -9,7 +9,8 @@ import React from "react";
 import Shop from "./pages/Shop";
 import LineupPage from "./pages/MatchCenter";
 import {
-  EDIT_USER_URL, EMAIL_VERIFICATION_REQUIRED_URL,
+  EDIT_USER_URL,
+  EMAIL_VERIFICATION_REQUIRED_URL,
   INDEX_URL,
   LOGIN_URL,
   MATCH_CENTER_URL,

@@ -1,18 +1,17 @@
 import PageTitle from "../components/Generic/PageTitle";
 import PageDescription from "../components/Packs/PageDescription";
-import {useSelector} from "react-redux";
-import {getUser} from "../selectors/user";
-import {INDEX_URL, LOGIN_URL} from "../constants/urls";
-import {Navigate} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getUser } from "../selectors/user";
+import { INDEX_URL, LOGIN_URL } from "../constants/urls";
+import { Navigate } from "react-router-dom";
 
 const EmailVerificationRequiredPage = () => {
-    const user = useSelector(getUser);
-    if(!user){
-        return <Navigate to={LOGIN_URL}/>;
-    }
-    else if(user.email_verified){
-        return <Navigate to={INDEX_URL}/>
-    }
+  const user = useSelector(getUser);
+  if (!user) {
+    return <Navigate to={LOGIN_URL} />;
+  } else if (user.email_verified) {
+    return <Navigate to={INDEX_URL} />;
+  }
   return (
     <>
       <PageTitle title={"Email Verification Required"} />
@@ -26,4 +25,4 @@ const EmailVerificationRequiredPage = () => {
   );
 };
 
-export default EmailVerificationRequiredPage
+export default EmailVerificationRequiredPage;

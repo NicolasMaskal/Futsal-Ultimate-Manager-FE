@@ -1,13 +1,15 @@
 import React from "react";
-import {isRouteErrorResponse, useRouteError} from "react-router-dom";
+import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 import ErrorContent from "../components/Generic/ErrorContent";
 import Header from "../components/Header/Header";
 
-const ErrorPage: React.FC<{errorStatus?: number| undefined}> = ({errorStatus= undefined}) => {
+const ErrorPage: React.FC<{ errorStatus?: number | undefined }> = ({
+  errorStatus = undefined,
+}) => {
   const error = useRouteError();
-  if (isRouteErrorResponse(error)){
-    errorStatus = error.status
-    console.log(error.error?.message)
+  if (isRouteErrorResponse(error)) {
+    errorStatus = error.status;
+    console.log(error.error?.message);
   }
   errorStatus = errorStatus ? errorStatus : 404;
 

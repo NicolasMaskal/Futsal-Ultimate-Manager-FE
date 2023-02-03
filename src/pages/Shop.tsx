@@ -1,5 +1,5 @@
 import PageTitle from "../components/Generic/PageTitle";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import GoldPackCard from "../components/Packs/GoldPackCard";
 import SilverPackCard from "../components/Packs/SilverPackCard";
@@ -8,30 +8,45 @@ import PageDescription from "../components/Packs/PageDescription";
 import { PackType, Player } from "../models";
 import PackContent from "../components/Packs/PackContent";
 import { CircularProgress, Stack } from "@mui/material";
-import { dummyPackContent } from "./dummyReturns";
+import { useAppDispatch, useAppSelector } from "../hooks/Generic/hooks";
+import { getTeamOrFail } from "../selectors/user";
+import useSendData from "../hooks/Generic/useSendData";
+import { createTeamBuyPackUrl } from "../utils/url-helpers";
+import { getFirstErrorMessage } from "../utils/be-error-helpers";
+import { useSnackbar } from "notistack";
+import { teamCoinsDecrease } from "../store/user-slice";
 
 export const shopPageDescription =
   "Our shop offers a wide range of player packs for all types of teams.\n" +
   "        Choose from our budget-friendly bronze packs, solid silver packs, or\n" +
   "        elite gold packs.";
 const Shop = () => {
-  const [packData, setPackData] = useState<Player[] | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const handleBuyPack = (packType: PackType) => {
-    //TODO Add api
+  const team = useAppSelector(getTeamOrFail);
+  const { response, sendData, error, loading, resetSendData } = useSendData<
+    { pack_type: PackType },
+    Player[]
+  >(createTeamBuyPackUrl(team.id), "post");
+  const { enqueueSnackbar } = useSnackbar();
+  const dispatch = useAppDispatch();
+  const [price, setPrice] = useState<number | null>(null);
+  const handleBuyPack = (packType: PackType, price: number) => {
+    setPrice(price);
     console.log(packType);
-    setIsLoading(true);
-    setTimeout(() => {
-      setPackData(dummyPackContent);
-      setIsLoading(false);
-    }, 500);
+    sendData({ pack_type: packType });
   };
+  useEffect(() => {
+    if (error) {
+      enqueueSnackbar(getFirstErrorMessage(error, "Error buying pack!"), {
+        variant: "error",
+      });
+    }
+    if(response && price){
+      dispatch(teamCoinsDecrease({coins: price}))
 
-  const handlePackContentClose = () => {
-    setPackData(null);
-  };
+    }
+  }, [dispatch, enqueueSnackbar, error, price, response]);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <Stack
         alignItems="center"
@@ -42,10 +57,16 @@ const Shop = () => {
       </Stack>
     );
   }
-  if (packData) {
+
+  const handlePackContentClose = () => {
+    resetSendData();
+    setPrice(null);
+  };
+
+  if (response && price) {
     return (
       <PackContent
-        packContent={packData}
+        packContent={response}
         handlePackContentClose={handlePackContentClose}
       />
     );
@@ -57,28 +78,13 @@ const Shop = () => {
       <PageDescription>{shopPageDescription}</PageDescription>
       <Grid container justifyContent="center" className="pt-8" spacing={5}>
         <Grid key={"bronze"} item>
-          <BronzePackCard
-            animationDuration={300}
-            onBuy={() => {
-              handleBuyPack("Bronze");
-            }}
-          />
+          <BronzePackCard animationDuration={300} onBuy={handleBuyPack} />
         </Grid>
         <Grid key={"silver"} item>
-          <SilverPackCard
-            animationDuration={600}
-            onBuy={() => {
-              handleBuyPack("Silver");
-            }}
-          />
+          <SilverPackCard animationDuration={600} onBuy={handleBuyPack} />
         </Grid>
         <Grid key={"gold"} item>
-          <GoldPackCard
-            animationDuration={900}
-            onBuy={() => {
-              handleBuyPack("Gold");
-            }}
-          />
+          <GoldPackCard animationDuration={900} onBuy={handleBuyPack} />
         </Grid>
       </Grid>
     </>

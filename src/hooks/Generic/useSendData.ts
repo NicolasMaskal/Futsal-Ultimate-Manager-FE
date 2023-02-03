@@ -1,13 +1,14 @@
 import { useCallback, useState } from "react";
 import { AxiosRequestConfig, AxiosError } from "axios";
 import { axiosInstance } from "../../constants/be-urls";
-import {BeError} from "../../models";
+import { BeError } from "../../models";
 
 interface SendDataResult<InputType, OutputType> {
   loading: boolean;
   error: AxiosError<BeError> | null;
   response: OutputType | null;
   sendData: (data: InputType, config?: AxiosRequestConfig) => void;
+  resetSendData: () => void;
 }
 
 const useSendData = <InputType, OutputType>(
@@ -33,9 +34,8 @@ const useSendData = <InputType, OutputType>(
       } catch (e: unknown) {
         if (e instanceof AxiosError<BeError>) {
           setError(e);
-        }
-        else{
-          console.log(e)
+        } else {
+          console.log(e);
         }
       } finally {
         setLoading(false);
@@ -44,7 +44,12 @@ const useSendData = <InputType, OutputType>(
     [url, method]
   );
 
-  return { loading, error, response, sendData };
+  const resetSendData = () => {
+    setError(null);
+    setResponse(null);
+  };
+
+  return { loading, error, response, sendData, resetSendData };
 };
 
 export default useSendData;

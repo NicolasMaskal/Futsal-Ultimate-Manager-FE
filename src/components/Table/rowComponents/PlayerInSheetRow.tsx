@@ -1,14 +1,18 @@
-import {RowComponentType} from "../CustomTable";
-import {PlayerInLineup} from "../../../models";
+import { RowComponentType } from "../CustomTable";
+import { PlayerInLineup } from "../../../models";
 import * as React from "react";
 import useMobileView from "../../../hooks/Generic/useMobileView";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import {capitalizeFirstLetter} from "../../../utils/string-helpers";
+import { capitalizeFirstLetter } from "../../../utils/string-helpers";
 import Typography from "@mui/material/Typography";
-import {Rating} from "@mui/material";
+import { Rating } from "@mui/material";
 import Box from "@mui/material/Box";
-import {getColorByPlayingPos, getColorByPos, getColorBySkill} from "../../../utils/player-ui";
+import {
+  getColorByPlayingPos,
+  getColorByPos,
+  getColorBySkill,
+} from "../../../utils/player-ui";
 
 const labels: { [index: string]: string } = {
   1: "Useless",

@@ -74,7 +74,7 @@ export interface MatchData {
   goal_moments: GoalMoment[];
 }
 
-export type PackType = "Bronze" | "Silver" | "Gold";
+export type PackType = "bronze" | "silver" | "gold";
 
 export interface User {
   id: number;
@@ -84,4 +84,4 @@ export interface User {
   email_verified: boolean;
 }
 
-export type BeError = {message: string, extra: {fields: any[]}}
+export type BeError = { message: string; extra: { fields: any[] } };

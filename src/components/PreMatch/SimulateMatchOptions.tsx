@@ -33,7 +33,7 @@ const SimulateMatchOptions: React.FC<{
         </Typography>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
-            <InfoTooltip title="Higher difficulty ratings yield better rewards"/>
+            <InfoTooltip title="Higher difficulty ratings yield better rewards" />
           </Grid>
           <Grid item>
             <SmartToyTwoToneIcon />

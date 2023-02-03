@@ -13,7 +13,7 @@ const PackCard: React.FC<{
   price: number;
   imgSrc: string;
   animationDuration: number;
-  onBuy: React.MouseEventHandler;
+  onBuy: (packType: PackType, price: number) => void;
 }> = ({
   packName,
   color,
@@ -35,10 +35,14 @@ const PackCard: React.FC<{
     setBuyOpen(false);
   };
 
+  const handleButtonClick = () => {
+    onBuy(packName, price);
+  };
+
   return (
     <Grow in={true} timeout={animationDuration}>
       <Card elevation={5} sx={{ maxWidth: "22rem" }}>
-        <CardActionArea disableRipple>
+        <CardActionArea component="div" disableRipple>
           <img
             src={imgSrc}
             alt={`${packName} Player`}
@@ -73,16 +77,24 @@ const PackCard: React.FC<{
               anchorEl={anchorEl}
               buttonSuccessText="Buy"
               handleClose={handleClose}
-              handleSuccess={onBuy}
+              handleSuccess={handleButtonClick}
               placement={"right"}
             >
               <Typography sx={{ p: 2 }}>
                 Are you sure you want to buy a{" "}
-                <Typography component={"span"} sx={{ fontWeight: 700 }} display={"inline"}>
+                <Typography
+                  component={"span"}
+                  sx={{ fontWeight: 700 }}
+                  display={"inline"}
+                >
                   {packName}
                 </Typography>{" "}
                 pack for{" "}
-                <Typography component={"span"} sx={{ fontWeight: 700 }} display={"inline"}>
+                <Typography
+                  component={"span"}
+                  sx={{ fontWeight: 700 }}
+                  display={"inline"}
+                >
                   {price} coins
                 </Typography>{" "}
                 ?
@@ -90,7 +102,11 @@ const PackCard: React.FC<{
             </CustomPopper>
             <Typography>
               {"Cost: "}
-              <Typography display="inline" className="font-bold">
+              <Typography
+                component="span"
+                display="inline"
+                className="font-bold"
+              >
                 {price}{" "}
               </Typography>
             </Typography>

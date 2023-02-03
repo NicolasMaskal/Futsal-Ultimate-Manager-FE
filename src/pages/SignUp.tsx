@@ -1,7 +1,7 @@
 import * as React from "react";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
-import {TextField} from "formik-mui";
+import { TextField } from "formik-mui";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -9,19 +9,22 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import {Link as RouterLink, useNavigate} from "react-router-dom";
-import {INDEX_URL, LOGIN_URL} from "../constants/urls";
-import {Alert, Divider} from "@mui/material";
-import {Field, Form, Formik} from "formik";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { INDEX_URL, LOGIN_URL } from "../constants/urls";
+import { Alert, Divider } from "@mui/material";
+import { Field, Form, Formik } from "formik";
 import LoadingButton from "@mui/lab/LoadingButton";
-import {isEmail, passwordContainsValidCharacters,} from "../utils/string-helpers";
+import {
+  isEmail,
+  passwordContainsValidCharacters,
+} from "../utils/string-helpers";
 import useSendData from "../hooks/Generic/useSendData";
-import {BE_REGISTER_URL} from "../constants/be-urls";
-import {FormikHelpers} from "formik/dist/types";
-import {useAppDispatch} from "../hooks/Generic/hooks";
-import {setUser} from "../store/user-slice";
-import {User} from "../models";
-import {getFirstErrorMessage} from "../utils/be-error-helpers";
+import { BE_REGISTER_URL } from "../constants/be-urls";
+import { FormikHelpers } from "formik/dist/types";
+import { useAppDispatch } from "../hooks/Generic/hooks";
+import { setUser } from "../store/user-slice";
+import { User } from "../models";
+import { getFirstErrorMessage } from "../utils/be-error-helpers";
 
 interface Values {
   email: string;
@@ -42,8 +45,8 @@ const validateForm = (values: Values) => {
   if (values.password !== values.confirmPassword) {
     errors.password = "Password don't match!";
   }
-  if(values.password.length < 6){
-    errors.password = "Password must contain at least 6 characters!"
+  if (values.password.length < 6) {
+    errors.password = "Password must contain at least 6 characters!";
   }
   if (!passwordContainsValidCharacters(values.password)) {
     errors.password =
@@ -182,7 +185,9 @@ export default function SignUp() {
                 >
                   Sign Up
                 </LoadingButton>
-                {error && <Alert severity="error">{getFirstErrorMessage(error)}</Alert>}
+                {error && (
+                  <Alert severity="error">{getFirstErrorMessage(error)}</Alert>
+                )}
                 <Grid container justifyContent="flex-end">
                   <Grid item>
                     <Link

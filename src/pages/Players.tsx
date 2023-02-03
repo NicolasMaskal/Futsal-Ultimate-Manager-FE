@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {HeadCellType} from "../components/Table/subComponents/MyTableHeader";
 import {Player} from "../models";
 import PageTitle from "../components/Generic/PageTitle";
@@ -74,11 +74,12 @@ export interface FetchedPlayers {
 
 const Players = () => {
   const team = useAppSelector(getTeamOrFail);
-  const { data , fetchData } = useFetchData<FetchedPlayers>(createTeamPlayersUrl(team.id));
-
-  const onSellCallback = () => {
-    fetchData()
-  }
+  const { data, fetchData } = useFetchData<FetchedPlayers>(
+    createTeamPlayersUrl(team.id)
+  );
+  const onSellCallback = useCallback(() => {
+    fetchData();
+  },[fetchData])
 
   return (
     <>

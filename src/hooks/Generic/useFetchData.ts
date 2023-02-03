@@ -4,7 +4,7 @@ import { axiosInstance } from "../../constants/be-urls";
 interface FetchDataResult<T> {
   data: T | null;
   isLoading: boolean;
-  fetchData: () => void
+  fetchData: () => void;
 }
 
 const useFetchData = <T>(url: string): FetchDataResult<T> => {
@@ -25,6 +25,7 @@ const useFetchData = <T>(url: string): FetchDataResult<T> => {
   }, [url]);
 
   useEffect(() => {
+    console.log("Effect fetch data!")
     fetchData();
   }, [fetchData]);
 
