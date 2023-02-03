@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import PageTitle from "../components/Generic/PageTitle";
 import { MatchData, PlayerInLineup } from "../models";
 import PageDescription from "../components/Packs/PageDescription";
-import useMobileView from "../hooks/useMobileView";
+import useMobileView from "../hooks/Generic/useMobileView";
 import { useSnackbar } from "notistack";
 import SubPageTitle from "../components/Generic/SubPageTitle";
 import SimulateMatchOptions from "../components/PreMatch/SimulateMatchOptions";

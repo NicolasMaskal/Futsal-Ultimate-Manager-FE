@@ -15,10 +15,10 @@ import {Alert, Divider} from "@mui/material";
 import {Field, Form, Formik} from "formik";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {isEmail, passwordContainsValidCharacters,} from "../utils/stringHelpers";
-import useSendData from "../hooks/useSendData";
+import useSendData from "../hooks/Generic/useSendData";
 import {BE_REGISTER_URL} from "../constants/be-urls";
 import {FormikHelpers} from "formik/dist/types";
-import {useAppDispatch} from "../hooks/hooks";
+import {useAppDispatch} from "../hooks/Generic/hooks";
 import {setUser} from "../store/user-slice";
 import {User} from "../models";
 
@@ -91,7 +91,6 @@ export default function SignUp() {
 
   useEffect(() => {
     if (response) {
-      console.log("HERE Sign up")
       dispatch(setUser({ user: response.user }));
       navigate(INDEX_URL);
     }

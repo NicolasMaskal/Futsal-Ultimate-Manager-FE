@@ -13,7 +13,7 @@ import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import { EDIT_USER_URL, LOGIN_URL } from "../../../constants/urls";
 import { userLogoutThunk } from "../../../store/user-actions";
-import { useAppDispatch } from "../../../hooks/hooks";
+import { useAppDispatch } from "../../../hooks/Generic/hooks";
 
 export const ProfileMenuItems: React.FC<{
   handleCloseNavMenu: () => void;

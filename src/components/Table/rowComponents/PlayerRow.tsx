@@ -15,7 +15,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Typography from "@mui/material/Typography";
 import { RowComponentType } from "../CustomTable";
-import useMobileView from "../../../hooks/useMobileView";
+import useMobileView from "../../../hooks/Generic/useMobileView";
 import { capitalizeFirstLetter } from "../../../utils/stringHelpers";
 import { SxProps } from "@mui/system";
 import { Theme } from "@mui/material";
@@ -58,7 +58,7 @@ export const getColorBySkill = (
 };
 
 interface AdditionalInfoType {
-  averageSkill: number;
+  averageSkill: number | undefined;
   showHistory: boolean;
 }
 
@@ -91,7 +91,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
 
   const player = obj;
   const colorByPos = getColorByPos(player.preferred_position);
-  const colorBySkill = getColorBySkill(player, averageSkill);
+  const colorBySkill = getColorBySkill(player, averageSkill!);
   const mobileView = useMobileView();
 
   return (

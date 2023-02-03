@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Skeleton } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import useMobileView from "../../../hooks/useMobileView";
+import useMobileView from "../../../hooks/Generic/useMobileView";
 
 const SkeletonTable: React.FC<{ size: number }> = ({ size }) => {
   const sideSize = (12 - size) / 2;

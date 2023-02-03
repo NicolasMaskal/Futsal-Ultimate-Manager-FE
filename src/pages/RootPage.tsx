@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {getAppStatus, getUser} from "../selectors/user";
 import LoadingFullPage from "../components/Generic/LoadingFullPage";
 import {refreshUserInfoThunk} from "../store/user-actions";
-import {useAppDispatch} from "../hooks/hooks";
+import {useAppDispatch} from "../hooks/Generic/hooks";
 
 const RootPage = () => {
   const status = useSelector(getAppStatus);

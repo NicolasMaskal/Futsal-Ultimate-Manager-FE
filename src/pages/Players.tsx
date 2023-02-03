@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Typography from "@mui/material/Typography";
-import { Container, Skeleton } from "@mui/material";
+import React from "react";
 import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
-import { dummyPlayers } from "./dummyReturns";
 import { Player } from "../models";
 import PageTitle from "../components/Generic/PageTitle";
 import PlayerRow from "../components/Table/rowComponents/PlayerRow";
 import CustomTable from "../components/Table/CustomTable";
 import PageDescription from "../components/Packs/PageDescription";
+import useFetchData from "../hooks/Generic/useFetchData";
+import { createTeamPlayersUrl } from "../utils/urlHelpers";
+import { useAppSelector } from "../hooks/Generic/hooks";
+import { getTeamOrFail } from "../selectors/user";
+import PlayersInfo from "../components/Players/PlayersInfo";
 
 const headCells: HeadCellType[] = [
   {
@@ -63,64 +65,34 @@ export const playersPageDescription =
   "        user's team. The table includes important information providing a clear\n" +
   "        and easy way to track the performance of the team.";
 
-const Players = () => {
-  const [players, setPlayers] = useState<Player[] | null>(null);
-  const [averageSkill, setAverageSkill] = useState(0);
+export interface FetchedPlayers {
+  team_skill: number;
+  average_skill: number;
+  player_amount_considered: number;
+  players: Player[];
+}
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPlayers(dummyPlayers);
-      setAverageSkill(15);
-    }, 500);
-  }, []);
+const Players = () => {
+  const team = useAppSelector(getTeamOrFail);
+  const { data } = useFetchData<FetchedPlayers>(createTeamPlayersUrl(team.id));
 
   return (
     <>
       <PageTitle title="PLAYERS" />
       <PageDescription>{playersPageDescription}</PageDescription>
-      {players && averageSkill ? (
-        <article className={"text-center pb-4"}>
-          <div>
-            <Typography
-              className="font-bold"
-              variant="body1"
-              display={"inline"}
-            >
-              {"Squad size: "}
-            </Typography>
-            <Typography display="inline">
-              {players ? players.length : ""}
-            </Typography>
-          </div>
-          <div>
-            <Typography display="inline" className="font-bold pb-4">
-              {"Average skill: "}
-            </Typography>
-            <Typography display="inline">{averageSkill}</Typography>
-          </div>
-        </article>
-      ) : (
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <Skeleton width={200} />
-          <Skeleton width={200} />
-        </Container>
-      )}
+      <PlayersInfo data={data} />
       <CustomTable
         RowComponent={PlayerRow}
-        objects={players}
+        objects={data?.players}
         headCells={headCells}
         defaultOrderBy={"preferred_position"}
         defaultOrder={"desc"}
         pagination={true}
         tableWidthInGrid={10}
-        additionalInfo={{ averageSkill, showHistory: true }}
+        additionalInfo={{
+          averageSkill: data?.average_skill,
+          showHistory: true,
+        }}
       />
     </>
   );

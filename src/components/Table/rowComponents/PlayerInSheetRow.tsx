@@ -1,7 +1,7 @@
 import { RowComponentType } from "../CustomTable";
 import { PlayerInLineup, PlayingPosition } from "../../../models";
 import * as React from "react";
-import useMobileView from "../../../hooks/useMobileView";
+import useMobileView from "../../../hooks/Generic/useMobileView";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { capitalizeFirstLetter } from "../../../utils/stringHelpers";

@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import LocationCityRoundedIcon from "@mui/icons-material/LocationCityRounded";
 import { RowComponentType } from "../CustomTable";
 import { MatchResult } from "../../../models";
-import useMobileView from "../../../hooks/useMobileView";
+import useMobileView from "../../../hooks/Generic/useMobileView";
 
 const getColorByScore = (matchResult: MatchResult) => {
   // TODO Change color based on goal difference

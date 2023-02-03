@@ -8,7 +8,7 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import Grid from "@mui/material/Grid";
 import AppName from "./subComponents/AppName";
 import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
-import useMobileView from "../../hooks/useMobileView";
+import useMobileView from "../../hooks/Generic/useMobileView";
 import LogoButtonHeader from "./subComponents/LogoButtonHeader";
 import SubHeader from "./SubHeader";
 import HeaderBurgerNavMenu from "./subComponents/HeaderBurgerNavMenu";

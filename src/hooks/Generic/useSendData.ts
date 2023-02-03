@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { AxiosRequestConfig, AxiosError } from "axios";
-import { axiosInstance } from "../constants/be-urls";
-import {BeError} from "../models";
+import { axiosInstance } from "../../constants/be-urls";
+import {BeError} from "../../models";
 
 interface SendDataResult<InputType, OutputType> {
   loading: boolean;

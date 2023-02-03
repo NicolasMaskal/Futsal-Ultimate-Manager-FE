@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {LOGIN_URL, REGISTER_URL} from "../constants/urls";
 import Grid from "@mui/material/Grid";
 import footballPlayer from "../images/football-player-black.png";
-import useMobileView from "../hooks/useMobileView";
+import useMobileView from "../hooks/Generic/useMobileView";
 import Box from "@mui/material/Box";
 import PageTitle from "../components/Generic/PageTitle";
 

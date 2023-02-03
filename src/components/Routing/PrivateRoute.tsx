@@ -12,7 +12,6 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    console.log("HERE Private route")
     if (!user) {
       // Displays twice in dev mode. Only once in production, because of React.StrictMode
       enqueueSnackbar("You need to be logged in to see this page!", {

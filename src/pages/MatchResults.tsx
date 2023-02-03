@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
 import PageTitle from "../components/Generic/PageTitle";
 
-import { dummyMatchResults } from "./dummyReturns";
-import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
-import { MatchResult } from "../models";
-import { Container, Skeleton } from "@mui/material";
+import {dummyMatchResults} from "./dummyReturns";
+import {HeadCellType} from "../components/Table/subComponents/MyTableHeader";
+import {MatchResult} from "../models";
 import CustomTable from "../components/Table/CustomTable";
 import MatchRow from "../components/Table/rowComponents/MatchRow";
 import PageDescription from "../components/Packs/PageDescription";
+import SkeletonInfo from "../components/Table/subComponents/SkeletonInfo";
 
 const headCells: HeadCellType[] = [
   {
@@ -71,20 +71,7 @@ const MatchResults = () => {
             <Typography display="inline">{19}</Typography>
           </div>
         </div>
-      ) : (
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <Skeleton width={200} />
-          <Skeleton width={200} />
-          <Skeleton width={200} />
-        </Container>
-      )}
+      ) : <SkeletonInfo rowAmount={3} />}
       <CustomTable
         RowComponent={MatchRow}
         objects={matchResults}

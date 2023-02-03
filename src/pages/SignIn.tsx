@@ -14,11 +14,11 @@ import { TextField } from "formik-mui";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { FormikHelpers } from "formik/dist/types";
 import { isEmail } from "../utils/stringHelpers";
-import useSendData from "../hooks/useSendData";
+import useSendData from "../hooks/Generic/useSendData";
 import { BE_LOGIN_URL } from "../constants/be-urls";
 import { User } from "../models";
 import {Alert} from "@mui/material";
-import {useAppDispatch} from "../hooks/hooks";
+import {useAppDispatch} from "../hooks/Generic/hooks";
 import {setUser} from "../store/user-slice";
 
 interface ValueType {

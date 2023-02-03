@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import useMobileView from "../../../hooks/useMobileView";
+import useMobileView from "../../../hooks/Generic/useMobileView";
 
 const HeaderButton: React.FC<{
   tooltipText: string;

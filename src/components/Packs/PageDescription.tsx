@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import useMobileView from "../../hooks/useMobileView";
+import useMobileView from "../../hooks/Generic/useMobileView";
 
 const PageDescription: React.FC<{ children: React.ReactNode }> = (props) => {
   const mobileView = useMobileView();

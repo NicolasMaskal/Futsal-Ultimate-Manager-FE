@@ -6,8 +6,7 @@ import Slider from "@mui/material/Slider";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SmartToyTwoToneIcon from "@mui/icons-material/SmartToyTwoTone";
-import InfoIcon from "@mui/icons-material/Info";
-import Tooltip from "@mui/material/Tooltip";
+import InfoTooltip from "../Generic/InfoTooltip";
 
 const SimulateMatchOptions: React.FC<{
   handleClick: React.MouseEventHandler;
@@ -34,12 +33,7 @@ const SimulateMatchOptions: React.FC<{
         </Typography>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
-            <Tooltip
-              title={"Higher difficulty ratings yield better rewards"}
-              placement={"left"}
-            >
-              <InfoIcon fontSize={"small"} />
-            </Tooltip>
+            <InfoTooltip title="Higher difficulty ratings yield better rewards"/>
           </Grid>
           <Grid item>
             <SmartToyTwoToneIcon />

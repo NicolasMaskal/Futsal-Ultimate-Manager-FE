@@ -5,7 +5,7 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { SxProps } from "@mui/system";
-import useMobileView from "../../../hooks/useMobileView";
+import useMobileView from "../../../hooks/Generic/useMobileView";
 
 export type HeadCellType = {
   id: string | null;
