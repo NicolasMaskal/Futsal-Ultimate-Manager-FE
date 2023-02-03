@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
 import PageTitle from "../components/Generic/PageTitle";
-
-import {dummyMatchResults} from "./dummyReturns";
-import {HeadCellType} from "../components/Table/subComponents/MyTableHeader";
-import {MatchResult} from "../models";
+import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
+import { MatchResult } from "../models";
 import CustomTable from "../components/Table/CustomTable";
 import MatchRow from "../components/Table/rowComponents/MatchRow";
 import PageDescription from "../components/Packs/PageDescription";
-import SkeletonInfo from "../components/Table/subComponents/SkeletonInfo";
+import useFetchData from "../hooks/Generic/useFetchData";
+import { createTeamMatchResultsUrl } from "../utils/urlHelpers";
+import { useAppSelector } from "../hooks/Generic/hooks";
+import { getTeamOrFail } from "../selectors/user";
 
 const headCells: HeadCellType[] = [
   {
@@ -38,49 +39,44 @@ export const resultsPageDescription =
   "        each match is available in their detail.";
 
 const MatchResults = () => {
-  const [matchResults, setMatchResults] = useState<MatchResult[] | null>(null);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setMatchResults(dummyMatchResults);
-    }, 500);
-  }, []);
+  const team = useAppSelector(getTeamOrFail);
+  const { data } = useFetchData<MatchResult[]>(
+    createTeamMatchResultsUrl(team.id)
+  );
 
   return (
     <>
       <PageTitle title="MATCH RESULTS" />
       <PageDescription>{resultsPageDescription}</PageDescription>
-      {matchResults ? (
-        <div className={"text-center pb-4"}>
-          <div>
-            <Typography display="inline" className="font-bold pb-4">
-              {"Wins: "}
-            </Typography>
-            <Typography display="inline">{52}</Typography>
-          </div>
-          <div>
-            <Typography display="inline" className="font-bold pb-4">
-              {"Draws: "}
-            </Typography>
-            <Typography display="inline">{41}</Typography>
-          </div>
-          <div>
-            <Typography display="inline" className="font-bold pb-4">
-              {"Loses: "}
-            </Typography>
-            <Typography display="inline">{19}</Typography>
-          </div>
+      <div className={"text-center pb-4"}>
+        <div>
+          <Typography display="inline" className="font-bold pb-4">
+            {"Wins: "}
+          </Typography>
+          <Typography display="inline">{team.wins}</Typography>
         </div>
-      ) : <SkeletonInfo rowAmount={3} />}
+        <div>
+          <Typography display="inline" className="font-bold pb-4">
+            {"Draws: "}
+          </Typography>
+          <Typography display="inline">{team.draws}</Typography>
+        </div>
+        <div>
+          <Typography display="inline" className="font-bold pb-4">
+            {"Loses: "}
+          </Typography>
+          <Typography display="inline">{team.loses}</Typography>
+        </div>
+      </div>
       <CustomTable
         RowComponent={MatchRow}
-        objects={matchResults}
+        objects={data}
         headCells={headCells}
         defaultOrderBy={"date"}
         defaultOrder={"desc"}
         pagination={true}
         tableWidthInGrid={10}
-        additionalInfo={undefined} //TODO find about default props
+        additionalInfo={undefined}
       />
     </>
   );

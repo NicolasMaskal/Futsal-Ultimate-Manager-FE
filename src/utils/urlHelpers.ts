@@ -7,3 +7,7 @@ export const createTeamPlayersUrl = (teamId: number) => {
 export const createTeamSellPlayersUrl = (teamId: number) => {
     return `${BE_TEAMS_URL}${teamId}/sell-players/`
 }
+
+export const createTeamMatchResultsUrl = (teamId: number) => {
+    return `${BE_TEAMS_URL}${teamId}/match-results/`
+}
