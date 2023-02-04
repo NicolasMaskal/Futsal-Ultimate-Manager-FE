@@ -18,7 +18,7 @@ import useSendData from "../../../hooks/Generic/useSendData";
 import { createTeamSellPlayersUrl } from "../../../utils/url-helpers";
 import { useAppDispatch, useAppSelector } from "../../../hooks/Generic/hooks";
 import { getTeamOrFail } from "../../../selectors/user";
-import { getColorByPos, getColorBySkill } from "../../../utils/player-ui";
+import { getColorByPos, getColorBySkill, getColorByStamina } from "../../../utils/player-ui";
 import { getFirstErrorMessage } from "../../../utils/be-error-helpers";
 import { teamCoinsIncrease } from "../../../store/user-slice";
 
@@ -58,11 +58,12 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
   const player = obj;
   const colorByPos = getColorByPos(player.preferred_position);
   const colorBySkill = getColorBySkill(player, averageSkill!);
+  const colorByStamina = getColorByStamina(player)
   const mobileView = useMobileView();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useAppDispatch();
   const handleSell = () => {
-    sendSellData({ players: [player.id] });
+    sendSellData({ players: [player.id] }).catch(() => {});
   };
 
   useEffect(() => {
@@ -117,6 +118,11 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
       <TableCell align="right" padding={mobileView ? "none" : "normal"}>
         <Typography sx={textSx} color={colorBySkill}>
           {player.skill}
+        </Typography>
+      </TableCell>
+      <TableCell align="right" padding={mobileView ? "none" : "normal"}>
+        <Typography sx={textSx} color={colorByStamina}>
+          {player.stamina_left}
         </Typography>
       </TableCell>
       {showHistory && (

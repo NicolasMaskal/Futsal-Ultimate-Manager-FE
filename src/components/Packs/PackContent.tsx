@@ -6,6 +6,8 @@ import PlayerRow from "../Table/rowComponents/PlayerRow";
 import ProceedButton from "../Buttons/ProceedButton";
 import PageTitle from "../Generic/PageTitle";
 import PageDescription from "./PageDescription";
+import { useAppSelector } from "../../hooks/Generic/hooks";
+import { getTeamOrFail } from "../../selectors/user";
 
 const headCells: HeadCellType[] = [
   {
@@ -29,6 +31,11 @@ const headCells: HeadCellType[] = [
     label: "Skill",
   },
   {
+    id: "stamina_left",
+    alignment: "right",
+    label: "Stamina left",
+  },
+  {
     id: "sell_price",
     alignment: "right",
     label: "Sell price",
@@ -43,6 +50,7 @@ const PackContent: React.FC<{
   packContent: Player[];
   handlePackContentClose: React.MouseEventHandler;
 }> = ({ packContent, handlePackContentClose }) => {
+  const team = useAppSelector(getTeamOrFail);
   return (
     <>
       <PageTitle title="Pack Content" />
@@ -57,7 +65,7 @@ const PackContent: React.FC<{
         defaultOrderBy={"skill"}
         RowComponent={PlayerRow}
         headCells={headCells}
-        additionalInfo={{ averageSkill: 50, showHistory: false }}
+        additionalInfo={{ averageSkill: team.average_skill, showHistory: false }}
         pagination={false}
         tableWidthInGrid={8}
       />

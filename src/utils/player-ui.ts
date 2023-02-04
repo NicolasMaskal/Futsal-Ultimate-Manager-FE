@@ -22,6 +22,23 @@ export const getColorByPos = (prefPos: Position | undefined) => {
   return "#000000";
 };
 
+export const getColorByStamina = (player: Player | null) => {
+  if(player === null){
+    return
+  }
+  const stamina = player.stamina_left
+  if (stamina < 50) {
+    return red[500];
+  }
+  if (stamina < 70) {
+    return deepOrange[500];
+  }
+  if (stamina < 90) {
+    return lightGreen[500];
+  }
+  return green[500];
+}
+
 export const getColorBySkill = (player: Player | null, averageSkill: number) => {
   if (player === null) {
     return "#000000";

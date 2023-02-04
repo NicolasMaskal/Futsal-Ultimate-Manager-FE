@@ -11,8 +11,10 @@ import Box from "@mui/material/Box";
 import {
   getColorByPlayingPos,
   getColorByPos,
-  getColorBySkill,
+  getColorBySkill, getColorByStamina
 } from "../../../utils/player-ui";
+import { useAppSelector } from "../../../hooks/Generic/hooks";
+import { getTeamOrFail } from "../../../selectors/user";
 
 const labels: { [index: string]: string } = {
   1: "Useless",
@@ -60,6 +62,7 @@ const PlayerInSheetRow: RowComponentType<PlayerInLineup, AdditionalInfoType> = (
   const colorByPos = getColorByPos(playerInLineup.player?.preferred_position);
   const colorByPlayingPos = getColorByPlayingPos(playerInLineup.playingPosition);
   const colorBySkill = getColorBySkill(playerInLineup.player, averageSkill);
+  const colorByStamina = getColorByStamina(playerInLineup.player)
   const mobileView = useMobileView();
   const playerEffectiveness = getPlayerEffectivenessInPose(playerInLineup);
 
@@ -117,6 +120,11 @@ const PlayerInSheetRow: RowComponentType<PlayerInLineup, AdditionalInfoType> = (
       <TableCell align="left" padding={mobileView ? "none" : "normal"}>
         <Typography sx={textSx} color={colorBySkill}>
           {playerInLineup.player ? playerInLineup.player.skill : " "}
+        </Typography>
+      </TableCell>
+      <TableCell align="center" padding={mobileView ? "none" : "normal"}>
+        <Typography sx={textSx} color={colorByStamina}>
+          {playerInLineup.player ? playerInLineup.player.stamina_left : " "}
         </Typography>
       </TableCell>
     </TableRow>

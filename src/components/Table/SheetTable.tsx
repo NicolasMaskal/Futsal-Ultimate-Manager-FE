@@ -3,6 +3,8 @@ import { HeadCellType } from "./subComponents/MyTableHeader";
 import { PlayerInLineup } from "../../models";
 import React from "react";
 import PlayerInSheetRow from "./rowComponents/PlayerInSheetRow";
+import { useAppSelector } from "../../hooks/Generic/hooks";
+import { getTeamOrFail } from "../../selectors/user";
 
 const headCells: HeadCellType[] = [
   {
@@ -30,6 +32,11 @@ const headCells: HeadCellType[] = [
     alignment: "left",
     label: "Skill",
   },
+  {
+    id: null,
+    alignment: "left",
+    label: "Stamina left",
+  },
 ];
 
 const headCellsWithoutPlayingPos: HeadCellType[] = headCells.filter(
@@ -43,6 +50,8 @@ const SheetTable: React.FC<{
   handleRowClicked: (clickedRow: PlayerInLineup) => void;
   selectedRow: PlayerInLineup | null;
 }> = ({ playersInLineup, displayPlayingPosition, handleRowClicked, selectedRow }) => {
+  const team = useAppSelector(getTeamOrFail);
+
   return (
     <CustomTable
       RowComponent={PlayerInSheetRow}
@@ -53,7 +62,7 @@ const SheetTable: React.FC<{
       pagination={false}
       tableWidthInGrid={12}
       dontAdjustFont
-      additionalInfo={{ averageSkill: 13, handleRowClicked, selectedRow }}
+      additionalInfo={{ averageSkill: team.average_skill, handleRowClicked, selectedRow }}
     />
   );
 };

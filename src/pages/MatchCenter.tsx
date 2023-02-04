@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SheetTable from "../components/Table/SheetTable";
 import Grid from "@mui/material/Grid";
 import PageTitle from "../components/Generic/PageTitle";
@@ -16,7 +16,6 @@ import { getTeamOrFail } from "../selectors/user";
 import useSendData from "../hooks/Generic/useSendData";
 import useTeamLineup from "../hooks/PreMatch/useTeamLineup";
 import { getFirstErrorMessage } from "../utils/be-error-helpers";
-import { useAppDispatch } from "../hooks/Generic/hooks";
 
 export const matchCenterPageDescription =
   "This page allows you to manage your team's lineup for your upcoming\n" +
@@ -29,7 +28,6 @@ const MatchCenter = () => {
   const team = useSelector(getTeamOrFail);
   const {
     saveLineup,
-    errorSave,
     handleRowClicked,
     teamSheetId,
     selectedRow,

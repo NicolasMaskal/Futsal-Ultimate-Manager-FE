@@ -32,7 +32,11 @@ const headCells: HeadCellType[] = [
     alignment: "right",
     label: "Skill",
   },
-
+  {
+    id: "stamina_left",
+    alignment: "right",
+    label: "Stamina left",
+  },
   {
     id: "matches_played",
     alignment: "right",
