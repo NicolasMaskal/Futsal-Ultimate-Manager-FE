@@ -1,14 +1,14 @@
-import React, {useCallback} from "react";
-import {HeadCellType} from "../components/Table/subComponents/MyTableHeader";
-import {Player} from "../models";
+import React, { useCallback } from "react";
+import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
+import { Player } from "../models";
 import PageTitle from "../components/Generic/PageTitle";
 import PlayerRow from "../components/Table/rowComponents/PlayerRow";
 import CustomTable from "../components/Table/CustomTable";
 import PageDescription from "../components/Packs/PageDescription";
 import useFetchData from "../hooks/Generic/useFetchData";
-import {createTeamPlayersUrl} from "../utils/url-helpers";
-import {useAppSelector} from "../hooks/Generic/hooks";
-import {getTeamOrFail} from "../selectors/user";
+import { createTeamPlayersUrl } from "../utils/url-helpers";
+import { useAppSelector } from "../hooks/Generic/hooks";
+import { getTeamOrFail } from "../selectors/user";
 import PlayersInfo from "../components/Players/PlayersInfo";
 
 const headCells: HeadCellType[] = [
@@ -74,12 +74,10 @@ export interface FetchedPlayers {
 
 const Players = () => {
   const team = useAppSelector(getTeamOrFail);
-  const { data, fetchData } = useFetchData<FetchedPlayers>(
-    createTeamPlayersUrl(team.id)
-  );
+  const { data, fetchData } = useFetchData<FetchedPlayers>(createTeamPlayersUrl(team.id));
   const onSellCallback = useCallback(() => {
     fetchData();
-  },[fetchData])
+  }, [fetchData]);
 
   return (
     <>

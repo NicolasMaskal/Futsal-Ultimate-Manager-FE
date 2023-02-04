@@ -19,14 +19,13 @@ const WelcomePage: React.FC = () => {
         <Box component="article" sx={{ px: mobileView ? 2 : 8 }}>
           <h1 className="text-2xl mb-8">Welcome to Futsal Ultimate Manager.</h1>
           <p>
-            With this game, you can build your ultimate team by creating your
-            own squad and opening packs to acquire new players. Keep track of
-            your team's progress by viewing your players and past matches. Test
-            your team's mettle against our AI opponents by simulating matches.
+            With this game, you can build your ultimate team by creating your own squad
+            and opening packs to acquire new players. Keep track of your team's progress
+            by viewing your players and past matches. Test your team's mettle against our
+            AI opponents by simulating matches.
           </p>
           <p>
-            And that's not all - there's even more to discover. Don't have an
-            account yet?{" "}
+            And that's not all - there's even more to discover. Don't have an account yet?{" "}
             <Link className="text-sky-500 hover:text-sky-700" to={REGISTER_URL}>
               Sign up
             </Link>{" "}

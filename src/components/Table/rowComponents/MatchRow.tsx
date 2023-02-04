@@ -42,18 +42,10 @@ const MatchResultRow: RowComponentType<MatchResult, undefined> = ({
       <TableCell align="center" padding={mobileView ? "none" : "normal"}>
         <LocationCityRoundedIcon sx={iconSx} />
       </TableCell>
-      <TableCell
-        align="left"
-        sx={textSx}
-        padding={mobileView ? "none" : "normal"}
-      >
+      <TableCell align="left" sx={textSx} padding={mobileView ? "none" : "normal"}>
         {matchResult.cpu_team.name}
       </TableCell>
-      <TableCell
-        align="center"
-        sx={textSx}
-        padding={mobileView ? "none" : "normal"}
-      >
+      <TableCell align="center" sx={textSx} padding={mobileView ? "none" : "normal"}>
         <Typography sx={textSx} color={colorByScore}>
           {`${matchResult.player_goals} : ${matchResult.cpu_goals}`}
         </Typography>
@@ -65,11 +57,7 @@ const MatchResultRow: RowComponentType<MatchResult, undefined> = ({
       {/*>*/}
       {/*  {matchResult.cpu_average_skill}*/}
       {/*</TableCell>*/}
-      <TableCell
-        align="center"
-        sx={textSx}
-        padding={mobileView ? "none" : "normal"}
-      >
+      <TableCell align="center" sx={textSx} padding={mobileView ? "none" : "normal"}>
         {matchResult.date}
       </TableCell>
     </TableRow>

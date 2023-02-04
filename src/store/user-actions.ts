@@ -1,21 +1,13 @@
 import { axiosInstance, BE_AUTH_ME, BE_LOGOUT_URL } from "../constants/be-urls";
 import { Dispatch } from "react";
-import {
-  setStatusLoaded,
-  setStatusLoading,
-  setUser,
-  userLogout,
-} from "./user-slice";
+import { setStatusLoaded, setStatusLoading, setUser, userLogout } from "./user-slice";
 import { User } from "../models";
 
 export const userLogoutThunk = () => {
   return async (
     dispatch: Dispatch<{
       payload: undefined;
-      type:
-        | "user/userLogout"
-        | "user/setStatusLoading"
-        | "user/setStatusLoaded";
+      type: "user/userLogout" | "user/setStatusLoading" | "user/setStatusLoaded";
     }>
   ) => {
     dispatch(setStatusLoading());

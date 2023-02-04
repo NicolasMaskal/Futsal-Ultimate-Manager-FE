@@ -43,9 +43,7 @@ const arraysGoals = [
 
 const generateRandomText = (assisterExists: boolean) => {
   if (assisterExists) {
-    return arrayGoalAssists[
-      Math.floor(Math.random() * arrayGoalAssists.length)
-    ];
+    return arrayGoalAssists[Math.floor(Math.random() * arrayGoalAssists.length)];
   }
   return arraysGoals[Math.floor(Math.random() * arraysGoals.length)];
 };

@@ -30,11 +30,7 @@ const UserSettings = () => {
 
   if (isLoading) {
     return (
-      <Stack
-        alignItems="center"
-        className="min-h-screen"
-        justifyContent="center"
-      >
+      <Stack alignItems="center" className="min-h-screen" justifyContent="center">
         <CircularProgress color={"primary"} />
       </Stack>
     );
@@ -100,12 +96,7 @@ const UserSettings = () => {
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Save
             </Button>
           </Box>

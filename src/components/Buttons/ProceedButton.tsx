@@ -7,12 +7,7 @@ const ProceedButton: React.FC<{
   buttonSx?: SxProps;
 }> = ({ onProceedClick, buttonSx = {} }) => {
   return (
-    <Button
-      onClick={onProceedClick}
-      variant="contained"
-      color="success"
-      sx={buttonSx}
-    >
+    <Button onClick={onProceedClick} variant="contained" color="success" sx={buttonSx}>
       Proceed
     </Button>
   );

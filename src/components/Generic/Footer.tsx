@@ -12,10 +12,7 @@ const Footer = (props: any) => {
       {...props}
     >
       {"Copyright © "}
-      <Link
-        color="inherit"
-        href="https://github.com/Nicolas264859/Futsal-sim-FE"
-      >
+      <Link color="inherit" href="https://github.com/Nicolas264859/Futsal-sim-FE">
         Nicolas Maskal
       </Link>{" "}
       {new Date().getFullYear()}

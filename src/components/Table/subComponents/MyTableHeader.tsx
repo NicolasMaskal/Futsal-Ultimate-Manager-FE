@@ -30,17 +30,13 @@ const MyTableHeader: React.FC<{
   onRequestSort: onRequestSortType;
 }> = ({ headCells, order, orderBy, textSx, iconSx, onRequestSort }) => {
   const mobileView = useMobileView();
-  const createSortHandler =
-    (property: string) => (event: React.MouseEvent<unknown>) => {
-      onRequestSort(event, property);
-    };
+  const createSortHandler = (property: string) => (event: React.MouseEvent<unknown>) => {
+    onRequestSort(event, property);
+  };
 
   return (
     <TableHead className="bg-gray-100">
-      <TableRow
-        sx={{ height: mobileView ? "1rem" : "4rem" }}
-        className={"font-bold"}
-      >
+      <TableRow sx={{ height: mobileView ? "1rem" : "4rem" }} className={"font-bold"}>
         {headCells.map((headCell, index) => {
           if (headCell.alignment === null) {
             return <TableCell key={index} />;

@@ -22,10 +22,7 @@ export const getColorByPos = (prefPos: Position | undefined) => {
   return "#000000";
 };
 
-export const getColorBySkill = (
-  player: Player | null,
-  averageSkill: number
-) => {
+export const getColorBySkill = (player: Player | null, averageSkill: number) => {
   if (player === null) {
     return "#000000";
   }

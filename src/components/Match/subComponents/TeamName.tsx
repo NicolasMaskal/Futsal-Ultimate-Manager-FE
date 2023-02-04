@@ -7,14 +7,9 @@ const TeamName: React.FC<{
   goalAmount: number;
   currentMoment: GoalMoment | undefined;
 }> = ({ team, goalAmount, currentMoment }) => {
-  const scoreFreshUpdate =
-    currentMoment && currentMoment.goal_scorer.team.id === team.id;
+  const scoreFreshUpdate = currentMoment && currentMoment.goal_scorer.team.id === team.id;
   return (
-    <Typography
-      fontSize={"1.5rem"}
-      className={"font-bold pb-1"}
-      textAlign={"center"}
-    >
+    <Typography fontSize={"1.5rem"} className={"font-bold pb-1"} textAlign={"center"}>
       {`${team.name} `}
       <Typography
         display={"inline"}

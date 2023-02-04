@@ -1,12 +1,6 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
-import {
-  Divider,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { Divider, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";

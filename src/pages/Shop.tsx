@@ -31,22 +31,20 @@ const Shop = () => {
   const [price, setPrice] = useState<number | null>(null);
   const handleBuyPack = (packType: PackType, price: number) => {
     setPrice(price);
-    sendData({ pack_type: packType }).then(() => {
-      dispatch(teamCoinsDecrease({coins: price}))
-    }).catch((e) => {
-      enqueueSnackbar(getFirstErrorMessage(e, "Error buying pack!"), {
-        variant: "error",
+    sendData({ pack_type: packType })
+      .then(() => {
+        dispatch(teamCoinsDecrease({ coins: price }));
+      })
+      .catch((e) => {
+        enqueueSnackbar(getFirstErrorMessage(e, "Error buying pack!"), {
+          variant: "error",
+        });
       });
-    });
   };
 
   if (loading) {
     return (
-      <Stack
-        alignItems="center"
-        className="min-h-screen"
-        justifyContent="center"
-      >
+      <Stack alignItems="center" className="min-h-screen" justifyContent="center">
         <CircularProgress color={"primary"} />
       </Stack>
     );

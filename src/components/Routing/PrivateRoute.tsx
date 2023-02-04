@@ -5,9 +5,7 @@ import { Navigate } from "react-router-dom";
 import { EMAIL_VERIFICATION_REQUIRED_URL } from "../../constants/urls";
 import ErrorPage from "../../pages/ErrorPage";
 
-const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const user = useSelector(getUser);
 
   if (!user) {

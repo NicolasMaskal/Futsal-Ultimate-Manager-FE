@@ -1,26 +1,26 @@
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import * as React from "react";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Typography from "@mui/material/Typography";
-import {RowComponentType} from "../CustomTable";
+import { RowComponentType } from "../CustomTable";
 import useMobileView from "../../../hooks/Generic/useMobileView";
-import {capitalizeFirstLetter} from "../../../utils/string-helpers";
-import {SxProps} from "@mui/system";
-import {LinearProgress, Theme} from "@mui/material";
-import {Player} from "../../../models";
+import { capitalizeFirstLetter } from "../../../utils/string-helpers";
+import { SxProps } from "@mui/system";
+import { LinearProgress, Theme } from "@mui/material";
+import { Player } from "../../../models";
 import CustomPopper from "../../Generic/CustomPopper";
-import {useSnackbar} from "notistack";
+import { useSnackbar } from "notistack";
 import useSendData from "../../../hooks/Generic/useSendData";
-import {createTeamSellPlayersUrl} from "../../../utils/url-helpers";
-import {useAppDispatch, useAppSelector} from "../../../hooks/Generic/hooks";
-import {getTeamOrFail} from "../../../selectors/user";
-import {getColorByPos, getColorBySkill} from "../../../utils/player-ui";
-import {getFirstErrorMessage} from "../../../utils/be-error-helpers";
-import {teamCoinsIncrease} from "../../../store/user-slice";
+import { createTeamSellPlayersUrl } from "../../../utils/url-helpers";
+import { useAppDispatch, useAppSelector } from "../../../hooks/Generic/hooks";
+import { getTeamOrFail } from "../../../selectors/user";
+import { getColorByPos, getColorBySkill } from "../../../utils/player-ui";
+import { getFirstErrorMessage } from "../../../utils/be-error-helpers";
+import { teamCoinsIncrease } from "../../../store/user-slice";
 
 interface AdditionalInfoType {
   averageSkill: number | undefined;
@@ -42,10 +42,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
     sendData: sendSellData,
     error: sellError,
     loading: sellLoading,
-  } = useSendData<{ players: number[] }, {}>(
-    createTeamSellPlayersUrl(team.id),
-    "post"
-  );
+  } = useSendData<{ players: number[] }, {}>(createTeamSellPlayersUrl(team.id), "post");
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -70,16 +67,13 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
 
   useEffect(() => {
     if (responseSell) {
-      dispatch(teamCoinsIncrease({coins: player.sell_price}))
+      dispatch(teamCoinsIncrease({ coins: player.sell_price }));
       rowDeleteHandler(player);
     }
     if (sellError) {
-      enqueueSnackbar(
-        getFirstErrorMessage(sellError, "Error selling player!"),
-        {
-          variant: "error",
-        }
-      );
+      enqueueSnackbar(getFirstErrorMessage(sellError, "Error selling player!"), {
+        variant: "error",
+      });
     }
   }, [dispatch, enqueueSnackbar, player, responseSell, rowDeleteHandler, sellError]);
 
@@ -92,11 +86,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
           },
         }}
       >
-        <TableCell
-          align="center"
-          sx={{ width: "100%", height: "100%" }}
-          colSpan={10}
-        >
+        <TableCell align="center" sx={{ width: "100%", height: "100%" }} colSpan={10}>
           <LinearProgress sx={{ height: mobileView ? 10 : 20 }} />
         </TableCell>
       </TableRow>
@@ -117,18 +107,10 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
           sx={{ ...iconSx, ...{ color: colorByPos } } as SxProps<Theme>}
         />
       </TableCell>
-      <TableCell
-        align="left"
-        sx={textSx}
-        padding={mobileView ? "none" : "normal"}
-      >
+      <TableCell align="left" sx={textSx} padding={mobileView ? "none" : "normal"}>
         {player.name}
       </TableCell>
-      <TableCell
-        align="left"
-        sx={textSx}
-        padding={mobileView ? "none" : "normal"}
-      >
+      <TableCell align="left" sx={textSx} padding={mobileView ? "none" : "normal"}>
         {capitalizeFirstLetter(player.preferred_position)}
       </TableCell>
       {/*sx={{ display: "flex", justifyContent: "flex-end", pl: "24px", pr: "8px" }}*/}
@@ -139,34 +121,18 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
       </TableCell>
       {showHistory && (
         <>
-          <TableCell
-            sx={textSx}
-            align="right"
-            padding={mobileView ? "none" : "normal"}
-          >
+          <TableCell sx={textSx} align="right" padding={mobileView ? "none" : "normal"}>
             {player.matches_played}
           </TableCell>
-          <TableCell
-            sx={textSx}
-            align="right"
-            padding={mobileView ? "none" : "normal"}
-          >
+          <TableCell sx={textSx} align="right" padding={mobileView ? "none" : "normal"}>
             {player.goals_scored}
           </TableCell>
-          <TableCell
-            sx={textSx}
-            align="right"
-            padding={mobileView ? "none" : "normal"}
-          >
+          <TableCell sx={textSx} align="right" padding={mobileView ? "none" : "normal"}>
             {player.assists_made}
           </TableCell>
         </>
       )}
-      <TableCell
-        sx={textSx}
-        align="right"
-        padding={mobileView ? "none" : "normal"}
-      >
+      <TableCell sx={textSx} align="right" padding={mobileView ? "none" : "normal"}>
         {player.sell_price}
       </TableCell>
       <TableCell align="right" padding={mobileView ? "none" : "normal"}>

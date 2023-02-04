@@ -47,9 +47,9 @@ const PackContent: React.FC<{
     <>
       <PageTitle title="Pack Content" />
       <PageDescription>
-        On this page, you can find all the players you've obtained through a
-        pack purchase. You can view their attributes and skills, and also have
-        the option to quickly sell any player you no longer want on your team.
+        On this page, you can find all the players you've obtained through a pack
+        purchase. You can view their attributes and skills, and also have the option to
+        quickly sell any player you no longer want on your team.
       </PageDescription>
       <CustomTable
         objects={packContent}

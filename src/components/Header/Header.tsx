@@ -23,9 +23,7 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../selectors/user";
 
 const DesktopHeader = () => {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const user = useSelector(getUser);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -103,9 +101,7 @@ const DesktopHeader = () => {
 };
 
 const MobileHeader = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const user = useSelector(getUser);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {

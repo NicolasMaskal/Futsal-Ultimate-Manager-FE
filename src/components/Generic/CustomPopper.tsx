@@ -35,11 +35,7 @@ const CustomPopper: React.FC<{
           <Paper>
             {children}
             <div className="flex justify-center">
-              <Button
-                sx={textSx}
-                color="success"
-                onClick={handleSuccessWrapper}
-              >
+              <Button sx={textSx} color="success" onClick={handleSuccessWrapper}>
                 {buttonSuccessText}
               </Button>
               <Button sx={textSx} color="error" onClick={handleClose}>

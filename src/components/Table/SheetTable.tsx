@@ -34,8 +34,7 @@ const headCells: HeadCellType[] = [
 
 const headCellsWithoutPlayingPos: HeadCellType[] = headCells.filter(
   (headCell) =>
-    headCell.id !== "playingPosition" &&
-    headCell.label !== "Player ability in position"
+    headCell.id !== "playingPosition" && headCell.label !== "Player ability in position"
 );
 
 const SheetTable: React.FC<{
@@ -43,19 +42,12 @@ const SheetTable: React.FC<{
   displayPlayingPosition: boolean;
   handleRowClicked: (clickedRow: PlayerInLineup) => void;
   selectedRow: PlayerInLineup | null;
-}> = ({
-  playersInLineup,
-  displayPlayingPosition,
-  handleRowClicked,
-  selectedRow,
-}) => {
+}> = ({ playersInLineup, displayPlayingPosition, handleRowClicked, selectedRow }) => {
   return (
     <CustomTable
       RowComponent={PlayerInSheetRow}
       objects={playersInLineup}
-      headCells={
-        displayPlayingPosition ? headCells : headCellsWithoutPlayingPos
-      }
+      headCells={displayPlayingPosition ? headCells : headCellsWithoutPlayingPos}
       defaultOrderBy={"playingPosition"}
       defaultOrder={"desc"}
       pagination={false}

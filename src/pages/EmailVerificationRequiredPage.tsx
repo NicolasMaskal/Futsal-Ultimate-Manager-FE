@@ -16,10 +16,9 @@ const EmailVerificationRequiredPage = () => {
     <>
       <PageTitle title={"Email Verification Required"} />
       <PageDescription>
-        Your email address is currently unverified. Please check your email
-        inbox and spam folder for a verification link. Clicking the link will
-        confirm your email address and allow you to access all features of the
-        site.
+        Your email address is currently unverified. Please check your email inbox and spam
+        folder for a verification link. Clicking the link will confirm your email address
+        and allow you to access all features of the site.
       </PageDescription>
     </>
   );

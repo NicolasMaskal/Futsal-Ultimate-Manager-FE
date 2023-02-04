@@ -27,12 +27,7 @@ const HomePageCard: React.FC<{
             className="flex flex-grow mr-auto ml-auto pt-6"
           />
           <CardContent sx={{ height: "10rem" }}>
-            <Typography
-              className="font-bold"
-              gutterBottom
-              variant="h5"
-              component="div"
-            >
+            <Typography className="font-bold" gutterBottom variant="h5" component="div">
               {cardTitle}
             </Typography>
             <Typography variant="body2" color="text.secondary">

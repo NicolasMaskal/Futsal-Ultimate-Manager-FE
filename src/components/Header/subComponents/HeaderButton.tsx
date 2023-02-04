@@ -12,13 +12,7 @@ const HeaderButton: React.FC<{
   buttonText: string;
   onClick?: React.MouseEventHandler | undefined;
   href: string;
-}> = ({
-  tooltipText = "",
-  startIcon,
-  buttonText,
-  onClick = undefined,
-  href,
-}) => {
+}> = ({ tooltipText = "", startIcon, buttonText, onClick = undefined, href }) => {
   const mobileView = useMobileView();
 
   return (

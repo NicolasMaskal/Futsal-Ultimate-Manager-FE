@@ -31,9 +31,7 @@ const GoldPackDescription = () => {
           variant="body2"
           color="text.secondary"
         >
-          {
-            " Pack offers the most elite players, with exceptional ratings and skills."
-          }
+          {" Pack offers the most elite players, with exceptional ratings and skills."}
         </Typography>
       </Typography>
       <Typography component="span" variant="body2" color="text.secondary">
@@ -42,9 +40,7 @@ const GoldPackDescription = () => {
         }
       </Typography>
       <Typography component="span" variant="body2" color="text.secondary">
-        {
-          "They are a must-have for any serious team looking to dominate the competition."
-        }
+        {"They are a must-have for any serious team looking to dominate the competition."}
       </Typography>
     </>
   );

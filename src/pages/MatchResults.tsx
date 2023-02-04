@@ -42,9 +42,7 @@ export const resultsPageDescription =
 
 const MatchResults = () => {
   const team = useAppSelector(getTeamOrFail);
-  const { data } = useFetchData<MatchResult[]>(
-    createTeamMatchResultsUrl(team.id)
-  );
+  const { data } = useFetchData<MatchResult[]>(createTeamMatchResultsUrl(team.id));
 
   return (
     <>
@@ -73,10 +71,7 @@ const MatchResults = () => {
       {data && data.length === 0 && (
         <PageDescription className="font-bold py-44">
           No matches played yet? Head over to the{" "}
-          <Link
-            className="text-sky-500 hover:text-sky-700"
-            to={MATCH_CENTER_URL}
-          >
+          <Link className="text-sky-500 hover:text-sky-700" to={MATCH_CENTER_URL}>
             match center
           </Link>{" "}
           to play one!

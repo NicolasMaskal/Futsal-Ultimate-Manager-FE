@@ -1,15 +1,12 @@
 import * as React from "react";
-import {useCallback, useEffect} from "react";
+import { useCallback, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import MyTableHeader, {
-  HeadCellType,
-  Order,
-} from "./subComponents/MyTableHeader";
+import MyTableHeader, { HeadCellType, Order } from "./subComponents/MyTableHeader";
 import SkeletonTable from "./subComponents/SkeletonTable";
 import { SxProps } from "@mui/system";
 import stableSort from "../../utils/sort";
@@ -55,10 +52,7 @@ export type RowDeletionFunction = <DataType extends { id: number | string }>(
   object: DataType
 ) => void;
 
-interface TableProp<
-  DataType extends { id: number | string },
-  AdditionalInfoType
-> {
+interface TableProp<DataType extends { id: number | string }, AdditionalInfoType> {
   RowComponent: RowComponentType<DataType, AdditionalInfoType>;
   objects: DataType[] | null | undefined;
   headCells: HeadCellType[];
@@ -71,10 +65,7 @@ interface TableProp<
   additionalInfo: AdditionalInfoType;
 }
 
-const CustomTable: <
-  DataType extends { id: number | string },
-  AdditionalInfoType
->(
+const CustomTable: <DataType extends { id: number | string }, AdditionalInfoType>(
   p: TableProp<DataType, AdditionalInfoType>
 ) => React.ReactElement<TableProp<DataType, AdditionalInfoType>> = ({
   RowComponent,
@@ -95,15 +86,16 @@ const CustomTable: <
 
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
 
-  const rowDeletionHandler: RowDeletionFunction = useCallback((deletedObject) => {
-    const newObjects = objectsToDisplay!.filter(
-        (obj) => obj.id !== deletedObject.id
-    );
-    setObjects(newObjects);
-    if(onRowDeleteCallback) {
-      onRowDeleteCallback();
-    }
-  }, [objectsToDisplay, onRowDeleteCallback])
+  const rowDeletionHandler: RowDeletionFunction = useCallback(
+    (deletedObject) => {
+      const newObjects = objectsToDisplay!.filter((obj) => obj.id !== deletedObject.id);
+      setObjects(newObjects);
+      if (onRowDeleteCallback) {
+        onRowDeleteCallback();
+      }
+    },
+    [objectsToDisplay, onRowDeleteCallback]
+  );
 
   useEffect(() => {
     if (!pagination && objects) {
@@ -116,10 +108,7 @@ const CustomTable: <
     return <SkeletonTable size={tableWidthInGrid} />;
   }
   const sideSize = (12 - tableWidthInGrid) / 2;
-  const handleRequestSort = (
-    event: React.MouseEvent<unknown>,
-    property: string
-  ) => {
+  const handleRequestSort = (event: React.MouseEvent<unknown>, property: string) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -128,9 +117,7 @@ const CustomTable: <
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -181,10 +168,7 @@ const CustomTable: <
               iconSx={iconSx}
             />
             <TableBody>
-              {stableSort(
-                objectsToDisplay,
-                getComparator(order, orderBy as string)
-              )
+              {stableSort(objectsToDisplay, getComparator(order, orderBy as string))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((obj) => {
                   return (

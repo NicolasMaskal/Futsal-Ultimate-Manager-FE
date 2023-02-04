@@ -14,15 +14,7 @@ const PackCard: React.FC<{
   imgSrc: string;
   animationDuration: number;
   onBuy: (packType: PackType, price: number) => void;
-}> = ({
-  packName,
-  color,
-  PackDescription,
-  price,
-  imgSrc,
-  animationDuration,
-  onBuy,
-}) => {
+}> = ({ packName, color, PackDescription, price, imgSrc, animationDuration, onBuy }) => {
   const [buyOpen, setBuyOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -102,11 +94,7 @@ const PackCard: React.FC<{
             </CustomPopper>
             <Typography>
               {"Cost: "}
-              <Typography
-                component="span"
-                display="inline"
-                className="font-bold"
-              >
+              <Typography component="span" display="inline" className="font-bold">
                 {price}{" "}
               </Typography>
             </Typography>
