@@ -1,5 +1,5 @@
 import PageTitle from "../components/Generic/PageTitle";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import GoldPackCard from "../components/Packs/GoldPackCard";
 import SilverPackCard from "../components/Packs/SilverPackCard";
@@ -22,7 +22,7 @@ export const shopPageDescription =
   "        elite gold packs.";
 const Shop = () => {
   const team = useAppSelector(getTeamOrFail);
-  const { response, sendData, error, loading, resetSendData } = useSendData<
+  const { response, sendData, loading, resetSendData } = useSendData<
     { pack_type: PackType },
     Player[]
   >(createTeamBuyPackUrl(team.id), "post");
@@ -31,19 +31,14 @@ const Shop = () => {
   const [price, setPrice] = useState<number | null>(null);
   const handleBuyPack = (packType: PackType, price: number) => {
     setPrice(price);
-    sendData({ pack_type: packType });
-  };
-  useEffect(() => {
-    if (error) {
-      enqueueSnackbar(getFirstErrorMessage(error, "Error buying pack!"), {
+    sendData({ pack_type: packType }).then(() => {
+      dispatch(teamCoinsDecrease({coins: price}))
+    }).catch((e) => {
+      enqueueSnackbar(getFirstErrorMessage(e, "Error buying pack!"), {
         variant: "error",
       });
-    }
-    if(response && price){
-      dispatch(teamCoinsDecrease({coins: price}))
-
-    }
-  }, [dispatch, enqueueSnackbar, error, price, response]);
+    });
+  };
 
   if (loading) {
     return (

@@ -1,27 +1,30 @@
 import { useCallback, useState } from "react";
 import { AxiosRequestConfig, AxiosError } from "axios";
 import { axiosInstance } from "../../constants/be-urls";
-import { BeError } from "../../models";
+import {BeError} from "../../utils/be-error-helpers";
 
 interface SendDataResult<InputType, OutputType> {
   loading: boolean;
-  error: AxiosError<BeError> | null;
+  error: any | null;
   response: OutputType | null;
-  sendData: (data: InputType, config?: AxiosRequestConfig) => void;
+  sendData: (data: InputType, config?: AxiosRequestConfig) => Promise<void>;
   resetSendData: () => void;
 }
 
 const useSendData = <InputType, OutputType>(
-  url: string,
+  url: string| null,
   method: "post" | "put" | "patch"
 ): SendDataResult<InputType, OutputType> => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<AxiosError<BeError> | null>(null);
+  const [error, setError] = useState<any | null>(null);
   const [response, setResponse] = useState<OutputType | null>(null);
 
   const sendData = useCallback(
     async (data: InputType, config?: AxiosRequestConfig) => {
       setLoading(true);
+      if(!url){
+        throw new Error('Invalid url!');
+      }
       try {
         const response = await axiosInstance.request({
           url,
@@ -37,6 +40,7 @@ const useSendData = <InputType, OutputType>(
         } else {
           console.log(e);
         }
+        throw e;
       } finally {
         setLoading(false);
       }

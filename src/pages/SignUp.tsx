@@ -14,10 +14,7 @@ import { INDEX_URL, LOGIN_URL } from "../constants/urls";
 import { Alert, Divider } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import LoadingButton from "@mui/lab/LoadingButton";
-import {
-  isEmail,
-  passwordContainsValidCharacters,
-} from "../utils/string-helpers";
+import { isEmail, passwordContainsValidCharacters } from "../utils/string-helpers";
 import useSendData from "../hooks/Generic/useSendData";
 import { BE_REGISTER_URL } from "../constants/be-urls";
 import { FormikHelpers } from "formik/dist/types";
@@ -73,22 +70,19 @@ interface OutputSendData {
 }
 
 export default function SignUp() {
-  const { response, error, sendData } = useSendData<
-    InputSendData,
-    OutputSendData
-  >(BE_REGISTER_URL, "post");
+  const { response, error, sendData } = useSendData<InputSendData, OutputSendData>(
+    BE_REGISTER_URL,
+    "post"
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const submitForm = (
-    values: Values,
-    { setSubmitting }: FormikHelpers<Values>
-  ) => {
+  const submitForm = (values: Values, { setSubmitting }: FormikHelpers<Values>) => {
     sendData({
       email: values.email,
       team_name: values.teamName,
       password: values.password,
-    });
+    }).catch(() => {});
     setSubmitting(false);
   };
 
@@ -185,17 +179,10 @@ export default function SignUp() {
                 >
                   Sign Up
                 </LoadingButton>
-                {error && (
-                  <Alert severity="error">{getFirstErrorMessage(error)}</Alert>
-                )}
+                {error && <Alert severity="error">{getFirstErrorMessage(error)}</Alert>}
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link
-                      component={RouterLink}
-                      to={LOGIN_URL}
-                      href="#"
-                      variant="body2"
-                    >
+                    <Link component={RouterLink} to={LOGIN_URL} href="#" variant="body2">
                       Already have an account? Sign in
                     </Link>
                   </Grid>

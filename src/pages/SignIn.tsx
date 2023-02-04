@@ -20,6 +20,7 @@ import { User } from "../models";
 import { Alert } from "@mui/material";
 import { useAppDispatch } from "../hooks/Generic/hooks";
 import { setUser } from "../store/user-slice";
+import { getFirstErrorMessage } from "../utils/be-error-helpers";
 
 interface ValueType {
   email: string;
@@ -48,11 +49,8 @@ export default function SignIn() {
   >(BE_LOGIN_URL, "post");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const submitForm = (
-    values: ValueType,
-    { setSubmitting }: FormikHelpers<ValueType>
-  ) => {
-    sendData({ email: values.email, password: values.password });
+  const submitForm = (values: ValueType, { setSubmitting }: FormikHelpers<ValueType>) => {
+    sendData({ email: values.email, password: values.password }).catch(() => {});
     setSubmitting(false);
   };
 
@@ -108,7 +106,11 @@ export default function SignIn() {
                   id="password"
                   autoComplete="current-password"
                 />
-                {error && <Alert severity="error">Invalid credentials!</Alert>}
+                {error && (
+                  <Alert severity="error">
+                    {getFirstErrorMessage(error, "Invalid credentials!")}
+                  </Alert>
+                )}
                 <LoadingButton
                   type="submit"
                   loading={isSubmitting}

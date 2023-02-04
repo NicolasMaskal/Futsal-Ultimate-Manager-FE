@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import SheetTable from "../components/Table/SheetTable";
 import Grid from "@mui/material/Grid";
 import PageTitle from "../components/Generic/PageTitle";
-import { MatchData, PlayerInLineup } from "../models";
+import { MatchData } from "../models";
 import PageDescription from "../components/Packs/PageDescription";
 import useMobileView from "../hooks/Generic/useMobileView";
 import { useSnackbar } from "notistack";
 import SubPageTitle from "../components/Generic/SubPageTitle";
 import SimulateMatchOptions from "../components/PreMatch/SimulateMatchOptions";
-import {
-  dummyMatchData,
-  dummyPlayersInLineup,
-  dummyPlayersNotPlaying,
-} from "./dummyReturns";
 import { Match } from "../components/Match/Match";
 import SaveButton from "../components/Buttons/SaveButton";
+import { createTeamMatchResultsUrl } from "../utils/url-helpers";
+import { useSelector } from "react-redux";
+import { getTeamOrFail } from "../selectors/user";
+import useSendData from "../hooks/Generic/useSendData";
+import useTeamLineup from "../hooks/PreMatch/useTeamLineup";
+import { getFirstErrorMessage } from "../utils/be-error-helpers";
+import { useAppDispatch } from "../hooks/Generic/hooks";
 
 export const matchCenterPageDescription =
   "This page allows you to manage your team's lineup for your upcoming\n" +
@@ -24,100 +26,84 @@ export const matchCenterPageDescription =
   "        start a match!";
 const MatchCenter = () => {
   const isMobile = useMobileView();
-  const [playersOnScreen, setPlayersOnScreen] = useState<
-    PlayerInLineup[] | null
-  >(null);
+  const team = useSelector(getTeamOrFail);
+  const {
+    saveLineup,
+    errorSave,
+    handleRowClicked,
+    teamSheetId,
+    selectedRow,
+    lineupIsReady,
+    lineupIsLoading,
+    playersInLineup,
+    playersNotInLineup,
+  } = useTeamLineup(team.id);
+  const {
+    response: responseMatch,
+    loading: matchIsLoading,
+    sendData: sendStartMatch,
+  } = useSendData<{ difficulty_rating: number; team_sheet: number }, MatchData>(
+    createTeamMatchResultsUrl(team.id),
+    "post"
+  );
+  const { enqueueSnackbar } = useSnackbar();
+  const [difficulty, setDifficulty] = useState(5);
 
-  const [selectedRow, setSelectedRow] = useState<PlayerInLineup | null>(null);
-
-  const findIndexInArray = (playerToFind: PlayerInLineup) => {
-    return playersOnScreen?.findIndex(
-      (player) => player.id === playerToFind.id
-    )!;
-  };
-  const handleRowClicked = (clickedRow: PlayerInLineup) => {
-    if (!selectedRow) {
-      setSelectedRow(clickedRow);
-    } else {
-      const index1 = findIndexInArray(selectedRow);
-      const index2 = findIndexInArray(clickedRow);
-      const newPlayersOnScreen = [...playersOnScreen!];
-      newPlayersOnScreen[index1] = new PlayerInLineup(
-        clickedRow.player,
-        selectedRow.playingPosition
-      );
-      newPlayersOnScreen[index2] = new PlayerInLineup(
-        selectedRow.player,
-        clickedRow.playingPosition
-      );
-      setPlayersOnScreen(newPlayersOnScreen);
-      setSelectedRow(null);
-    }
+  const handleOnSaveClick = () => {
+    saveLineup().then(() => {
+      enqueueSnackbar("Lineup successfully saved!", { variant: "success" });
+    });
   };
 
   useEffect(() => {
-    // TODO Fetch all players, then filter out those that exist in the sheet, then wrap around each class with PlayerLineup
-    setTimeout(() => {
-      setPlayersOnScreen(dummyPlayersInLineup.concat(dummyPlayersNotPlaying));
-    }, 500);
-  }, []);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const { enqueueSnackbar } = useSnackbar();
-  const [matchData, setMatchData] = useState<MatchData | null>(null);
-
-  const handleOnSaveClick = () => {
-    // TODO Add api functionality
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      enqueueSnackbar("Lineup successfully saved!", { variant: "success" });
-    }, 500);
-  };
+    if (errorSave) {
+      enqueueSnackbar("Error saving lineup!", { variant: "error" });
+    }
+  }, [enqueueSnackbar, errorSave]);
 
   const handleMatchStartClick = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      setMatchData(dummyMatchData);
-    }, 500);
+    saveLineup()
+      .then(() => {
+        sendStartMatch({
+          difficulty_rating: difficulty,
+          team_sheet: teamSheetId as number,
+        }).catch((e) => {
+          enqueueSnackbar(getFirstErrorMessage(e, "Error starting match!"), {
+            variant: "error",
+          });
+        });
+      })
+      .catch((e) => {
+        enqueueSnackbar(getFirstErrorMessage(e, "Error saving lineup!"), {
+          variant: "error",
+        });
+      });
   };
 
   const handleMatchFinishClick = () => {
-    setMatchData(null);
+    window.location.reload();
   };
 
-  const playersInLineup = playersOnScreen?.filter(
-    (playerInLineup) => playerInLineup.playingPosition !== "Not Playing"
-  );
-  const playersNotInLineup = playersOnScreen?.filter(
-    (playerInLineup) =>
-      playerInLineup.playingPosition === "Not Playing" && playerInLineup.player
-  );
-
-  if (matchData) {
+  if (responseMatch) {
     return (
-      <Match
-        handleMatchFinishClick={handleMatchFinishClick}
-        matchData={matchData}
-      />
+      <Match handleMatchFinishClick={handleMatchFinishClick} matchData={responseMatch} />
     );
   }
 
+  const onDifficultyChange = (difficulty: number) => {
+    setDifficulty(difficulty);
+  };
+
+  const isLoading = lineupIsLoading || matchIsLoading;
   return (
     <>
       <PageTitle title={"MATCH CENTER"} />
       <PageDescription>{matchCenterPageDescription}</PageDescription>
       <PageDescription>
-        To switch players between the lists, click on the two specific players
-        you want to switch
+        To switch players between the lists, click on the two specific players you want to
+        switch
       </PageDescription>
-      <Grid
-        container
-        columns={isMobile ? 8 : 12}
-        spacing={8}
-        className="pt-8 px-10"
-      >
+      <Grid container columns={isMobile ? 8 : 12} spacing={8} className="pt-8 px-10">
         <Grid item xs={8}>
           <SubPageTitle content="Lineup for next match" />
           <SheetTable
@@ -126,18 +112,18 @@ const MatchCenter = () => {
             playersInLineup={playersInLineup}
             selectedRow={selectedRow}
           />
-          {playersOnScreen && (
+          {playersInLineup && (
             <div className={"flex mt-8 items-center justify-around"}>
               <div>
-                <SaveButton
-                  handleOnSaveClick={handleOnSaveClick}
-                  isLoading={isLoading}
-                />
+                <SaveButton handleOnSaveClick={handleOnSaveClick} isLoading={isLoading} />
               </div>
               <div>
                 <SimulateMatchOptions
+                  onDifficultyChange={onDifficultyChange}
+                  difficulty={difficulty}
                   handleClick={handleMatchStartClick}
                   isLoading={isLoading}
+                  lineupIsReady={lineupIsReady}
                 />
               </div>
             </div>

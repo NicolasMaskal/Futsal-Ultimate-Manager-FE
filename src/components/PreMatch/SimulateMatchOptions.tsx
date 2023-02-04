@@ -10,25 +10,19 @@ import InfoTooltip from "../Generic/InfoTooltip";
 
 const SimulateMatchOptions: React.FC<{
   handleClick: React.MouseEventHandler;
+  onDifficultyChange: (difficulty: number) => void;
+  difficulty: number;
   isLoading: boolean;
-}> = ({ handleClick, isLoading }) => {
-  const [value, setValue] = React.useState<
-    number | string | Array<number | string>
-  >(5);
-
+  lineupIsReady: boolean;
+}> = ({ handleClick, onDifficultyChange, difficulty, isLoading, lineupIsReady }) => {
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue);
+    onDifficultyChange(newValue as number);
   };
 
   return (
     <>
       <Box sx={{ width: 200 }}>
-        <Typography
-          id="input-slider"
-          className="font-bold"
-          align="center"
-          gutterBottom
-        >
+        <Typography id="input-slider" className="font-bold" align="center" gutterBottom>
           CPU Difficulty Rating
         </Typography>
         <Grid container spacing={2} alignItems="center">
@@ -42,7 +36,7 @@ const SimulateMatchOptions: React.FC<{
             <Slider
               step={1}
               marks
-              value={typeof value === "number" ? value : 0}
+              value={difficulty}
               onChange={handleSliderChange}
               min={1}
               max={10}
@@ -50,12 +44,13 @@ const SimulateMatchOptions: React.FC<{
             />
           </Grid>
           <Grid item>
-            <Typography>{value as number}</Typography>
+            <Typography>{difficulty as number}</Typography>
           </Grid>
         </Grid>
       </Box>
       <div className="flex justify-center">
         <LoadingButton
+          disabled={!lineupIsReady}
           color="primary"
           onClick={handleClick}
           loading={isLoading}

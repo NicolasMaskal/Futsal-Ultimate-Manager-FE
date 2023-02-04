@@ -50,16 +50,15 @@ type AdditionalInfoType = {
   selectedRow: PlayerInLineup | null;
 };
 
-const PlayerInSheetRow: RowComponentType<
-  PlayerInLineup,
-  AdditionalInfoType
-> = ({ obj, textSx, additionalInfo }) => {
+const PlayerInSheetRow: RowComponentType<PlayerInLineup, AdditionalInfoType> = ({
+  obj,
+  textSx,
+  additionalInfo,
+}) => {
   const { averageSkill, handleRowClicked, selectedRow } = additionalInfo;
   const playerInLineup = obj;
   const colorByPos = getColorByPos(playerInLineup.player?.preferred_position);
-  const colorByPlayingPos = getColorByPlayingPos(
-    playerInLineup.playingPosition
-  );
+  const colorByPlayingPos = getColorByPlayingPos(playerInLineup.playingPosition);
   const colorBySkill = getColorBySkill(playerInLineup.player, averageSkill);
   const mobileView = useMobileView();
   const playerEffectiveness = getPlayerEffectivenessInPose(playerInLineup);
@@ -98,30 +97,26 @@ const PlayerInSheetRow: RowComponentType<
               />
               {
                 <Box sx={{ ml: 2, display: mobileView ? "none" : "flex" }}>
-                  <Typography sx={textSx}>
-                    {labels[playerEffectiveness]}
-                  </Typography>
+                  <Typography sx={textSx}>{labels[playerEffectiveness]}</Typography>
                 </Box>
               }
             </Box>
           </TableCell>
         </>
       ) : null}
-      <TableCell
-        align="center"
-        sx={textSx}
-        padding={mobileView ? "none" : "normal"}
-      >
-        {playerInLineup.player!.name}
+      <TableCell align="center" sx={textSx} padding={mobileView ? "none" : "normal"}>
+        {playerInLineup.player ? playerInLineup.player.name : " "}
       </TableCell>
       <TableCell align="center" padding={mobileView ? "none" : "normal"}>
         <Typography sx={textSx} color={colorByPos}>
-          {capitalizeFirstLetter(playerInLineup.player!.preferred_position)}
+          {playerInLineup.player
+            ? capitalizeFirstLetter(playerInLineup.player.preferred_position)
+            : " "}
         </Typography>
       </TableCell>
       <TableCell align="left" padding={mobileView ? "none" : "normal"}>
         <Typography sx={textSx} color={colorBySkill}>
-          {playerInLineup.player!.skill}
+          {playerInLineup.player ? playerInLineup.player.skill : " "}
         </Typography>
       </TableCell>
     </TableRow>

@@ -84,4 +84,12 @@ export interface User {
   email_verified: boolean;
 }
 
-export type BeError = { message: string; extra: { fields: any[] } };
+export interface Lineup<T extends Player | number>{
+  id: number,
+  name: string,
+  right_attacker: T | null
+  left_attacker: T | null
+  right_defender: T | null
+  left_defender: T | null
+  goalkeeper: T | null
+}

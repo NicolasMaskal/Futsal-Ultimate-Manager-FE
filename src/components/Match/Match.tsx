@@ -9,22 +9,26 @@ import TeamNameMatch from "./subComponents/TeamName";
 import MatchRewards from "./subComponents/MatchRewards";
 import MatchStatus from "./subComponents/MatchStatus";
 import Box from "@mui/material/Box";
+import { useAppDispatch, useAppSelector } from "../../hooks/Generic/hooks";
+import { getTeamOrFail } from "../../selectors/user";
+import { teamCoinsIncrease } from "../../store/user-slice";
 
 const SCORER_HEIGHT = 225;
 export const Match: React.FC<{
   matchData: MatchData;
   handleMatchFinishClick: React.MouseEventHandler;
 }> = ({ matchData, handleMatchFinishClick }) => {
+  const team = useAppSelector(getTeamOrFail);
   const [currentMinute, setCurrentMinute] = useState(0);
   const [timeoutTime, setTimeoutTime] = useState(1000);
 
   const playerMoments = matchData.goal_moments.filter(
     (moment) =>
-      moment.goal_scorer.team.id === 10 && moment.minute <= currentMinute
+      moment.goal_scorer.team.id === team.id && moment.minute <= currentMinute
   );
   const cpuMoments = matchData.goal_moments.filter(
     (moment) =>
-      moment.goal_scorer.team.id !== 10 && moment.minute <= currentMinute
+      moment.goal_scorer.team.id !== team.id && moment.minute <= currentMinute
   );
 
   const currentMoment = matchData.goal_moments.find(
@@ -39,8 +43,11 @@ export const Match: React.FC<{
     }
   }, [currentMoment]);
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    if (currentMinute > 40) {
+    if (currentMinute === 40) {
+      dispatch(teamCoinsIncrease({coins: matchData.coins_reward}))
       return;
     }
     const timeoutId = setTimeout(() => {
@@ -48,7 +55,7 @@ export const Match: React.FC<{
     }, timeoutTime);
 
     return () => clearTimeout(timeoutId);
-  }, [currentMinute, timeoutTime]);
+  }, [currentMinute, dispatch, matchData.coins_reward, timeoutTime]);
 
   return (
     <>

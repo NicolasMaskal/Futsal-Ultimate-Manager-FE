@@ -10,9 +10,6 @@ import {
 } from "@mui/material/colors";
 
 export const getColorByPos = (prefPos: Position | undefined) => {
-  if (!prefPos) {
-    return "#000000";
-  }
   if (prefPos === "attacker") {
     return orange[500];
   }
@@ -22,6 +19,7 @@ export const getColorByPos = (prefPos: Position | undefined) => {
   if (prefPos === "goalkeeper") {
     return brown[400];
   }
+  return "#000000";
 };
 
 export const getColorBySkill = (
