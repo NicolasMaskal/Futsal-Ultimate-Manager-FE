@@ -5,8 +5,11 @@ import ProceedButton from "../../Buttons/ProceedButton";
 
 const MatchRewards: React.FC<{
   coinReward: number;
-  onProceedClick: React.MouseEventHandler;
-}> = ({ coinReward, onProceedClick }) => {
+}> = ({ coinReward }) => {
+  const onProceedClick = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       <SubPageTitle content="Match Rewards" />

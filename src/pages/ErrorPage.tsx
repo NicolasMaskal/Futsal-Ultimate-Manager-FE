@@ -58,7 +58,6 @@ const ErrorPage: React.FC<{ errorStatus?: number | undefined }> = ({
     <>
       <Header />
       <div className="flex flex-col h-screen">
-        {/*<ResponsiveAppBar /> */}
         <div className="w-full h-full">{errorContent}</div>
       </div>
     </>

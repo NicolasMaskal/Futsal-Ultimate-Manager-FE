@@ -24,6 +24,7 @@ import IndexPage from "./pages/IndexPage";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AnonymousOnlyRoute from "./components/Routing/AnonymousOnlyRoute";
 import EmailVerificationRequiredPage from "./pages/EmailVerificationRequiredPage";
+import MatchDetail from "./pages/MatchDetail";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,14 @@ const router = createBrowserRouter([
       {
         path: EMAIL_VERIFICATION_REQUIRED_URL,
         element: <EmailVerificationRequiredPage />,
+      },
+      {
+        path: `${MATCH_RESULTS_URL}/:matchId`,
+        element: (
+          <PrivateRoute>
+            <MatchDetail />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -12,6 +12,10 @@ export const createTeamMatchResultsUrl = (teamId: number) => {
   return `${BE_TEAMS_URL}${teamId}/match-results/`;
 };
 
+export const createTeamMatchResultDetailUrl = (teamId: number, matchId: number) => {
+  return `${BE_TEAMS_URL}${teamId}/match-results/${matchId}/`;
+};
+
 export const createTeamBuyPackUrl = (teamId: number) => {
   return `${BE_TEAMS_URL}${teamId}/buy-pack/`;
 };

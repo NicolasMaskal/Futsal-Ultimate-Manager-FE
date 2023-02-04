@@ -16,8 +16,8 @@ import { teamCoinsIncrease } from "../../store/user-slice";
 const SCORER_HEIGHT = 225;
 export const Match: React.FC<{
   matchData: MatchData;
-  handleMatchFinishClick: React.MouseEventHandler;
-}> = ({ matchData, handleMatchFinishClick }) => {
+  isSimulated?: boolean;
+}> = ({ matchData, isSimulated = false }) => {
   const team = useAppSelector(getTeamOrFail);
   const [currentMinute, setCurrentMinute] = useState(0);
   const [timeoutTime, setTimeoutTime] = useState(1000);
@@ -44,16 +44,20 @@ export const Match: React.FC<{
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (currentMinute === 40) {
+    if (!isSimulated) {
+      setCurrentMinute(40);
+      return
+    }
+    if(currentMinute >= 40){
       dispatch(teamCoinsIncrease({ coins: matchData.coins_reward }));
-      return;
+      return
     }
     const timeoutId = setTimeout(() => {
       setCurrentMinute(currentMinute + 1);
     }, timeoutTime);
 
     return () => clearTimeout(timeoutId);
-  }, [currentMinute, dispatch, matchData.coins_reward, timeoutTime]);
+  }, [currentMinute, dispatch, isSimulated, matchData.coins_reward, timeoutTime]);
 
   return (
     <>
@@ -114,12 +118,9 @@ export const Match: React.FC<{
         <Grid item xs={5} className="pt-20">
           <Box sx={{ minHeight: 150 }}>
             {currentMinute < 40 ? (
-              <GoalDescription key={currentMinute} goalMoment={currentMoment} />
+              <GoalDescription goalMoment={currentMoment} />
             ) : (
-              <MatchRewards
-                coinReward={matchData.coins_reward}
-                onProceedClick={handleMatchFinishClick}
-              />
+              isSimulated && <MatchRewards coinReward={matchData.coins_reward} />
             )}
           </Box>
         </Grid>

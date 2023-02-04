@@ -12,6 +12,7 @@ const TeamName: React.FC<{
     <Typography fontSize={"1.5rem"} className={"font-bold pb-1"} textAlign={"center"}>
       {`${team.name} `}
       <Typography
+        component={"span"}
         display={"inline"}
         fontSize={"1.5rem"}
         className={"font-bold pb-1"}

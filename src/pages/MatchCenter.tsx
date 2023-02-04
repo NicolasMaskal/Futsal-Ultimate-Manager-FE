@@ -50,19 +50,15 @@ const MatchCenter = () => {
   const [difficulty, setDifficulty] = useState(5);
 
   const handleOnSaveClick = () => {
-    saveLineup().then(() => {
+    return saveLineup().then(() => {
       enqueueSnackbar("Lineup successfully saved!", { variant: "success" });
-    });
+    }).catch((e) => enqueueSnackbar(getFirstErrorMessage(e, "Error saving lineup!"), {
+      variant: "error",
+    }));
   };
 
-  useEffect(() => {
-    if (errorSave) {
-      enqueueSnackbar("Error saving lineup!", { variant: "error" });
-    }
-  }, [enqueueSnackbar, errorSave]);
-
   const handleMatchStartClick = () => {
-    saveLineup()
+    handleOnSaveClick()
       .then(() => {
         sendStartMatch({
           difficulty_rating: difficulty,
@@ -72,21 +68,12 @@ const MatchCenter = () => {
             variant: "error",
           });
         });
-      })
-      .catch((e) => {
-        enqueueSnackbar(getFirstErrorMessage(e, "Error saving lineup!"), {
-          variant: "error",
-        });
       });
-  };
-
-  const handleMatchFinishClick = () => {
-    window.location.reload();
   };
 
   if (responseMatch) {
     return (
-      <Match handleMatchFinishClick={handleMatchFinishClick} matchData={responseMatch} />
+      <Match isSimulated matchData={responseMatch} />
     );
   }
 
