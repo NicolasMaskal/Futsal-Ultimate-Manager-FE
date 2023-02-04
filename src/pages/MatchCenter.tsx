@@ -86,7 +86,10 @@ const MatchCenter = () => {
       <PageDescription>{matchCenterPageDescription}</PageDescription>
       <PageDescription>
         To switch players between the lists, click on the two specific players you want to
-        switch
+        switch.
+      </PageDescription>
+      <PageDescription>
+        Keep in mind, that players with low stamina don't perform well!
       </PageDescription>
       <Grid container columns={isMobile ? 8 : 12} spacing={8} className="pt-8 px-10">
         <Grid item xs={8}>
