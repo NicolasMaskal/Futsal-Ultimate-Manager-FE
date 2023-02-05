@@ -6,6 +6,7 @@ import PlayerRow from "../Table/rowComponents/PlayerRow";
 import ProceedButton from "../Buttons/ProceedButton";
 import PageTitle from "../Generic/PageTitle";
 import PageDescription from "../Generic/PageDescription";
+import { Fade } from "@mui/material";
 
 const headCells: HeadCellType[] = [
   {
@@ -57,6 +58,8 @@ const PackContent: React.FC<{
         purchase. You can view their attributes and skills, and also have the option to
         quickly sell any player you no longer want on your team.
       </PageDescription>
+      <Fade in={true}>
+        <div>
       <CustomTable
         objects={packContent}
         defaultOrder={"desc"}
@@ -73,6 +76,8 @@ const PackContent: React.FC<{
           buttonSx={{ display: "block", alignSelf: "center" }}
         />
       </div>
+        </div>
+      </Fade>
     </>
   );
 };
