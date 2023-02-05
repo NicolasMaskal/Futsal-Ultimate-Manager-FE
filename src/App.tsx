@@ -32,7 +32,7 @@ const theme = createTheme(themeOptions);
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={1}>
+      <SnackbarProvider maxSnack={1} autoHideDuration={2000}>
         <Provider store={store}>
           <CssBaseline />
           <link

@@ -7,6 +7,7 @@ import LocationCityRoundedIcon from "@mui/icons-material/LocationCityRounded";
 import { RowComponentType } from "../CustomTable";
 import { MatchResult } from "../../../models";
 import useMobileView from "../../../hooks/Generic/useMobileView";
+import { Link } from "react-router-dom";
 
 const getColorByScore = (matchResult: MatchResult) => {
   // TODO Change color based on goal difference
@@ -28,7 +29,7 @@ const MatchResultRow: RowComponentType<MatchResult, undefined> = ({
   const mobileView = useMobileView();
   const matchResult = obj;
   const colorByScore = getColorByScore(matchResult);
-
+  const detailUrl = "/match-results/" + matchResult.id;
   return (
     <TableRow
       hover
@@ -43,20 +44,15 @@ const MatchResultRow: RowComponentType<MatchResult, undefined> = ({
         <LocationCityRoundedIcon sx={iconSx} />
       </TableCell>
       <TableCell align="left" sx={textSx} padding={mobileView ? "none" : "normal"}>
-        {matchResult.cpu_team.name}
+        <Link className="text-sky-500 hover:text-sky-700" to={detailUrl}>
+          {matchResult.cpu_team.name}
+        </Link>
       </TableCell>
       <TableCell align="center" sx={textSx} padding={mobileView ? "none" : "normal"}>
         <Typography sx={textSx} color={colorByScore}>
           {`${matchResult.player_goals} : ${matchResult.cpu_goals}`}
         </Typography>
       </TableCell>
-      {/*<TableCell*/}
-      {/*  align="right"*/}
-      {/*  sx={textSx}*/}
-      {/*  padding={mobileView ? "none" : "normal"}*/}
-      {/*>*/}
-      {/*  {matchResult.cpu_average_skill}*/}
-      {/*</TableCell>*/}
       <TableCell align="center" sx={textSx} padding={mobileView ? "none" : "normal"}>
         {matchResult.date}
       </TableCell>

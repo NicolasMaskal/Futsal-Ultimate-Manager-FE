@@ -18,7 +18,11 @@ import useSendData from "../../../hooks/Generic/useSendData";
 import { createTeamSellPlayersUrl } from "../../../utils/url-helpers";
 import { useAppDispatch, useAppSelector } from "../../../hooks/Generic/hooks";
 import { getTeamOrFail } from "../../../selectors/user";
-import { getColorByPos, getColorBySkill, getColorByStamina } from "../../../utils/player-ui";
+import {
+  getColorByPos,
+  getColorBySkill,
+  getColorByStamina,
+} from "../../../utils/player-ui";
 import { getFirstErrorMessage } from "../../../utils/be-error-helpers";
 import { teamCoinsIncrease } from "../../../store/user-slice";
 
@@ -58,7 +62,7 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
   const player = obj;
   const colorByPos = getColorByPos(player.preferred_position);
   const colorBySkill = getColorBySkill(player, averageSkill!);
-  const colorByStamina = getColorByStamina(player)
+  const colorByStamina = getColorByStamina(player);
   const mobileView = useMobileView();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useAppDispatch();

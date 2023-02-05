@@ -51,11 +51,15 @@ const generateRandomText = (assisterExists: boolean) => {
 const getGoalText = (goalScorer: Player, assister: Player | null) => {
   const text = generateRandomText(assister !== null);
   let replaced = reactStringReplace(text, "[GOALSCORER]", (match, i) => (
-    <span key={match + i} className="font-bold">{goalScorer.name}</span>
+    <span key={match + i} className="font-bold">
+      {goalScorer.name}
+    </span>
   ));
   if (assister) {
     replaced = reactStringReplace(replaced, "[ASSISTER]", (match, i) => (
-      <span key={match + i} className="font-bold">{assister.name}</span>
+      <span key={match + i} className="font-bold">
+        {assister.name}
+      </span>
     ));
   }
   return replaced;

@@ -23,10 +23,10 @@ export const Match: React.FC<{
   const [timeoutTime, setTimeoutTime] = useState(1000);
 
   const playerMoments = matchData.goal_moments.filter(
-    (moment) => moment.goal_scorer.team.id === team.id && moment.minute <= currentMinute
+    (moment) => moment.team.id === team.id && moment.minute <= currentMinute
   );
   const cpuMoments = matchData.goal_moments.filter(
-    (moment) => moment.goal_scorer.team.id !== team.id && moment.minute <= currentMinute
+    (moment) => moment.team.id !== team.id && moment.minute <= currentMinute
   );
 
   const currentMoment = matchData.goal_moments.find(
@@ -46,11 +46,11 @@ export const Match: React.FC<{
   useEffect(() => {
     if (!isSimulated) {
       setCurrentMinute(40);
-      return
+      return;
     }
-    if(currentMinute >= 40){
+    if (currentMinute >= 40) {
       dispatch(teamCoinsIncrease({ coins: matchData.coins_reward }));
-      return
+      return;
     }
     const timeoutId = setTimeout(() => {
       setCurrentMinute(currentMinute + 1);

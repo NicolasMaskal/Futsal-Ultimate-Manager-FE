@@ -11,7 +11,8 @@ import Box from "@mui/material/Box";
 import {
   getColorByPlayingPos,
   getColorByPos,
-  getColorBySkill, getColorByStamina
+  getColorBySkill,
+  getColorByStamina,
 } from "../../../utils/player-ui";
 import { useAppSelector } from "../../../hooks/Generic/hooks";
 import { getTeamOrFail } from "../../../selectors/user";
@@ -62,7 +63,7 @@ const PlayerInSheetRow: RowComponentType<PlayerInLineup, AdditionalInfoType> = (
   const colorByPos = getColorByPos(playerInLineup.player?.preferred_position);
   const colorByPlayingPos = getColorByPlayingPos(playerInLineup.playingPosition);
   const colorBySkill = getColorBySkill(playerInLineup.player, averageSkill);
-  const colorByStamina = getColorByStamina(playerInLineup.player)
+  const colorByStamina = getColorByStamina(playerInLineup.player);
   const mobileView = useMobileView();
   const playerEffectiveness = getPlayerEffectivenessInPose(playerInLineup);
 

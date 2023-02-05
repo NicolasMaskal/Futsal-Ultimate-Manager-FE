@@ -48,31 +48,32 @@ const MatchCenter = () => {
   const [difficulty, setDifficulty] = useState(5);
 
   const handleOnSaveClick = () => {
-    return saveLineup().then(() => {
-      enqueueSnackbar("Lineup successfully saved!", { variant: "success" });
-    }).catch((e) => enqueueSnackbar(getFirstErrorMessage(e, "Error saving lineup!"), {
-      variant: "error",
-    }));
+    return saveLineup()
+      .then(() => {
+        enqueueSnackbar("Lineup successfully saved!", { variant: "success" });
+      })
+      .catch((e) =>
+        enqueueSnackbar(getFirstErrorMessage(e, "Error saving lineup!"), {
+          variant: "error",
+        })
+      );
   };
 
   const handleMatchStartClick = () => {
-    handleOnSaveClick()
-      .then(() => {
-        sendStartMatch({
-          difficulty_rating: difficulty,
-          team_sheet: teamSheetId as number,
-        }).catch((e) => {
-          enqueueSnackbar(getFirstErrorMessage(e, "Error starting match!"), {
-            variant: "error",
-          });
+    handleOnSaveClick().then(() => {
+      sendStartMatch({
+        difficulty_rating: difficulty,
+        team_sheet: teamSheetId as number,
+      }).catch((e) => {
+        enqueueSnackbar(getFirstErrorMessage(e, "Error starting match!"), {
+          variant: "error",
         });
       });
+    });
   };
 
   if (responseMatch) {
-    return (
-      <Match isSimulated matchData={responseMatch} />
-    );
+    return <Match isSimulated matchData={responseMatch} />;
   }
 
   const onDifficultyChange = (difficulty: number) => {
