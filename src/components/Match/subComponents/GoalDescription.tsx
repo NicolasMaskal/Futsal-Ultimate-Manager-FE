@@ -1,4 +1,4 @@
-import PageDescription from "../../Packs/PageDescription";
+import PageDescription from "../../Generic/PageDescription";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { GoalMoment, Player } from "../../../models";

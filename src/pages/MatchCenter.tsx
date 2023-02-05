@@ -3,7 +3,7 @@ import SheetTable from "../components/Table/SheetTable";
 import Grid from "@mui/material/Grid";
 import PageTitle from "../components/Generic/PageTitle";
 import { MatchData } from "../models";
-import PageDescription from "../components/Packs/PageDescription";
+import PageDescription from "../components/Generic/PageDescription";
 import useMobileView from "../hooks/Generic/useMobileView";
 import { useSnackbar } from "notistack";
 import SubPageTitle from "../components/Generic/SubPageTitle";

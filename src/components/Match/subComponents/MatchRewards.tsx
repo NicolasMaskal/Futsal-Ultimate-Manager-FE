@@ -1,5 +1,5 @@
 import React from "react";
-import PageDescription from "../../Packs/PageDescription";
+import PageDescription from "../../Generic/PageDescription";
 import SubPageTitle from "../../Generic/SubPageTitle";
 import ProceedButton from "../../Buttons/ProceedButton";
 

@@ -5,7 +5,7 @@ import { HeadCellType } from "../components/Table/subComponents/MyTableHeader";
 import { MatchResult } from "../models";
 import CustomTable from "../components/Table/CustomTable";
 import MatchRow from "../components/Table/rowComponents/MatchRow";
-import PageDescription from "../components/Packs/PageDescription";
+import PageDescription from "../components/Generic/PageDescription";
 import useFetchData from "../hooks/Generic/useFetchData";
 import { createTeamMatchResultsUrl } from "../utils/url-helpers";
 import { useAppSelector } from "../hooks/Generic/hooks";

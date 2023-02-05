@@ -4,7 +4,7 @@ import { Player } from "../models";
 import PageTitle from "../components/Generic/PageTitle";
 import PlayerRow from "../components/Table/rowComponents/PlayerRow";
 import CustomTable from "../components/Table/CustomTable";
-import PageDescription from "../components/Packs/PageDescription";
+import PageDescription from "../components/Generic/PageDescription";
 import useFetchData from "../hooks/Generic/useFetchData";
 import { createTeamPlayersUrl } from "../utils/url-helpers";
 import { useAppSelector } from "../hooks/Generic/hooks";

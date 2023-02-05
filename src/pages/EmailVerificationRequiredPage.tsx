@@ -1,5 +1,5 @@
 import PageTitle from "../components/Generic/PageTitle";
-import PageDescription from "../components/Packs/PageDescription";
+import PageDescription from "../components/Generic/PageDescription";
 import { useSelector } from "react-redux";
 import { getUser } from "../selectors/user";
 import { INDEX_URL, LOGIN_URL } from "../constants/urls";

@@ -5,7 +5,7 @@ import CustomTable from "../Table/CustomTable";
 import PlayerRow from "../Table/rowComponents/PlayerRow";
 import ProceedButton from "../Buttons/ProceedButton";
 import PageTitle from "../Generic/PageTitle";
-import PageDescription from "./PageDescription";
+import PageDescription from "../Generic/PageDescription";
 
 const headCells: HeadCellType[] = [
   {
