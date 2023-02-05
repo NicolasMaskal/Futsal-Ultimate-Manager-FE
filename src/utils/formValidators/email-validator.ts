@@ -9,5 +9,5 @@ export const validateFormEmail = <ValueType extends { email: string }>(
   if (!isEmail(values.email)) {
     errors.email = "Invalid email address";
   }
-  return errors
+  return errors;
 };

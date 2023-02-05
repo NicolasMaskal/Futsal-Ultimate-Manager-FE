@@ -35,7 +35,7 @@ const useSendData = <InputType, OutputType>(
           ...config,
         });
         setResponse(response.data);
-        setError(null)
+        setError(null);
       } catch (e: unknown) {
         if (e instanceof AxiosError<BeError>) {
           setError(e);
@@ -55,7 +55,7 @@ const useSendData = <InputType, OutputType>(
     setResponse(null);
   };
 
-  const resetError = () => setError(null)
+  const resetError = () => setError(null);
 
   return { loading, error, resetError, response, sendData, resetSendData };
 };

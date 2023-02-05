@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { INDEX_URL, LOGIN_URL } from "../constants/urls";
-import { Divider } from "@mui/material";
+import { Divider, Fade } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import LoadingButton from "@mui/lab/LoadingButton";
 import useSendData from "../hooks/Generic/useSendData";
@@ -83,108 +83,115 @@ export default function SignUp() {
   }, [navigate, response, dispatch]);
 
   return (
-    <Container component="main" maxWidth="xs" className="pt-4">
-      <Box
-        sx={{
-          marginTop: 4,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <Formik
-          initialValues={initialValues}
-          validate={validateForm}
-          onSubmit={submitForm}
+    <Fade in={true}>
+      <Container component="main" maxWidth="xs" className="pt-4">
+        <Box
+          sx={{
+            marginTop: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          {({ submitForm, isValid }) => (
-            <Form>
-              <Box sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Field
-                      component={TextField}
-                      required
-                      fullWidth
-                      name="teamName"
-                      label="Team name"
-                      type="input"
-                      id="team-name"
-                    />
+          <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Formik
+            initialValues={initialValues}
+            validate={validateForm}
+            onSubmit={submitForm}
+          >
+            {({ submitForm, isValid }) => (
+              <Form>
+                <Box sx={{ mt: 3 }}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Field
+                        component={TextField}
+                        required
+                        fullWidth
+                        name="teamName"
+                        label="Team name"
+                        type="input"
+                        id="team-name"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        component={TextField}
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Divider />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        component={TextField}
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="new-password"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        component={TextField}
+                        required
+                        fullWidth
+                        name="confirmPassword"
+                        label="Confirm Password"
+                        type="password"
+                        id="confirm-password"
+                        autoComplete="new-password"
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Field
-                      component={TextField}
-                      required
-                      fullWidth
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
-                    />
+                  <LoadingButton
+                    type="submit"
+                    loading={loading}
+                    fullWidth
+                    variant="contained"
+                    onClick={submitForm}
+                    sx={{ mt: 3, mb: 2 }}
+                    disabled={!isValid}
+                  >
+                    Sign Up
+                  </LoadingButton>
+                  <ErrorAlert
+                    onClose={resetError}
+                    error={error}
+                    defaultErrorMsg={"Error signing up!"}
+                  />
+                  <Grid container justifyContent="flex-end">
+                    <Grid item>
+                      <Link
+                        component={RouterLink}
+                        to={LOGIN_URL}
+                        href="#"
+                        variant="body2"
+                      >
+                        Already have an account? Sign in
+                      </Link>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Field
-                      component={TextField}
-                      required
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      type="password"
-                      id="password"
-                      autoComplete="new-password"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Field
-                      component={TextField}
-                      required
-                      fullWidth
-                      name="confirmPassword"
-                      label="Confirm Password"
-                      type="password"
-                      id="confirm-password"
-                      autoComplete="new-password"
-                    />
-                  </Grid>
-                </Grid>
-                <LoadingButton
-                  type="submit"
-                  loading={loading}
-                  fullWidth
-                  variant="contained"
-                  onClick={submitForm}
-                  sx={{ mt: 3, mb: 2 }}
-                  disabled={!isValid}
-                >
-                  Sign Up
-                </LoadingButton>
-                <ErrorAlert
-                  onClose={resetError}
-                  error={error}
-                  defaultErrorMsg={"Error signing up!"}
-                />
-                <Grid container justifyContent="flex-end">
-                  <Grid item>
-                    <Link component={RouterLink} to={LOGIN_URL} href="#" variant="body2">
-                      Already have an account? Sign in
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Form>
-          )}
-        </Formik>
-      </Box>
-    </Container>
+                </Box>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+      </Container>
+    </Fade>
   );
 }

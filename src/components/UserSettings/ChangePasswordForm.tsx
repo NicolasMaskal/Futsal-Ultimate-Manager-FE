@@ -29,10 +29,10 @@ const initialValues: ValueType = {
 
 const ChangePasswordForm = () => {
   const user = useAppSelector(getUserOrFail);
-  const { response, error, resetError, sendData, loading } = useSendData<{ current_password: string, new_password: string }, {}>(
-    BE_CHANGE_PASSWORD_URL,
-    "post"
-  );
+  const { response, error, resetError, sendData, loading } = useSendData<
+    { current_password: string; new_password: string },
+    {}
+  >(BE_CHANGE_PASSWORD_URL, "post");
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -41,10 +41,13 @@ const ChangePasswordForm = () => {
     }
   }, [enqueueSnackbar, response]);
 
-  const submitForm = (values: ValueType, { setSubmitting, resetForm }: FormikHelpers<ValueType>) => {
+  const submitForm = (
+    values: ValueType,
+    { setSubmitting, resetForm }: FormikHelpers<ValueType>
+  ) => {
     sendData({
       current_password: values.oldPassword,
-      new_password: values.password
+      new_password: values.password,
     })
       .then(() => resetForm())
       .finally(() => setSubmitting(false))
@@ -57,7 +60,7 @@ const ChangePasswordForm = () => {
       validate={validateFormPassword}
       onSubmit={submitForm}
     >
-      {({isValid}) => (
+      {({ isValid }) => (
         <Form>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -102,7 +105,11 @@ const ChangePasswordForm = () => {
               />
             </Grid>
           </Grid>
-          <ErrorAlert onClose={resetError} error={error} defaultErrorMsg={"Error changing password!"} />
+          <ErrorAlert
+            onClose={resetError}
+            error={error}
+            defaultErrorMsg={"Error changing password!"}
+          />
           <LoadingButton
             disabled={!isValid}
             fullWidth

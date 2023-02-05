@@ -9,12 +9,12 @@ const ErrorAlert: React.FC<{
   defaultErrorMsg: string;
 }> = ({ onClose, error, defaultErrorMsg }) => {
   return (
-    <Box sx={{ width: '100%' }}>
-    <Collapse in={Boolean(error)}>
-      <Alert onClose={onClose} className={"mt-4"} severity="error">
-        {getFirstErrorMessage(error, defaultErrorMsg)}
-      </Alert>
-    </Collapse>
+    <Box sx={{ width: "100%" }}>
+      <Collapse in={Boolean(error)}>
+        <Alert onClose={onClose} className={"mt-4"} severity="error">
+          {getFirstErrorMessage(error, defaultErrorMsg)}
+        </Alert>
+      </Collapse>
     </Box>
   );
 };

@@ -20,6 +20,7 @@ import { setUser } from "../store/user-slice";
 import { validateFormEmail } from "../utils/formValidators/email-validator";
 import ErrorAlert from "../components/Generic/ErrorAlert";
 import { FormikHelpers } from "formik/dist/types";
+import { Fade } from "@mui/material";
 
 interface ValueType {
   email: string;
@@ -55,79 +56,85 @@ export default function SignIn() {
   }, [navigate, response, dispatch]);
 
   return (
-    <Container component="main" maxWidth="xs" className="pt-4">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Formik
-          initialValues={initialValues}
-          validate={validateFormEmail}
-          onSubmit={submitForm}
+    <Fade in={true}>
+      <Container component="main" maxWidth="xs" className="pt-4">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          {({ submitForm, isValid }) => (
-            <Form>
-              <Box sx={{ mt: 1 }}>
-                <Field
-                  component={TextField}
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-                <Field
-                  component={TextField}
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-                <ErrorAlert onClose={resetError} error={error} defaultErrorMsg={"Invalid credentials"} />
-                <LoadingButton
-                  type="submit"
-                  loading={loading}
-                  fullWidth
-                  variant="contained"
-                  onClick={submitForm}
-                  disabled={!isValid}
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  <Typography>Sign In</Typography>
-                </LoadingButton>
-                <Grid container spacing={5}>
-                  <Grid item>
-                    <Link
-                      component={RouterLink}
-                      to={REGISTER_URL}
-                      href="#"
-                      variant="body2"
-                    >
-                      {"Don't have an account? Sign Up"}
-                    </Link>
+          <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Formik
+            initialValues={initialValues}
+            validate={validateFormEmail}
+            onSubmit={submitForm}
+          >
+            {({ submitForm, isValid }) => (
+              <Form>
+                <Box sx={{ mt: 1 }}>
+                  <Field
+                    component={TextField}
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                  <Field
+                    component={TextField}
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  <ErrorAlert
+                    onClose={resetError}
+                    error={error}
+                    defaultErrorMsg={"Invalid credentials"}
+                  />
+                  <LoadingButton
+                    type="submit"
+                    loading={loading}
+                    fullWidth
+                    variant="contained"
+                    onClick={submitForm}
+                    disabled={!isValid}
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    <Typography>Sign In</Typography>
+                  </LoadingButton>
+                  <Grid container spacing={5}>
+                    <Grid item>
+                      <Link
+                        component={RouterLink}
+                        to={REGISTER_URL}
+                        href="#"
+                        variant="body2"
+                      >
+                        {"Don't have an account? Sign Up"}
+                      </Link>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </Box>
-            </Form>
-          )}
-        </Formik>
-      </Box>
-    </Container>
+                </Box>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+      </Container>
+    </Fade>
   );
 }

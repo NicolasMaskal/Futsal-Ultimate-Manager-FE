@@ -1,12 +1,15 @@
-interface PasswordConfirmValueType{
-  password: string,
-  confirmPassword: string
+interface PasswordConfirmValueType {
+  password: string;
+  confirmPassword: string;
 }
 
 const passwordContainsValidCharacters = (value: string) => {
   return /^[\w.@+-]+$/.test(value);
 };
-export const validateFormPassword = <ValueType extends PasswordConfirmValueType> (values: ValueType, errors: Partial<ValueType> = {}) => {
+export const validateFormPassword = <ValueType extends PasswordConfirmValueType>(
+  values: ValueType,
+  errors: Partial<ValueType> = {}
+) => {
   if (values.password !== values.confirmPassword) {
     errors.password = "Password don't match!";
   }

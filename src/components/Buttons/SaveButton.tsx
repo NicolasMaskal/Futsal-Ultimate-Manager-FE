@@ -4,12 +4,16 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import React from "react";
 import { LoadingButtonProps } from "@mui/lab/LoadingButton/LoadingButton";
 
-
-interface Props extends LoadingButtonProps  {
-  text?: string
+interface Props extends LoadingButtonProps {
+  text?: string;
 }
 
-const SaveButton: React.FC<Props> = ({text = "Save", color= "primary", variant="outlined", ...props}: Props) => {
+const SaveButton: React.FC<Props> = ({
+  text = "Save",
+  color = "primary",
+  variant = "outlined",
+  ...props
+}: Props) => {
   return (
     <LoadingButton
       color={color}

@@ -7,7 +7,6 @@ export const BE_LOGOUT_URL = "auth/session/logout/";
 export const BE_REGISTER_URL = "auth/register/";
 export const BE_CHANGE_PASSWORD_URL = "auth/change-password/";
 
-
 export const BE_TEAMS_URL = "teams/";
 
 export const BE_PLAYERS_URL = "players/";

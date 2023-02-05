@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MatchData } from "../../models";
 import PageTitle from "../Generic/PageTitle";
 import Grid from "@mui/material/Grid";
-import { Divider } from "@mui/material";
+import { Divider, Fade } from "@mui/material";
 import GoalMomentAsLine from "./subComponents/GoalMomentAsLine";
 import GoalDescription from "./subComponents/GoalDescription";
 import TeamNameMatch from "./subComponents/TeamName";
@@ -66,77 +66,81 @@ export const Match: React.FC<{
   return (
     <>
       <PageTitle title={pageTitle} />
-      <Divider sx={{ borderBottomWidth: 5 }} />
-      {isSimulated && (
-        <MatchStatus
-          skipToEnd={skipToEnd}
-          currentMinute={currentMinute}
-          matchData={matchData}
-        />
-      )}
-      <Grid
-        container
-        columns={12}
-        className="pt-10"
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        <Grid item xs={5}>
-          <TeamNameMatch
-            team={matchData.player_team}
-            goalAmount={playerMoments.length}
-            currentMoment={currentMoment}
-          />
+      <Fade in={true}>
+        <div>
           <Divider sx={{ borderBottomWidth: 5 }} />
-        </Grid>
-        <Grid item xs={5}>
-          <TeamNameMatch
-            team={matchData.cpu_team}
-            goalAmount={cpuMoments.length}
-            currentMoment={currentMoment}
-          />
-          <Divider sx={{ borderBottomWidth: 5 }} />
-        </Grid>
-        <Grid item xs={5}>
-          <Box sx={{ minHeight: SCORER_HEIGHT }}>
-            {playerMoments.map((moment) => (
-              <GoalMomentAsLine
-                key={`Player_${moment.goal_scorer.id}_${moment.minute}`}
-                goalMoment={moment}
-                currentMinute={currentMinute}
+          {isSimulated && (
+            <MatchStatus
+              skipToEnd={skipToEnd}
+              currentMinute={currentMinute}
+              matchData={matchData}
+            />
+          )}
+          <Grid
+            container
+            columns={12}
+            className="pt-10"
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <Grid item xs={5}>
+              <TeamNameMatch
+                team={matchData.player_team}
+                goalAmount={playerMoments.length}
+                currentMoment={currentMoment}
               />
-            ))}
-          </Box>
-        </Grid>
-        <Divider
-          orientation={"vertical"}
-          variant="middle"
-          flexItem
-          sx={{ my: -5, borderRightWidth: 5 }}
-        />
-        <Grid item xs={5}>
-          <Box sx={{ minHeight: SCORER_HEIGHT }}>
-            {cpuMoments.map((moment) => (
-              <GoalMomentAsLine
-                key={`CPU_${moment.goal_scorer.id}_${moment.minute}`}
-                goalMoment={moment}
-                currentMinute={currentMinute}
+              <Divider sx={{ borderBottomWidth: 5 }} />
+            </Grid>
+            <Grid item xs={5}>
+              <TeamNameMatch
+                team={matchData.cpu_team}
+                goalAmount={cpuMoments.length}
+                currentMoment={currentMoment}
               />
-            ))}
-          </Box>
-        </Grid>
-        {isSimulated && (
-          <Grid item xs={5} className="pt-20">
-            <Box sx={{ minHeight: 150 }}>
-              {currentMinute < 40 ? (
-                <GoalDescription goalMoment={currentMoment} />
-              ) : (
-                <MatchRewards coinReward={matchData.coins_reward} />
-              )}
-            </Box>
+              <Divider sx={{ borderBottomWidth: 5 }} />
+            </Grid>
+            <Grid item xs={5}>
+              <Box sx={{ minHeight: SCORER_HEIGHT }}>
+                {playerMoments.map((moment) => (
+                  <GoalMomentAsLine
+                    key={`Player_${moment.goal_scorer.id}_${moment.minute}`}
+                    goalMoment={moment}
+                    currentMinute={currentMinute}
+                  />
+                ))}
+              </Box>
+            </Grid>
+            <Divider
+              orientation={"vertical"}
+              variant="middle"
+              flexItem
+              sx={{ my: -5, borderRightWidth: 5 }}
+            />
+            <Grid item xs={5}>
+              <Box sx={{ minHeight: SCORER_HEIGHT }}>
+                {cpuMoments.map((moment) => (
+                  <GoalMomentAsLine
+                    key={`CPU_${moment.goal_scorer.id}_${moment.minute}`}
+                    goalMoment={moment}
+                    currentMinute={currentMinute}
+                  />
+                ))}
+              </Box>
+            </Grid>
+            {isSimulated && (
+              <Grid item xs={5} className="pt-20">
+                <Box sx={{ minHeight: 150 }}>
+                  {currentMinute < 40 ? (
+                    <GoalDescription goalMoment={currentMoment} />
+                  ) : (
+                    <MatchRewards coinReward={matchData.coins_reward} />
+                  )}
+                </Box>
+              </Grid>
+            )}
           </Grid>
-        )}
-      </Grid>
+        </div>
+      </Fade>
     </>
   );
 };

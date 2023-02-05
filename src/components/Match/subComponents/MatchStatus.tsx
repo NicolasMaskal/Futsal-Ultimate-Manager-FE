@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 
 const MatchStatus: React.FC<{
   currentMinute: number;
-  skipToEnd: () => void,
+  skipToEnd: () => void;
   matchData: MatchData;
 }> = ({ currentMinute, matchData, skipToEnd }) => {
   if (currentMinute <= 40) {
