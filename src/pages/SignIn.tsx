@@ -12,15 +12,14 @@ import { INDEX_URL, REGISTER_URL } from "../constants/urls";
 import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-mui";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { FormikHelpers } from "formik/dist/types";
-import { isEmail } from "../utils/string-helpers";
 import useSendData from "../hooks/Generic/useSendData";
 import { BE_LOGIN_URL } from "../constants/be-urls";
 import { User } from "../models";
-import { Alert } from "@mui/material";
 import { useAppDispatch } from "../hooks/Generic/hooks";
 import { setUser } from "../store/user-slice";
-import { getFirstErrorMessage } from "../utils/be-error-helpers";
+import { validateFormEmail } from "../utils/formValidators/email-validator";
+import ErrorAlert from "../components/Generic/ErrorAlert";
+import { FormikHelpers } from "formik/dist/types";
 
 interface ValueType {
   email: string;
@@ -31,16 +30,9 @@ const initialValues: ValueType = {
   email: "",
   password: "",
 };
-const validateForm = (values: ValueType) => {
-  const errors: Partial<ValueType> = {};
-  if (!isEmail(values.email)) {
-    errors.email = "Invalid email address";
-  }
-  return errors;
-};
 
 export default function SignIn() {
-  const { error, response, sendData } = useSendData<
+  const { error, resetError, response, loading, sendData } = useSendData<
     ValueType,
     {
       session: string;
@@ -50,8 +42,9 @@ export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const submitForm = (values: ValueType, { setSubmitting }: FormikHelpers<ValueType>) => {
-    sendData({ email: values.email, password: values.password }).catch(() => {});
-    setSubmitting(false);
+    sendData({ email: values.email, password: values.password })
+      .finally(() => setSubmitting(false))
+      .catch(() => {});
   };
 
   useEffect(() => {
@@ -79,10 +72,10 @@ export default function SignIn() {
         </Typography>
         <Formik
           initialValues={initialValues}
-          validate={validateForm}
+          validate={validateFormEmail}
           onSubmit={submitForm}
         >
-          {({ submitForm, isSubmitting }) => (
+          {({ submitForm, isValid }) => (
             <Form>
               <Box sx={{ mt: 1 }}>
                 <Field
@@ -106,19 +99,15 @@ export default function SignIn() {
                   id="password"
                   autoComplete="current-password"
                 />
-                {error && (
-                  <Alert severity="error">
-                    {getFirstErrorMessage(error, "Invalid credentials!")}
-                  </Alert>
-                )}
+                <ErrorAlert onClose={resetError} error={error} defaultErrorMsg={"Invalid credentials"} />
                 <LoadingButton
                   type="submit"
-                  loading={isSubmitting}
+                  loading={loading}
                   fullWidth
                   variant="contained"
                   onClick={submitForm}
+                  disabled={!isValid}
                   sx={{ mt: 3, mb: 2 }}
-                  disabled={isSubmitting}
                 >
                   <Typography>Sign In</Typography>
                 </LoadingButton>

@@ -28,6 +28,9 @@ const userSlice = createSlice({
     teamCoinsDecrease: (state, action: PayloadAction<{ coins: number }>) => {
       state.user!.active_team.coins -= action.payload.coins;
     },
+    changeTeamName: (state, action: PayloadAction<{ teamName: string }>) => {
+      state.user!.active_team.name = action.payload.teamName;
+    },
     setStatusLoading: (state) => {
       state.appStatus = "loading";
     },

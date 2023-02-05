@@ -6,6 +6,7 @@ import { BeError } from "../../utils/be-error-helpers";
 interface SendDataResult<InputType, OutputType> {
   loading: boolean;
   error: any | null;
+  resetError: () => void;
   response: OutputType | null;
   sendData: (data: InputType, config?: AxiosRequestConfig) => Promise<void>;
   resetSendData: () => void;
@@ -34,6 +35,7 @@ const useSendData = <InputType, OutputType>(
           ...config,
         });
         setResponse(response.data);
+        setError(null)
       } catch (e: unknown) {
         if (e instanceof AxiosError<BeError>) {
           setError(e);
@@ -53,7 +55,9 @@ const useSendData = <InputType, OutputType>(
     setResponse(null);
   };
 
-  return { loading, error, response, sendData, resetSendData };
+  const resetError = () => setError(null)
+
+  return { loading, error, resetError, response, sendData, resetSendData };
 };
 
 export default useSendData;

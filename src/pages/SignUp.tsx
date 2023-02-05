@@ -11,50 +11,38 @@ import Container from "@mui/material/Container";
 
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { INDEX_URL, LOGIN_URL } from "../constants/urls";
-import { Alert, Divider } from "@mui/material";
+import { Divider } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { isEmail, passwordContainsValidCharacters } from "../utils/string-helpers";
 import useSendData from "../hooks/Generic/useSendData";
 import { BE_REGISTER_URL } from "../constants/be-urls";
-import { FormikHelpers } from "formik/dist/types";
 import { useAppDispatch } from "../hooks/Generic/hooks";
 import { setUser } from "../store/user-slice";
 import { User } from "../models";
-import { getFirstErrorMessage } from "../utils/be-error-helpers";
+import { validateFormEmail } from "../utils/formValidators/email-validator";
+import { validateFormPassword } from "../utils/formValidators/password-validator";
+import { validateFormTeamName } from "../utils/formValidators/team-name-validator";
+import ErrorAlert from "../components/Generic/ErrorAlert";
+import { FormikHelpers } from "formik/dist/types";
 
-interface Values {
+interface ValueType {
   email: string;
   teamName: string;
   password: string;
   confirmPassword: string;
 }
 
-const initialValues: Values = {
+const initialValues: ValueType = {
   email: "",
   teamName: "",
   password: "",
   confirmPassword: "",
 };
 
-const validateForm = (values: Values) => {
-  const errors: Partial<Values> = {};
-  if (values.password !== values.confirmPassword) {
-    errors.password = "Password don't match!";
-  }
-  if (values.password.length < 6) {
-    errors.password = "Password must contain at least 6 characters!";
-  }
-  if (!passwordContainsValidCharacters(values.password)) {
-    errors.password =
-      "This value may contain only English letters, numbers, and @/./+/-/_ characters.";
-  }
-  if (values.teamName.length < 3) {
-    errors.teamName = "Team name has to be at least 3 characters long!";
-  }
-  if (!isEmail(values.email)) {
-    errors.email = "Invalid email address";
-  }
+const validateForm = (values: ValueType) => {
+  let errors = validateFormPassword(values);
+  errors = validateFormTeamName(values, errors);
+  errors = validateFormEmail(values, errors);
   return errors;
 };
 
@@ -70,20 +58,21 @@ interface OutputSendData {
 }
 
 export default function SignUp() {
-  const { response, error, sendData } = useSendData<InputSendData, OutputSendData>(
-    BE_REGISTER_URL,
-    "post"
-  );
+  const { response, error, resetError, sendData, loading } = useSendData<
+    InputSendData,
+    OutputSendData
+  >(BE_REGISTER_URL, "post");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const submitForm = (values: Values, { setSubmitting }: FormikHelpers<Values>) => {
+  const submitForm = (values: ValueType, { setSubmitting }: FormikHelpers<ValueType>) => {
     sendData({
       email: values.email,
       team_name: values.teamName,
       password: values.password,
-    }).catch(() => {});
-    setSubmitting(false);
+    })
+      .finally(() => setSubmitting(false))
+      .catch(() => {});
   };
 
   useEffect(() => {
@@ -114,7 +103,7 @@ export default function SignUp() {
           validate={validateForm}
           onSubmit={submitForm}
         >
-          {({ submitForm, isSubmitting }) => (
+          {({ submitForm, isValid }) => (
             <Form>
               <Box sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
@@ -170,16 +159,20 @@ export default function SignUp() {
                 </Grid>
                 <LoadingButton
                   type="submit"
-                  loading={isSubmitting}
+                  loading={loading}
                   fullWidth
                   variant="contained"
                   onClick={submitForm}
                   sx={{ mt: 3, mb: 2 }}
-                  disabled={isSubmitting}
+                  disabled={!isValid}
                 >
                   Sign Up
                 </LoadingButton>
-                {error && <Alert severity="error">{getFirstErrorMessage(error)}</Alert>}
+                <ErrorAlert
+                  onClose={resetError}
+                  error={error}
+                  defaultErrorMsg={"Error signing up!"}
+                />
                 <Grid container justifyContent="flex-end">
                   <Grid item>
                     <Link component={RouterLink} to={LOGIN_URL} href="#" variant="body2">

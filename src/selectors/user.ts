@@ -4,6 +4,10 @@ export const getUser = (state: RootState) => {
   return state.user.user;
 };
 
+export const getUserOrFail = (state: RootState) => {
+  return state.user.user!;
+};
+
 export const getTeam = (state: RootState) => {
   return state.user.user?.active_team;
 };

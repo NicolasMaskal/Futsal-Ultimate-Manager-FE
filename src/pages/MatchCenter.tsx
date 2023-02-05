@@ -108,7 +108,7 @@ const MatchCenter = () => {
           {playersInLineup && (
             <div className={"flex mt-8 items-center justify-around"}>
               <div>
-                <SaveButton handleOnSaveClick={handleOnSaveClick} isLoading={isLoading} />
+                <SaveButton onClick={handleOnSaveClick} loading={isLoading} />
               </div>
               <div>
                 <SimulateMatchOptions
