@@ -45,7 +45,7 @@ export const Match: React.FC<{
 
   useEffect(() => {
     if (!isSimulated) {
-      setCurrentMinute(40);
+      setCurrentMinute(41);
       return;
     }
     if (currentMinute > 40) {
@@ -59,12 +59,21 @@ export const Match: React.FC<{
     return () => clearTimeout(timeoutId);
   }, [currentMinute, dispatch, isSimulated, matchData.coins_reward, timeoutTime]);
   const pageTitle =
-    currentMinute < 40 ? "Simulated Match (40 minutes)" : "Match Result Detail";
+    currentMinute <= 40 ? "Simulated Match (40 minutes)" : "Match Result Detail";
+
+  const skipToEnd = () => setCurrentMinute(41);
+
   return (
     <>
       <PageTitle title={pageTitle} />
       <Divider sx={{ borderBottomWidth: 5 }} />
-      {isSimulated && <MatchStatus currentMinute={currentMinute} matchData={matchData} />}
+      {isSimulated && (
+        <MatchStatus
+          skipToEnd={skipToEnd}
+          currentMinute={currentMinute}
+          matchData={matchData}
+        />
+      )}
       <Grid
         container
         columns={12}
