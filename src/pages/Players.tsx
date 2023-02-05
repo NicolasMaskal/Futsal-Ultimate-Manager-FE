@@ -65,8 +65,8 @@ const headCells: HeadCellType[] = [
 ];
 
 export const playersPageDescription =
-  "Here you can see a comprehensive table of all players currently on the\n" +
-  "        user's team. The table includes important information providing a clear\n" +
+  "Here you can see a comprehensive table of all players currently on\n" +
+  "       your team. The table includes important information providing a clear\n" +
   "        and easy way to track the performance of the team.";
 
 export interface FetchedPlayers {

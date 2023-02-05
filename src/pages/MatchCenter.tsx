@@ -86,11 +86,11 @@ const MatchCenter = () => {
       <PageTitle title={"MATCH CENTER"} />
       <PageDescription>{matchCenterPageDescription}</PageDescription>
       <PageDescription>
-        To switch players between the lists, click on the two specific players you want to
+        To switch players between the lists, <span className={"font-bold"}> click </span> on the two specific players you want to
         switch.
       </PageDescription>
       <PageDescription>
-        Keep in mind, that players with low stamina don't perform well!
+        Keep in mind, that players with <span className={"font-bold"}> low stamina </span> don't perform well!
       </PageDescription>
       <Grid container columns={isMobile ? 8 : 12} spacing={8} className="pt-8 px-10">
         <Grid item xs={8}>

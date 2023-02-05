@@ -5,7 +5,7 @@ import React from "react";
 const MatchStatus: React.FC<{
   currentMinute: number;
   matchData: MatchData;
-}> = ({ currentMinute, matchData }) => {
+}> = ({ currentMinute, matchData}) => {
   if (currentMinute <= 40) {
     return <SubPageTitle content={`${currentMinute}'`} />;
   }

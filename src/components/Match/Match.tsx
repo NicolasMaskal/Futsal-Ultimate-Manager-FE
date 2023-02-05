@@ -48,7 +48,7 @@ export const Match: React.FC<{
       setCurrentMinute(40);
       return;
     }
-    if (currentMinute >= 40) {
+    if (currentMinute > 40) {
       dispatch(teamCoinsIncrease({ coins: matchData.coins_reward }));
       return;
     }
@@ -58,12 +58,13 @@ export const Match: React.FC<{
 
     return () => clearTimeout(timeoutId);
   }, [currentMinute, dispatch, isSimulated, matchData.coins_reward, timeoutTime]);
-
+  const pageTitle =
+    currentMinute < 40 ? "Simulated Match (40 minutes)" : "Match Result Detail";
   return (
     <>
-      <PageTitle title="Simulated Match (40 minutes)" />
+      <PageTitle title={pageTitle} />
       <Divider sx={{ borderBottomWidth: 5 }} />
-      <MatchStatus currentMinute={currentMinute} matchData={matchData} />
+      {isSimulated && <MatchStatus currentMinute={currentMinute} matchData={matchData} />}
       <Grid
         container
         columns={12}
@@ -115,15 +116,17 @@ export const Match: React.FC<{
             ))}
           </Box>
         </Grid>
-        <Grid item xs={5} className="pt-20">
-          <Box sx={{ minHeight: 150 }}>
-            {currentMinute < 40 ? (
-              <GoalDescription goalMoment={currentMoment} />
-            ) : (
-              isSimulated && <MatchRewards coinReward={matchData.coins_reward} />
-            )}
-          </Box>
-        </Grid>
+        {isSimulated && (
+          <Grid item xs={5} className="pt-20">
+            <Box sx={{ minHeight: 150 }}>
+              {currentMinute < 40 ? (
+                <GoalDescription goalMoment={currentMoment} />
+              ) : (
+                <MatchRewards coinReward={matchData.coins_reward} />
+              )}
+            </Box>
+          </Grid>
+        )}
       </Grid>
     </>
   );
