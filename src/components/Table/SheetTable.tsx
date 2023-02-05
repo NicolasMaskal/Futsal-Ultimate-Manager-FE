@@ -3,8 +3,6 @@ import { HeadCellType } from "./subComponents/MyTableHeader";
 import { PlayerInLineup } from "../../models";
 import React from "react";
 import PlayerInSheetRow from "./rowComponents/PlayerInSheetRow";
-import { useAppSelector } from "../../hooks/Generic/hooks";
-import { getTeamOrFail } from "../../selectors/user";
 
 const headCells: HeadCellType[] = [
   {
@@ -18,22 +16,22 @@ const headCells: HeadCellType[] = [
     label: "Player ability in position",
   },
   {
-    id: null,
+    id: "player.name",
     alignment: "center",
     label: "Name",
   },
   {
-    id: null,
+    id: "player.preferred_position",
     alignment: "center",
     label: "Preferred Position",
   },
   {
-    id: null,
+    id: "player.skill",
     alignment: "left",
     label: "Skill",
   },
   {
-    id: null,
+    id: "player.stamina_left",
     alignment: "left",
     label: "Stamina left",
   },
@@ -46,23 +44,30 @@ const headCellsWithoutPlayingPos: HeadCellType[] = headCells.filter(
 
 const SheetTable: React.FC<{
   playersInLineup: PlayerInLineup[] | undefined;
+  averageSkill: number | undefined;
   displayPlayingPosition: boolean;
   handleRowClicked: (clickedRow: PlayerInLineup) => void;
   selectedRow: PlayerInLineup | null;
-}> = ({ playersInLineup, displayPlayingPosition, handleRowClicked, selectedRow }) => {
-  const team = useAppSelector(getTeamOrFail);
-
+  defaultOrderBy: string;
+}> = ({
+  playersInLineup,
+  averageSkill,
+  displayPlayingPosition,
+  handleRowClicked,
+  selectedRow,
+  defaultOrderBy,
+}) => {
   return (
     <CustomTable
       RowComponent={PlayerInSheetRow}
       objects={playersInLineup}
       headCells={displayPlayingPosition ? headCells : headCellsWithoutPlayingPos}
-      defaultOrderBy={"playingPosition"}
+      defaultOrderBy={defaultOrderBy}
       defaultOrder={"desc"}
       pagination={false}
       tableWidthInGrid={12}
       dontAdjustFont
-      additionalInfo={{ averageSkill: team.average_skill, handleRowClicked, selectedRow }}
+      additionalInfo={{ averageSkill, handleRowClicked, selectedRow }}
     />
   );
 };

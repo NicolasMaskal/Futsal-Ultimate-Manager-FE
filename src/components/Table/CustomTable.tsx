@@ -10,12 +10,15 @@ import MyTableHeader, { HeadCellType, Order } from "./subComponents/MyTableHeade
 import SkeletonTable from "./subComponents/SkeletonTable";
 import { SxProps } from "@mui/system";
 import stableSort from "../../utils/sort";
+import _ from "lodash";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
+  const bKey = _.get(b, orderBy);
+  const aKey = _.get(a, orderBy);
+  if (bKey < aKey) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (bKey > aKey) {
     return 1;
   }
   return 0;

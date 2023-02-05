@@ -35,6 +35,7 @@ const MatchCenter = () => {
     lineupIsLoading,
     playersInLineup,
     playersNotInLineup,
+    averageSkill,
   } = useTeamLineup(team.id);
   const {
     response: responseMatch,
@@ -86,20 +87,23 @@ const MatchCenter = () => {
       <PageTitle title={"MATCH CENTER"} />
       <PageDescription>{matchCenterPageDescription}</PageDescription>
       <PageDescription>
-        To switch players between the lists, <span className={"font-bold"}> click </span> on the two specific players you want to
-        switch.
+        To switch players between the lists, <span className={"font-bold"}> click </span>{" "}
+        on the two specific players you want to switch.
       </PageDescription>
       <PageDescription>
-        Keep in mind, that players with <span className={"font-bold"}> low stamina </span> don't perform well!
+        Keep in mind, that players with <span className={"font-bold"}> low stamina </span>{" "}
+        don't perform well!
       </PageDescription>
-      <Grid container columns={isMobile ? 8 : 12} spacing={8} className="pt-8 px-10">
-        <Grid item xs={8}>
+      <Grid container columns={isMobile ? 6 : 10} spacing={8} className="pt-8 px-10">
+        <Grid item xs={6}>
           <SubPageTitle content="Lineup for next match" />
           <SheetTable
+            averageSkill={averageSkill}
             handleRowClicked={handleRowClicked}
             displayPlayingPosition
             playersInLineup={playersInLineup}
             selectedRow={selectedRow}
+            defaultOrderBy="playingPosition"
           />
           {playersInLineup && (
             <div className={"flex mt-8 items-center justify-around"}>
@@ -121,10 +125,12 @@ const MatchCenter = () => {
         <Grid item xs={isMobile ? 8 : 4}>
           <SubPageTitle content="Not playing in next match" />
           <SheetTable
+            averageSkill={averageSkill}
             handleRowClicked={handleRowClicked}
             displayPlayingPosition={false}
             playersInLineup={playersNotInLineup}
             selectedRow={selectedRow}
+            defaultOrderBy="player.preferred_position"
           />
         </Grid>
       </Grid>

@@ -14,8 +14,6 @@ import {
   getColorBySkill,
   getColorByStamina,
 } from "../../../utils/player-ui";
-import { useAppSelector } from "../../../hooks/Generic/hooks";
-import { getTeamOrFail } from "../../../selectors/user";
 
 const labels: { [index: string]: string } = {
   1: "Useless",
@@ -48,7 +46,7 @@ const getPlayerEffectivenessInPose = (playerInLineup: PlayerInLineup) => {
 };
 
 type AdditionalInfoType = {
-  averageSkill: number;
+  averageSkill: number | undefined;
   handleRowClicked: (clickedRow: PlayerInLineup) => void;
   selectedRow: PlayerInLineup | null;
 };
@@ -62,7 +60,7 @@ const PlayerInSheetRow: RowComponentType<PlayerInLineup, AdditionalInfoType> = (
   const playerInLineup = obj;
   const colorByPos = getColorByPos(playerInLineup.player?.preferred_position);
   const colorByPlayingPos = getColorByPlayingPos(playerInLineup.playingPosition);
-  const colorBySkill = getColorBySkill(playerInLineup.player, averageSkill);
+  const colorBySkill = getColorBySkill(playerInLineup.player, averageSkill!);
   const colorByStamina = getColorByStamina(playerInLineup.player);
   const mobileView = useMobileView();
   const playerEffectiveness = getPlayerEffectivenessInPose(playerInLineup);

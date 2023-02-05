@@ -85,6 +85,7 @@ interface ReturnType {
   selectedRow: PlayerInLineup | null;
   playersInLineup: PlayerInLineup[] | undefined;
   playersNotInLineup: PlayerInLineup[] | undefined;
+  averageSkill: number | undefined;
 }
 const useTeamLineup = (teamId: number): ReturnType => {
   const { data: dataLineup, isLoading: isLoadingLineup } = useFetchData<Lineup<Player>[]>(
@@ -98,6 +99,7 @@ const useTeamLineup = (teamId: number): ReturnType => {
   } = useSendData<Lineup<number>, Lineup<Player>>(sheetDetailUrl, "put");
   const { data: dataPlayers, isLoading: isLoadingPlayers } = useFetchData<{
     players: Player[];
+    average_skill: number;
   }>(createTeamPlayersUrl(teamId));
   const [selectedRow, setSelectedRow] = useState<PlayerInLineup | null>(null);
   const [playersOnScreen, setPlayersOnScreen] = useState<PlayerInLineup[] | undefined>(
@@ -165,6 +167,7 @@ const useTeamLineup = (teamId: number): ReturnType => {
     selectedRow,
     playersInLineup,
     playersNotInLineup,
+    averageSkill: dataPlayers?.average_skill,
   };
 };
 

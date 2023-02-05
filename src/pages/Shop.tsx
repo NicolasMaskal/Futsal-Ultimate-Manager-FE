@@ -24,7 +24,7 @@ const Shop = () => {
   const team = useAppSelector(getTeamOrFail);
   const { response, sendData, loading, resetSendData } = useSendData<
     { pack_type: PackType },
-    Player[]
+    { average_skill: number; players: Player[] }
   >(createTeamBuyPackUrl(team.id), "post");
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useAppDispatch();
@@ -58,7 +58,8 @@ const Shop = () => {
   if (response && price) {
     return (
       <PackContent
-        packContent={response}
+        averageSkill={response.average_skill}
+        packContent={response.players}
         handlePackContentClose={handlePackContentClose}
       />
     );

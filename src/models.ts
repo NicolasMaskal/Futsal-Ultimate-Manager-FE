@@ -12,7 +12,6 @@ export interface Team {
   loses: number;
   coins: number;
   player_amount: number;
-  average_skill: number;
 }
 
 export type Position = "attacker" | "defender" | "goalkeeper";

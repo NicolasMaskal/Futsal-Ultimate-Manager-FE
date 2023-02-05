@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import footballPlayer from "../images/football-player-black.png";
 import useMobileView from "../hooks/Generic/useMobileView";
 import Box from "@mui/material/Box";
-import PageTitle from "../components/Generic/PageTitle";
 
 const WelcomePage: React.FC = () => {
   const mobileView = useMobileView();

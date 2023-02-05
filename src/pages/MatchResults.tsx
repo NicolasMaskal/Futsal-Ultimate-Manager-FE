@@ -20,7 +20,7 @@ const headCells: HeadCellType[] = [
     label: "",
   },
   {
-    id: "cpu_team_name", // TODO add parsing
+    id: "cpu_team.name",
     alignment: "left",
     label: "Opponent Name",
   },

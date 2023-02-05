@@ -23,7 +23,11 @@ const MatchDetail = () => {
     }
   }, [dispatch, isLoading]);
   if (data) {
-    return <div className={"pb-48"}><Match matchData={data!} /> </div>;
+    return (
+      <div className={"pb-48"}>
+        <Match matchData={data!} />{" "}
+      </div>
+    );
   }
   return <></>;
 };
