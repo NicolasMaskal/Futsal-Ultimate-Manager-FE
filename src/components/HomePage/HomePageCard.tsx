@@ -17,14 +17,14 @@ const HomePageCard: React.FC<{
       {/*<div className="flex justify-center">*/}
       <Card
         elevation={5}
-        sx={{ maxWidth: "35rem", display: "flex", justifyContent: "center" }}
+        sx={{ maxWidth: "33rem", display: "flex", justifyContent: "center" }}
       >
         <CardActionArea component={Link} to={href}>
           <img
             src={imgSrc}
             alt={`${cardTitle} Link`}
-            style={{ maxHeight: "9.4rem" }}
-            className="flex flex-grow mr-auto ml-auto pt-6"
+            style={{ maxHeight: "11rem" }}
+            className="flex flex-grow mr-auto ml-auto"
           />
           <CardContent sx={{ height: "10rem" }}>
             <Typography className="font-bold" gutterBottom variant="h5" component="div">

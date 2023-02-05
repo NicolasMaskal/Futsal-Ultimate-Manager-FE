@@ -8,6 +8,7 @@ import { Fade, Grow } from "@mui/material";
 const UserSettings = () => {
   return (
     <Box
+      className="pb-20"
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -20,7 +21,7 @@ const UserSettings = () => {
           <Box
             maxWidth="xs"
             sx={{
-              marginTop: 4,
+              marginTop: 10,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
