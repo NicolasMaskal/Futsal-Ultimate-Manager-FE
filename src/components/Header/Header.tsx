@@ -117,7 +117,7 @@ const MobileHeader = () => {
       <Grid item xs>
         <LogoButtonHeader />
       </Grid>
-      <Grid item xs>
+      <Grid item>
         <AppName />
       </Grid>
       <Grid item xs>

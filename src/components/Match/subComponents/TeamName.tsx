@@ -1,6 +1,7 @@
 import { GoalMoment, TeamShortDetail } from "../../../models";
 import Typography from "@mui/material/Typography";
 import React from "react";
+import useMobileView from "../../../hooks/Generic/useMobileView";
 
 const TeamName: React.FC<{
   team: TeamShortDetail;
@@ -8,13 +9,15 @@ const TeamName: React.FC<{
   currentMoment: GoalMoment | undefined;
 }> = ({ team, goalAmount, currentMoment }) => {
   const scoreFreshUpdate = currentMoment && currentMoment.goal_scorer.team.id === team.id;
+  const mobileView = useMobileView();
+  const fontSize = mobileView? "1rem" : "1.5rem"
   return (
-    <Typography fontSize={"1.5rem"} className={"font-bold pb-1"} textAlign={"center"}>
+    <Typography fontSize={fontSize} className={"font-bold pb-1"} textAlign={"center"}>
       {`${team.name} `}
       <Typography
         component={"span"}
-        display={"inline"}
-        fontSize={"1.5rem"}
+        display={mobileView?"block": "inline"}
+        fontSize={fontSize}
         className={"font-bold pb-1"}
         color={scoreFreshUpdate ? "red" : "black"}
       >

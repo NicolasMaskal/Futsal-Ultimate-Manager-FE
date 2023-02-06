@@ -94,7 +94,7 @@ const MatchCenterPage = () => {
         Keep in mind, that players with <span className={"font-bold"}> low stamina </span>{" "}
         don't perform well!
       </PageDescription>
-      <Grid container columns={isMobile ? 6 : 10} spacing={8} className="pt-8 px-10">
+      <Grid container columns={isMobile ? 6 : 10} sx={{px: isMobile ? 1: 10}} spacing={8} className="pt-8">
         <Grid item xs={6}>
           <SubPageTitle content="Lineup for next match" />
           <SheetTable
