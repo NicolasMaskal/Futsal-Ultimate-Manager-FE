@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_BE_URL = "http://127.0.0.1:8000/api/"; // TODO fetch from env
+const BASE_BE_URL = process.env.REACT_APP_BE_URL;
 
 export const BE_LOGIN_URL = "auth/session/login/";
 export const BE_LOGOUT_URL = "auth/session/logout/";
