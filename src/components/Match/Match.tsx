@@ -130,7 +130,7 @@ export const Match: React.FC<{
             {isSimulated && (
               <Grid item xs={5} className="pt-20">
                 <Box sx={{ minHeight: 150 }}>
-                  {currentMinute < 40 ? (
+                  {currentMinute < 41 ? (
                     <GoalDescription goalMoment={currentMoment} />
                   ) : (
                     <MatchRewards coinReward={matchData.coins_reward} />
