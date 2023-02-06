@@ -9,3 +9,5 @@ export const REGISTER_URL = "/register";
 export const EDIT_USER_URL = "/edit-user";
 
 export const EMAIL_VERIFICATION_REQUIRED_URL = "/email-verification-required";
+
+export const EMAIL_ACTIVATION_URL = "/email-activation";

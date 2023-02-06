@@ -20,7 +20,7 @@ export const shopPageDescription =
   "Our shop offers a wide range of player packs for all types of teams.\n" +
   "        Choose from our budget-friendly bronze packs, solid silver packs, or\n" +
   "        elite gold packs.";
-const Shop = () => {
+const ShopPage = () => {
   const team = useAppSelector(getTeamOrFail);
   const { response, sendData, loading, resetSendData } = useSendData<
     { pack_type: PackType },
@@ -84,4 +84,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ShopPage;

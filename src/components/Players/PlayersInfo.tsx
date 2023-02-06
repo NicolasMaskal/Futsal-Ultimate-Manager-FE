@@ -1,11 +1,11 @@
 import Typography from "@mui/material/Typography";
 import React from "react";
 import InfoTooltip from "../Generic/InfoTooltip";
-import { FetchedPlayers } from "../../pages/Players";
+import { FetchedPlayersType } from "../../pages/PlayersPage";
 import SkeletonInfo from "../Table/subComponents/SkeletonInfo";
 import { Stack } from "@mui/material";
 
-const PlayersInfo: React.FC<{ data: FetchedPlayers | null }> = ({ data }) => {
+const PlayersInfo: React.FC<{ data: FetchedPlayersType | null }> = ({ data }) => {
   if (!data) {
     return <SkeletonInfo rowAmount={3} />;
   }

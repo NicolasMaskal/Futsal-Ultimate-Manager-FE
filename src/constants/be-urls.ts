@@ -11,7 +11,9 @@ export const BE_TEAMS_URL = "teams/";
 
 export const BE_PLAYERS_URL = "players/";
 
-export const BE_AUTH_ME = "/auth/me/";
+export const BE_AUTH_ME_URL = "auth/me/";
+
+export const BE_ACTIVATE_EMAIL_URL = "users/activate/";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_BE_URL,

@@ -57,7 +57,7 @@ interface OutputSendData {
   user: User;
 }
 
-export default function SignUp() {
+export default function SignUpPage() {
   const { response, error, resetError, sendData, loading } = useSendData<
     InputSendData,
     OutputSendData

@@ -69,16 +69,18 @@ export const playersPageDescription =
   "       your team. The table includes important information providing a clear\n" +
   "        and easy way to track the performance of the team.";
 
-export interface FetchedPlayers {
+export interface FetchedPlayersType {
   team_skill: number;
   average_skill: number;
   player_amount_considered: number;
   players: Player[];
 }
 
-const Players = () => {
+const PlayersPage = () => {
   const team = useAppSelector(getTeamOrFail);
-  const { data, fetchData } = useFetchData<FetchedPlayers>(createTeamPlayersUrl(team.id));
+  const { data, fetchData } = useFetchData<FetchedPlayersType>(
+    createTeamPlayersUrl(team.id)
+  );
   const onSellCallback = useCallback(() => {
     fetchData();
   }, [fetchData]);
@@ -106,4 +108,4 @@ const Players = () => {
   );
 };
 
-export default Players;
+export default PlayersPage;

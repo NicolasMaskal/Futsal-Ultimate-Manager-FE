@@ -32,7 +32,7 @@ const initialValues: ValueType = {
   password: "",
 };
 
-export default function SignIn() {
+export default function SignInPage() {
   const { error, resetError, response, loading, sendData } = useSendData<
     ValueType,
     {

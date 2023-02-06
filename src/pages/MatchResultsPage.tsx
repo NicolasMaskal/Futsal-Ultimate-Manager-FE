@@ -40,7 +40,7 @@ export const resultsPageDescription =
   "Here you can see a list of match results of your team. More info about\n" +
   "        each match is available in their detail.";
 
-const MatchResults = () => {
+const MatchResultsPage = () => {
   const team = useAppSelector(getTeamOrFail);
   const { data } = useFetchData<MatchResult[]>(createTeamMatchResultsUrl(team.id));
 
@@ -93,4 +93,4 @@ const MatchResults = () => {
   );
 };
 
-export default MatchResults;
+export default MatchResultsPage;

@@ -1,4 +1,4 @@
-import { axiosInstance, BE_AUTH_ME, BE_LOGOUT_URL } from "../constants/be-urls";
+import { axiosInstance, BE_AUTH_ME_URL, BE_LOGOUT_URL } from "../constants/be-urls";
 import { Dispatch } from "react";
 import { setStatusLoaded, setStatusLoading, setUser, userLogout } from "./user-slice";
 import { User } from "../models";
@@ -26,7 +26,7 @@ export const refreshUserInfoThunk = () => {
   ) => {
     dispatch(setStatusLoading());
     try {
-      const userResponse = await axiosInstance.get<User>(BE_AUTH_ME, {
+      const userResponse = await axiosInstance.get<User>(BE_AUTH_ME_URL, {
         withCredentials: true,
       });
       dispatch(setUser({ user: userResponse.data }));

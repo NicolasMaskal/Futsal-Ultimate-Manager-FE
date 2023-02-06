@@ -23,7 +23,7 @@ export const matchCenterPageDescription =
   "        and non-playing list, and change their positions on the team lineup\n" +
   "        according to player's preferred position. Once you're ready, you can\n" +
   "        start a match!";
-const MatchCenter = () => {
+const MatchCenterPage = () => {
   const isMobile = useMobileView();
   const team = useSelector(getTeamOrFail);
   const {
@@ -138,4 +138,4 @@ const MatchCenter = () => {
   );
 };
 
-export default MatchCenter;
+export default MatchCenterPage;

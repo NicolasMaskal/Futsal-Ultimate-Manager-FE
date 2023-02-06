@@ -2,7 +2,7 @@ import PageTitle from "../components/Generic/PageTitle";
 import Grid from "@mui/material/Grid";
 import React from "react";
 import HomePageCard from "../components/HomePage/HomePageCard";
-import { playersPageDescription } from "./Players";
+import { playersPageDescription } from "./PlayersPage";
 import {
   MATCH_CENTER_URL,
   MATCH_RESULTS_URL,
@@ -13,9 +13,9 @@ import playersImg from "../images/Players.png";
 import matchResultsImg from "../images/Match Results.png";
 import matchCenterImg from "../images/Match.png";
 import shopImg from "../images/Packs.png";
-import { shopPageDescription } from "./Shop";
-import { matchCenterPageDescription } from "./MatchCenter";
-import { resultsPageDescription } from "./MatchResults";
+import { shopPageDescription } from "./ShopPage";
+import { matchCenterPageDescription } from "./MatchCenterPage";
+import { resultsPageDescription } from "./MatchResultsPage";
 
 const HomePage = () => {
   return (

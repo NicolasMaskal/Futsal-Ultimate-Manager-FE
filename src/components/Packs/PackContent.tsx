@@ -60,22 +60,22 @@ const PackContent: React.FC<{
       </PageDescription>
       <Fade in={true}>
         <div>
-      <CustomTable
-        objects={packContent}
-        defaultOrder={"desc"}
-        defaultOrderBy={"skill"}
-        RowComponent={PlayerRow}
-        headCells={headCells}
-        additionalInfo={{ averageSkill, showHistory: false }}
-        pagination={false}
-        tableWidthInGrid={8}
-      />
-      <div className="flex items-center justify-center pt-10">
-        <ProceedButton
-          onProceedClick={handlePackContentClose}
-          buttonSx={{ display: "block", alignSelf: "center" }}
-        />
-      </div>
+          <CustomTable
+            objects={packContent}
+            defaultOrder={"desc"}
+            defaultOrderBy={"skill"}
+            RowComponent={PlayerRow}
+            headCells={headCells}
+            additionalInfo={{ averageSkill, showHistory: false }}
+            pagination={false}
+            tableWidthInGrid={8}
+          />
+          <div className="flex items-center justify-center pt-10">
+            <ProceedButton
+              onProceedClick={handlePackContentClose}
+              buttonSx={{ display: "block", alignSelf: "center" }}
+            />
+          </div>
         </div>
       </Fade>
     </>

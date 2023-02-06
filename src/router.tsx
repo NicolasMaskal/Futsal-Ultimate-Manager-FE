@@ -1,15 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootPage from "./pages/RootPage";
 import ErrorPage from "./pages/ErrorPage";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import Players from "./pages/Players";
-import MatchResults from "./pages/MatchResults";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+import PlayersPage from "./pages/PlayersPage";
+import MatchResultsPage from "./pages/MatchResultsPage";
 import React from "react";
-import Shop from "./pages/Shop";
-import LineupPage from "./pages/MatchCenter";
+import ShopPage from "./pages/ShopPage";
+import LineupPage from "./pages/MatchCenterPage";
 import {
   EDIT_USER_URL,
+  EMAIL_ACTIVATION_URL,
   EMAIL_VERIFICATION_REQUIRED_URL,
   INDEX_URL,
   LOGIN_URL,
@@ -19,12 +20,13 @@ import {
   REGISTER_URL,
   SHOP_URL,
 } from "./constants/urls";
-import UserSettingsPage from "./pages/UserSettings";
+import UserSettingsPage from "./pages/UserSettingsPage";
 import IndexPage from "./pages/IndexPage";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AnonymousOnlyRoute from "./components/Routing/AnonymousOnlyRoute";
 import EmailVerificationRequiredPage from "./pages/EmailVerificationRequiredPage";
-import MatchDetail from "./pages/MatchDetail";
+import MatchDetailPage from "./pages/MatchDetailPage";
+import EmailActivationPage from "./pages/EmailActivationPage";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
         path: LOGIN_URL,
         element: (
           <AnonymousOnlyRoute>
-            <SignIn />
+            <SignInPage />
           </AnonymousOnlyRoute>
         ),
       },
@@ -48,7 +50,7 @@ const router = createBrowserRouter([
         path: REGISTER_URL,
         element: (
           <AnonymousOnlyRoute>
-            <SignUp />
+            <SignUpPage />
           </AnonymousOnlyRoute>
         ),
       },
@@ -56,7 +58,7 @@ const router = createBrowserRouter([
         path: PLAYERS_URL,
         element: (
           <PrivateRoute>
-            <Players />
+            <PlayersPage />
           </PrivateRoute>
         ),
       },
@@ -64,7 +66,7 @@ const router = createBrowserRouter([
         path: MATCH_RESULTS_URL,
         element: (
           <PrivateRoute>
-            <MatchResults />
+            <MatchResultsPage />
           </PrivateRoute>
         ),
       },
@@ -72,7 +74,7 @@ const router = createBrowserRouter([
         path: SHOP_URL,
         element: (
           <PrivateRoute>
-            <Shop />
+            <ShopPage />
           </PrivateRoute>
         ),
       },
@@ -97,10 +99,14 @@ const router = createBrowserRouter([
         element: <EmailVerificationRequiredPage />,
       },
       {
+        path: `${EMAIL_ACTIVATION_URL}/:uid/:token`,
+        element: <EmailActivationPage />,
+      },
+      {
         path: `${MATCH_RESULTS_URL}/:matchId`,
         element: (
           <PrivateRoute>
-            <MatchDetail />
+            <MatchDetailPage />
           </PrivateRoute>
         ),
       },

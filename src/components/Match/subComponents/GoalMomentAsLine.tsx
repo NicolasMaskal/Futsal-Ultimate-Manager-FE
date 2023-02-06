@@ -2,6 +2,7 @@ import React from "react";
 import { GoalMoment } from "../../../models";
 import Typography from "@mui/material/Typography";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+
 const GoalMomentAsLine: React.FC<{
   goalMoment: GoalMoment;
   currentMinute: number;

@@ -3,9 +3,9 @@ import * as React from "react";
 import PageTitle from "../components/Generic/PageTitle";
 import Container from "@mui/material/Container";
 import ChangePasswordForm from "../components/UserSettings/ChangePasswordForm";
-import { Fade, Grow } from "@mui/material";
+import { Fade } from "@mui/material";
 
-const UserSettings = () => {
+const UserSettingsPage = () => {
   return (
     <Box
       className="pb-20"
@@ -35,4 +35,4 @@ const UserSettings = () => {
   );
 };
 
-export default UserSettings;
+export default UserSettingsPage;
