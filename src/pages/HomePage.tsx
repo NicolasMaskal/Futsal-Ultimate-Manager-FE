@@ -16,11 +16,22 @@ import shopImg from "../images/Packs.png";
 import { shopPageDescription } from "./ShopPage";
 import { matchCenterPageDescription } from "./MatchCenterPage";
 import { resultsPageDescription } from "./MatchResultsPage";
+import PageDescription from "../components/Generic/PageDescription";
 
 const HomePage = () => {
   return (
     <>
       <PageTitle title="HOME PAGE" />
+      <PageDescription>Welcome to Futsal Ultimate Manager!</PageDescription>
+      <PageDescription>
+        To see your players, visit the <span className={"font-bold"}>players</span> tab.
+        To create a lineup and simulate a match, visit the{" "}
+        <span className={"font-bold"}>match center</span> tab. To review the results from
+        your previous matches, visit the{" "}
+        <span className={"font-bold"}>match results</span> tab. If you feel like your
+        squad needs improving, visit the <span className={"font-bold"}> shop</span> tab,
+        to buy player packs.
+      </PageDescription>
       <Grid container className="pt-8" spacing={8} justifyContent={"center"}>
         <Grid item>
           <HomePageCard

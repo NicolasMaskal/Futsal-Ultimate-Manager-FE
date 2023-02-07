@@ -87,6 +87,11 @@ const MatchCenterPage = () => {
       <PageTitle title={"MATCH CENTER"} />
       <PageDescription>{matchCenterPageDescription}</PageDescription>
       <PageDescription>
+        When creating a lineup for your <span className={"font-bold"}>first match</span>,
+        click on the player in the non-playing list, and then click on their preferred
+        position in the lineup.
+      </PageDescription>
+      <PageDescription>
         To switch players between the lists, <span className={"font-bold"}> click </span>{" "}
         on the two specific players you want to switch.
       </PageDescription>
@@ -94,7 +99,13 @@ const MatchCenterPage = () => {
         Keep in mind, that players with <span className={"font-bold"}> low stamina </span>{" "}
         don't perform well!
       </PageDescription>
-      <Grid container columns={isMobile ? 6 : 10} sx={{px: isMobile ? 1: 10}} spacing={8} className="pt-8">
+      <Grid
+        container
+        columns={isMobile ? 6 : 10}
+        sx={{ px: isMobile ? 1 : 10 }}
+        spacing={8}
+        className="pt-8"
+      >
         <Grid item xs={6}>
           <SubPageTitle content="Lineup for next match" />
           <SheetTable
