@@ -12,7 +12,7 @@
 [![tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
 
-**Link to site**: https://www.futsal-manager.tech
+**Link to site**: https://www.futsal-manager.tech (Note: Feel free to use a tmp mail when trying it out: https://mail.tm/en/)
 
 The **Futsal Ultimate Manager** is a project consisting of a frontend built with React Typescript and a backend built with Django. The backend code can be found on [Github](https://github.com/Nicolas264859/Futsal-sim-BE),
 while the frontend code can be found here in this repo. 
