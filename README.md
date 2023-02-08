@@ -1,46 +1,32 @@
-# Getting Started with Create React App
+# Futsal Ultimate Manager (Frontend - React)
+[![Nico linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nicolasmaskal/)
+[![Nico github](https://img.shields.io/badge/GitHub-Nicolas264859-181717.svg?style=flat&logo=github)](https://github.com/Nicolas264859)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Basic info about the project
+[![Lint](https://github.com/Nicolas264859/Futsal-Sim-FE/actions/workflows/react.yml/badge.svg)](https://github.com/Nicolas264859/Futsal-Sim-FE/actions/workflows/react.yml)
+[![typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)](https://prettier.io/)
+[![mui](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)](https://mui.com/)
+[![tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-In the project directory, you can run:
 
-### `npm start`
+**Link to site**: https://www.futsal-manager.tech
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The **Futsal Ultimate Manager** is a project consisting of a frontend built with React Typescript and a backend built with Django. The backend code can be found on [Github](https://github.com/Nicolas264859/Futsal-sim-BE),
+while the frontend code can be found here in this repo. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Code Overview
+The project is built with **Typescript** and the **React** framework, making use of the **Material UI (MUI)** library for it's out of the box styled components. Additionally, making use of  **Tailwind CSS** with a custom override. The code is formatted using the popular **Prettier** tool, making the codebase readable and easy to maintain. 
 
-### `npm test`
+The routing of the application is handled with **React Routers**, while form logic is managed by **Formik**. To store local data, the project utilizes the React **Redux** library. For authorization HTTP-only cookies are used. To maintain code consistency, the project makes use of Github Actions to run Prettier.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Deployment
+The project is hosted on DigitalOcean's App Platform. For more information about the deployment, 
+visit: [Deployment](https://github.com/Nicolas264859/Futsal-Sim-BE#deployment).
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Future improvements
+* Add tests.
+* Implement everything backend has to offer.
+* Improve mobile expierence
