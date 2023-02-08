@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 
 const AppName = () => {
   return (
-    <Box className="flex-grow" sx={{display:{xs: "none", sm: "flex"}}}>
+    <Box className="flex-grow" sx={{ display: { xs: "none", sm: "flex" } }}>
       <Button
         component={Link}
         to="/"

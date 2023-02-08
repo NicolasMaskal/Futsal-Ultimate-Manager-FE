@@ -19,7 +19,11 @@ const HomePageCard: React.FC<{
       {/*<div className="flex justify-center">*/}
       <Card
         elevation={5}
-        sx={{ maxWidth: mobileView ? "20rem" : "33rem", display: "flex", justifyContent: "center" }}
+        sx={{
+          maxWidth: mobileView ? "20rem" : "33rem",
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
         <CardActionArea component={Link} to={href}>
           <img

@@ -1,5 +1,4 @@
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import * as React from "react";
 
 const Footer = (props: any) => {
@@ -12,10 +11,25 @@ const Footer = (props: any) => {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://github.com/Nicolas264859/Futsal-sim-FE">
-        Nicolas Maskal
-      </Link>{" "}
-      {new Date().getFullYear()}
+      <Typography variant="body2" component={"span"} display="inline">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          color="inherit"
+          href="https://www.linkedin.com/in/nicolasmaskal/"
+        >
+          Nicolas Maskal
+        </a>
+        {", "}
+        <a
+          target="_blank"
+          rel="noreferrer"
+          color="inherit"
+          href="https://github.com/Nicolas264859/"
+        >
+          Github
+        </a>
+      </Typography>
     </Typography>
   );
 };

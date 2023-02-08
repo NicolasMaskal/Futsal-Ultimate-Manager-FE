@@ -60,8 +60,8 @@ export const Match: React.FC<{
   }, [currentMinute, dispatch, isSimulated, matchData.coins_reward, timeoutTime]);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   const pageTitle =
     currentMinute <= 40 ? "Simulated Match (40 minutes)" : "Match Result Detail";
 

@@ -10,7 +10,7 @@ const LogoButtonHeader = () => {
       <Box
         component="img"
         sx={{
-          maxHeight: {xs: 40, md: 50},
+          maxHeight: { xs: 40, md: 50 },
           maxWidth: "100%",
           // display: { xs: "none", md: "flex" },
           mr: 2,
