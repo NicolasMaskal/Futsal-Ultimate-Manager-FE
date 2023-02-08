@@ -25,6 +25,7 @@ import {
 } from "../../../utils/player-ui";
 import { getFirstErrorMessage } from "../../../utils/be-error-helpers";
 import { teamCoinsIncrease } from "../../../store/user-slice";
+import Tooltip from "@mui/material/Tooltip";
 
 interface AdditionalInfoType {
   averageSkill: number | undefined;
@@ -146,9 +147,11 @@ const PlayerRow: RowComponentType<Player, AdditionalInfoType> = ({
         {player.sell_price}
       </TableCell>
       <TableCell align="right" padding={mobileView ? "none" : "normal"}>
-        <IconButton onClick={handleClick}>
-          <MonetizationOnRoundedIcon sx={iconSx} />
-        </IconButton>
+        <Tooltip title={"Sell player"}>
+          <IconButton onClick={handleClick}>
+            <MonetizationOnRoundedIcon sx={iconSx} />
+          </IconButton>
+        </Tooltip>
         <CustomPopper
           isOpen={sellOpen}
           anchorEl={anchorEl}
