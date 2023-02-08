@@ -1,10 +1,10 @@
 # Futsal Ultimate Manager (Frontend - React)
 [![Nico linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nicolasmaskal/)
-[![Nico github](https://img.shields.io/badge/GitHub-Nicolas264859-181717.svg?style=flat&logo=github)](https://github.com/Nicolas264859)
+[![Nico github](https://img.shields.io/badge/GitHub-Nicolas264859-181717.svg?style=flat&logo=github)](https://github.com/NicolasMaskal/)
 
 
 # Basic info about the project
-[![Lint](https://github.com/Nicolas264859/Futsal-Sim-FE/actions/workflows/react.yml/badge.svg)](https://github.com/Nicolas264859/Futsal-Sim-FE/actions/workflows/react.yml)
+[![Lint](https://github.com/NicolasMaskal/Futsal-Ultimate-Manager-FE/actions/workflows/react.yml/badge.svg)](https://github.com/NicolasMaskal/Futsal-Ultimate-Manager-FE/actions/workflows/react.yml)
 [![typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)](https://prettier.io/)
@@ -14,7 +14,7 @@
 
 **Link to site**: https://www.futsal-manager.tech (Note: Feel free to use a tmp mail when trying it out: https://mail.tm/en/)
 
-The **Futsal Ultimate Manager** is a project consisting of a frontend built with React Typescript and a backend built with Django. The backend code can be found on [Github](https://github.com/Nicolas264859/Futsal-sim-BE),
+The **Futsal Ultimate Manager** is a project consisting of a frontend built with React Typescript and a backend built with Django. The backend code can be found on [Github](https://github.com/NicolasMaskal/Futsal-Ultimate-Manager-BE),
 while the frontend code can be found here in this repo. 
 
 # Code Overview
@@ -24,7 +24,7 @@ The routing of the application is handled with **React Routers**, while form log
 
 # Deployment
 The project is hosted on DigitalOcean's App Platform. For more information about the deployment, 
-visit: [Deployment](https://github.com/Nicolas264859/Futsal-Sim-BE#deployment).
+visit: [Deployment](https://github.com/NicolasMaskal/Futsal-Ultimate-Manager-BE#deployment).
 
 # Future improvements
 * Add tests.
