@@ -99,6 +99,7 @@ const PlayersPage = () => {
         pagination={true}
         tableWidthInGrid={10}
         onRowDeleteCallback={onSellCallback}
+        dontAdjustFont
         additionalInfo={{
           averageSkill: data?.average_skill,
           showHistory: true,

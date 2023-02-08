@@ -86,6 +86,7 @@ const MatchResultsPage = () => {
           defaultOrder={"desc"}
           pagination={true}
           tableWidthInGrid={10}
+          dontAdjustFont
           additionalInfo={undefined}
         />
       )}
