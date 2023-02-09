@@ -25,7 +25,7 @@ const Footer = (props: any) => {
           target="_blank"
           rel="noreferrer"
           color="inherit"
-          href="https://github.com/Nicolas264859/"
+          href="https://github.com/NicolasMaskal/"
         >
           Github
         </a>
